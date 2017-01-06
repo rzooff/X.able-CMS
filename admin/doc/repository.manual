@@ -1,0 +1,11 @@
+<span class="title">Magazyn</span>
+"Pliki", "Obrazy" i "Strony tymczasowe" to grupa elementów, które można wstawiać w polach tekstowych przy pomocy odpowiednich przycisków formatowania.
+<d>Nazwy folderów służą jedynie wygodzie użytkownika i można je dowolnie zmieniać także już po ich użyciu.</d>
+
+<span class="title">Wstawianie: Pliku / Strony tymczasowej</span>
+&bull; Jeśli wcześniej zaznaczymy fragment tekstu, to do niego zostanie podpiety link do pliku / strony. W takiej sytuacji będzie możliwe wybranie tylko jednego elementu.
+&bull; Jeśli wcześniej nie zaznaczymy tekstu, będzie możliwe wybranie kilku elementów - linkami będą nazwy plików / stron.
+
+<span class="title">Wstawianie: Obrazka</span>
+&bull; Jeśli wcześniej zaznaczymy fragment tekstu, to wstawimy banner w formie obrazka z opisem.
+&bull; Jeśli wcześniej nie zaznaczymy tekstu, wstawiony będzie banner obrazkowy. Wstawienie kolejnego, bez odstępu (spacji ani entera) spowoduje  ustawienie obrazków obok siebie.

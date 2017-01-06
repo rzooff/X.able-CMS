@@ -1,0 +1,106 @@
+/* ================================== */
+/*            Nav slider              */
+/* ================================== */
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0px;
+    height: 100vh;
+    overflow-y: scroll;
+    z-index: 2;
+}
+
+#show_nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 50vh;
+    height: 100%;
+    width: 40px;
+}
+
+#show_nav span {
+    position: relative;
+    width: 100%;
+    color: #ffffff;
+    font-size: 30px;
+    left: 8px;
+    top: -40px;
+}
+
+/* ================================== */
+/*             CSV table              */
+/* ================================== */
+
+table, table td {
+    border-spacing: 0;
+    border: 1px #eeeeee;
+    font-weight: 400;
+}
+
+table {
+    margin-top: 20px;
+    min-width: 100%;
+    border-style: solid none none solid;
+    border-radius: 4px 4px 0 0;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+table td {
+    padding: 5px;
+    border-style: none solid solid none;
+}
+
+td.nr .delete { display: none; }
+td.nr {
+    width: 25px;
+    transition: 0.25s;
+}
+
+td.nr:hover, tr.new td.nr:hover {
+    color: #ffffff;
+	background-color: #fd585e;
+}
+
+td.nr {
+	position: relative;
+    text-align: center;
+}
+
+tr.title {
+    color: #cccccc;
+}
+
+tr.title td {
+    border-right-color: #666666;
+    border-bottom-color: #666666;
+}
+
+tr.title td:last-of-type {
+    border-radius: 0 4px 0 0;
+    border-right-color: inherit;
+}
+
+tr.title, td.nr {
+    cursor: default;
+}
+
+tr.edit  td.editable {
+	cursor: text;
+}
+
+tr.edit  td.editable:hover {
+    background-color: #f0f0f0;
+}
+
+td.nr {
+    width: 25px;
+    transition: 0.25s;
+}
+
+td.manual { text-align: center; }
+td.manual span {
+    font-size: 1.5em;
+}

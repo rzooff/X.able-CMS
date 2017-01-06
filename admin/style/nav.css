@@ -1,0 +1,233 @@
+/* ================================== */
+/*                Nav                 */
+/* ================================== */
+
+nav {
+    display: block;
+    width: 270px;
+    color: #ffffff;
+    float: left;
+    
+    height: 100%;
+    min-height: 100vh;
+}
+
+nav h1, nav h1 strong {
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Audiowide', cursive;
+}
+
+nav h1 {
+    height: 81px;
+    padding-top: 14px;
+    background-color: rgba(0,0,0,0.2);
+    
+    /* padding fix */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+nav h1 strong {
+    position: relative;
+    top: 3px;
+    font-size: 35px;
+    text-shadow: 0 0 10px #ffffff;
+}
+
+nav h1 span {
+    position: relative;
+    top: 1px;
+    font-size: 0.33em;
+}
+
+#search {
+    display: block;
+    position: relative;
+    padding-right: 50px;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.7);
+
+    /* padding fix */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+#search input {
+    width: 100%;
+    padding: 16px 20px;
+    padding-right: 50px;
+    border: none;
+    color: #b4b4b4;
+    background-color: transparent;
+    /* border: 1px solid #2d363b; */
+    border-radius: 99px;
+    
+    /* padding fix */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+#search input:focus { outline: none; }
+
+#search input::-webkit-input-placeholder { color: #666666; }
+#search input:-moz-placeholder { color: #666666; } /* FF 4-18 */
+#search input::-moz-placeholder { color: #666666; } /* FF 19+ */
+#search input:-ms-input-placeholder { color: #666666; } /* IE 10+ */
+
+#search button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#search button span {
+    font-size: 1.75em;
+    transition: 0.5s;
+}
+
+nav dd, nav dt, nav h1, nav #search {
+    border-bottom: 1px solid #2d363b;
+}
+nav dd, nav dt {
+    padding: 12px 0 15px 20px;
+    overflow: hidden;
+}
+
+nav dt {
+    position: relative;
+    transition: 0.5s;
+    cursor: row-resize;
+	color: #46d6ce;
+}
+
+nav dt span {
+    margin-left: 10px;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+nav dt:hover > span {
+    opacity: 1;
+}
+
+nav dt .show_manual {
+    float: right;
+    margin-right: 20px;
+    opacity: 0.75;
+    color: #46d6ce;
+    cursor: default;
+}
+
+nav a {
+    overflow: hidden;
+}
+
+nav a dd {
+    position: relative;
+    transition: 0.5s;
+}
+
+nav a .remove, nav .current .remove {
+    float: right;
+    color: transparent;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+nav a dd:hover > .remove { color: rgba(255,255,255,0.3); }
+nav a dd:hover { background-color: rgba(0,0,0,0.4); }
+
+nav a.current dd { cursor: default; }
+
+nav a.current dd {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+nav span {
+    position: relative;
+    top: 2px;
+    font-size: 1.2em;
+}
+
+nav dd span {
+    margin-right: 20px;
+}
+
+nav dl a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+
+nav dd.template {
+    color: rgba(255,255,255,0.3);
+}
+
+nav dd.template {
+    cursor: pointer;
+    transition: 0.5s;
+}
+nav dd.template:hover {
+    color: rgba(255,255,255,1);
+    background-color: rgba(0,0,0,0.5);
+}
+
+nav .buttons {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+nav .buttons button {
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ================================== */
+/*           Template popup           */
+/* ================================== */
+
+#popup_box p.select {
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+#popup_box select {
+    margin-bottom: 20px;
+}
+
+/* ================================== */
+/*             Login info             */
+/* ================================== */
+
+#login_info {
+    padding: 20px;
+    padding-top: 0;
+    font-size: 0.8em;
+    opacity: 0.5;
+}
+
+#login_info em {
+    font-size: 1em;
+    font-style: inherit;
+    opacity: 0.5;
+}
+
+#login_info a {
+    color: #ffffff;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+#login_info a:hover {
+    opacity: 1.0;
+}
+
+    
+    

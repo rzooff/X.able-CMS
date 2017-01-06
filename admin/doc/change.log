@@ -1,0 +1,373 @@
+2016-03-02, 16:00:00
+    V:      2.0
+	Info:	New tag <disabled>, values: "true" lub "false". It gives the ability to block section editing. Disabled fields content have opacity 0.5.
+	Files:	script/cms.js, _xml.php
+    
+2016-03-02, 18:00:00
+    Info:   Automatic open first possible page to edit (very useful for account with limited access).
+    Files:  functions.php, index.php
+    
+2016-03-03, 18:00:00
+    Info:   Dictionary update.
+    Files:  dictionary.csv
+    
+2016-03-03, 00:00:00
+    Info:   Many fixes/changes in CSV modules: added support for multiline text, new row is adden on top of list & have different color, launched fields sorting.
+    Files:  script/cms.js, _csv.php
+    
+2016-03-08, 22:30:00
+    Info:   Fixed paste formatting garbage (enter) into the contenteditable (csv edit module).
+    Files:  script/cms.js
+    
+2016-03-09, 12:00:00
+    Info:   Major update listing directories & files functions, fix file/dir recognition bug in listDir().
+	Info:	Major update path(): added filesize ("size") and modification date/time ("modified").
+    Info:   New function: htmlTree(): Build html tree of specified path files & folders.
+	Files:  script/functions.php
+    
+2016-03-09, 13:30:00
+    Info:   Adden "protected" data type to xable.ini & loadIni(). Needed for Creator.
+	Files:  xable.ini, script/functions.php
+	
+2016-03-09, 17:30:00
+    Info:   Added auto fix invalid or none (eg. from Creator) media set setting.
+	Info:	Fixed media box bug in css.
+	Files:  _xml.php, style/cms.css
+	
+2016-03-11, 09:00:00
+    Info:   CREATOR v.1.0 launched (needs latest: functions & ini)
+	Files:  creator.php, style/creator.css, script/creator.js
+	
+2016-03-11, 23:30:00
+    Info:   Added Enabe/disable Password change & Creator module option in xable.ini
+            Some changes in ini names: permissions -> enable, protected -> hidden.
+    Info:   Minor bug fixes and code improvements in loadIni()
+	Files:  xable.ini, index.php, creator.php, password.php, script/functions.php, script/_footer.js
+	
+2016-03-12, 14:36:00
+    Info:   Added new media type: Video! (YouTube link, or other in embeded form)
+	Files:  _xml.ini, creator.php, script/creator.js, style/cms.css, style/creator.css
+	
+2016-03-12, 14:40:00
+    Info:   Dictionary update
+	Files:  dictionary.csv
+	
+2016-03-13, 01:00:00
+    Info:   New function in xml tools: readXml() for easy access to xml array
+	Files:  script/xml.php
+	
+2016-03-13, 14:00:00
+    V:      2.1 alfa
+    Info:   Major login/pass configuration enhacement: Multiple users/passwords in groups with different ini configs.
+            Default xable.ini in main folder remains valid (loaded when no users data defined)
+    Info:   Global variables now strored in $_SESSIONS (logged_user, ini_file...);
+    Info:   Fix clear video data in new article
+	Files:  index.php, password.php, _nav.php, script/cms.js, style/nav.css, users/.group, users/*.ini
+	
+2016-03-13, 20:25:00
+    Info:   Adding new item navigation.xml changed. "+" button shown on the last item, and new item shows up below it.
+	Files:  script/cms.js
+	
+2016-03-13, 21:10:00
+    Info:   Detect changes implemented in Creator.
+    Info:   Show manual implemented in Creator.
+	Files:  script/creator.js, doc/xable_manual.pdf
+	
+2016-03-13, 22:30:00
+    Info:   Admin stuff moved from functions.php to separate file: cms.php
+    Info:   Bug fixed in ReadXml() function (textarea).
+    Info:   Bug fixed in BBCode() function (internal links).
+	Files:  script/functions.php, script/cms.php, script/xml.php
+	
+2016-03-14, 17:30:00
+    Info:   Internal hyperlink code in <format> changed to "h" (needed to update in imbiradvertising: done)
+    Info:   Major bug fixes in functions.php - in list tree funcions!
+	Files:	script/cms.php, script/creator.php
+	
+2016-03-15, 17:30:00
+    Info:   New items in enable part of ini -> remove, template
+    Info:   Folders users renamed to .users due to NOT include it during creation of installer zip
+	Info:	Authorization() launched moved to index.php
+    Files:	xable.ini, index.php, creator.php, password.php, publish.php, remove.php, script/footer.js, script/cms.js, script/cms.php
+	
+2016-03-16, 17:45:00
+    Info:   Fixed problem with leading/trailing spaces data in csv table cell
+    Files:	script/cms.js
+	
+2016-03-17, 00:00:00
+    Info:   USERS MANAGER launched (pinned to CREATOR)
+    Info:   Changes in ini - 'password' renamed to 'passwords'.
+    Files:	passwords.php, .users/*.ini, creator.php, users.php, script/cms.js, script/users.js
+	
+2016-03-17, 17:45:00
+    Info:   archiveFiles() function added to cms.php functions.
+    Info:   Fix to archiveFiles() to include hidden (.name) files & folder with renamed names (_name).
+	Info:	BACKUP panel launched!
+	Info:	Fixed bug in group change in USERS MANAGER.
+    Info:   '.users' folder renamed to '_users'.
+    Files:	backup.php, script/backup.js, script/cms.php, script/users.js, _users/*, style/password.css
+	
+2016-03-23, 16:00:00
+    Info:	Skin css renamed to colors
+    Info:	Some fixes & organize in css
+    Info:	Added info about min. password length to users panel & installer
+    Files:	style/index.css, style/colors.css, users.php, _installer/index.php
+	
+2016-03-30, 16:00:00
+    Info:	Fixed CSS connection lost in previous update
+    Info:	Some cleanup in page template content (../)
+    Files:	backup.php, password.php
+	
+2016-04-03, 23:45:00
+    Info:	New text styles support: superscript, subscript
+    Files:	../script/functions.php, script/functions.php, script/cms.js, script/creator.js, style/cms.css, style/creator.css
+	
+2016-04-09, 22:45:00
+    Info:	New LOGIN system - full support with logout
+    Files:	ALL!!!
+    
+2016-04-16, 01:30:00
+    Info:	New data type: table (full editable, support added to editor & creator modules) + some minor fixes
+    Info:   Version number changed to 2.3
+    Files:	creator.php, _xml.php, style/colors.css, style/cms.css, style/creator.css, script/cms.js, script/creator.js, script/footer.js
+    
+2016-06-16, 01:30:00
+    Info:   Users editor enchanced with groups (.ini) file editor
+    Info:   Many bug fixes
+    File:   users.php, script/users.js, *
+    Info:   Version number changed to 2.4
+    
+2016-07-01, 00:00:00
+    Info:   New media type: Multiple files
+    Info:   Users editor enchanced with groups (.ini) file editor
+    Info:   Many bug fixes
+    Info:   Version number changed to 2.5
+    Files:  *
+    
+2016-08-02, 01:33:00
+    Info:   New styles: center, horizonatal line
+    Info:   Smaller style buttons
+    Info:   New feature: add file / image / temp page to a textarea field (BBCode style)
+    Info:   Simplified style buttons show/hide
+    Info:   Bug fixes in textrea content live preview (BBCode in js.)
+    Info:   Cursor position & scroll position restore after textarea style edit
+    Info:   Version number changed to 2.6
+    Files:  *
+    
+2016-08-04, 01:00:00
+    Info:   Show pages list in order as in .order file (if any)
+    Info:   Automatic set textarea height by content (on load, keyup, edit, new post)
+    Info:   Added Unchecked radio option fix
+    Info:   Fixed delete media on article delete
+    Files:  _nav.php, script/cms.js, script/functions.js
+    
+2016-08-06, 01:00:00
+    Info:   Added possibility for using [ & ] in text - with the "\" before: \[, \]
+    Info:   IMPORTANT bug fixed - only the last of empty groups has shown
+    Info:   Format key changed: "-"=list, "."=bullet
+    Info:   Set style buttons set for particular site by xable.ini
+    Info:   Hide libraries connected buttons if no library found
+    Files:  _xml.php _nav.php, index.php, xable.ini, script/cms.js, script/creator.js
+    
+2016-08-07, 18:26:00
+    Info:   Added images zoom feature
+    Files:  _xml.php, script/cms.js, style/cms.css, style/index.css
+    
+2016-08-08, 09:15:00
+    Info:   Applied new styles to php BBCode function
+    Info:   Preview cosmetic fixes
+    Info:   Zoom cosmetic upgrade - added filename, size in px & close icon
+    Info:   Added (zoom alike) download button to file thumbs
+    Files:  _xml.php, script/cms.js, style/cms.css, script/functions.php
+    
+2016-08-12, 12:15:00
+    Info:   Disable gif resize on upload to prevent transparency & animation
+    Files:  script/upload_images.php
+    
+2016-08-17, 18:00:00
+    Info:   IMPORTANT bug fixed - some combinations in .ini caused overwriting items group in nav array and show only the last with the same array key
+	Info:	Fixed no folder name in insert Temp page on textarea
+	Info:	Temp pages url mode set to internal [url|i] unlike file attachment links whitch remains external [url|e]
+	Info:	Changed "admin password" to "user password" on change password pannel
+	Info:	Added "\[" & "\]" special characters to BBCode php function
+	Info:	Removed automatic apply BBCode on text output in readXml function
+    Files:  index.php, password.php, _nav.php, script/cms.js, script/footer.js, script/functions.php, script/xml.php
+	
+2016-08-19, 16.10:00
+    Info:	New formatting features added to noBBCode php function
+    Info:	Check time since last backup & show info if its longer than 31 days
+    Info:	Backup folder path added to .ini
+	Files:  index.php, backup.php, _users/*.ini, script/cms.js
+    
+2016-08-20, 16.10:00
+    Info:   v3.0alpha -> Preview mode popup added to functions.js
+    Info:   Majord changes -> draft version support * files
+    Info:   Added real min-height support to textareaAutoResize in functions.js
+	Files:  *
+    
+2016-09-22, 16.10:00
+    Info:   Applied enable/disable optional functions for specified users group
+    Info:   Some minor fixes
+	Files:  *
+    
+2016-09-26, 12.10:00
+    Info:   New php function: listOrder to list files based on order file
+    Info:   Applied enable/disable draft features in xable.ini
+	Files:  script/functions.php, xable.ini
+    
+2016-09-30, 14.00:00
+    Info:   jQuery updated to v3.1.0
+    Info:   Fixed overwriting/deleteing svg files problem
+    Info:   Fixed (again not working) delete media on article delete
+    Info:   Improoved file manger actions on draft support mode features
+    Info:   Some cosmetic fixes on zoom image
+	Files:  *
+    
+2016-09-30, 20.00:00
+    Info:   updated functions: loadXml, listOrder due to draft support & preview mode features
+    Info:   listOrder moved from functions.php to xml.php
+    Info:   Cosmetic changes in preview infobox
+    Info:   Fixed lost GET data when using rewrite module
+    Info:   Added url cleanup to preview_mode.js
+	Files:  script/function.php, script/xml.php, ../style/preview_mode.css, ../script/preview_mode.js, ../index.php (update preview code!)
+    
+2016-09-30, 21.00:00
+    Info:   IMPORTANT change in .ini: pathes & hidden data moved from <group>.ini to xable.ini
+    Info:   Common initialize php code put in a required new file: _session-start.php
+	Files:  xable.ini, *.php
+    
+2016-09-30, 21.00:00
+    Info:   Loader changed to pure CSS bar & linked to one css file (get ridd off any raster images)
+	Files:  *.php, style/loader.css
+    
+2016-10-01, 15.10:00
+    Info:   Fixes & new features in publishing script: revert, undo (new essential revert mode), unpublish
+    Info:   Launch edited subpage with Preview button based on link pattern in xable.ini
+    Info:   Page remove with full draft/prev files support
+    Info:   Fixed minor bud in loadIni
+	Files:  publish.php, remove.php, _header.php, _nav.php, xable.ini, script/cms.js, script/footer.js, script/cms.php
+    
+2016-10-02, 13.00:00
+    Info:   v3.0beta
+    Info:   Discard icon changed to trash
+    Info:   Fixed: zoom/download button reinitialize after thumb move left or right
+    Info:   Disabled Unpublish option in case of root documents (settings, navigation)
+    Info:   IMPORTANT log file path set in xable.ini (& changed as default to site root)
+    Info:   addLog function moved from publish.php to script/cms.php
+    Info:   Write log added to remove, backup & password, added log writing for draft features: undo/revert, dicard, unpublish
+	Files:  _header.php, publish.php, remove.php, backup.php, password.php, script/cms.js, script/cms.php, (../xable.log)
+    
+2016-10-02, 23.50:00
+    Info:   New feature: Show log
+    Info:   Back to specified path on backup/password/show-log
+	Files:  backup.php, password.php, show-log.php, _header.php, script/footer.js, script/cms.js, script/backup.js, script/password.js, style/show-log.css
+
+2016-10-03, 16.00:00
+    Info:   New option: Set log file length limit (log_max)
+    Info:   Xable min-width changed to 960px
+    Info:   CMS version info moved to index
+	Files:  index.php, xable.ini, script/cms.php, script/footer.js, style/index.cssoter.js, script/cms.js, script/backup.js, script/password.js, style/show-log.css
+
+2016-10-03, 23.00:00
+    Info:   New feature: SEARCH + scroll to found on selected document
+	Files:  *
+    
+2016-10-05, 14.00:00
+    Info:   Fixed not showing new unpublished documents (draft only) in non-order group
+    Info:   New feature: Draft status indication on nav pannel
+    Info:   Notifications list sorted in mod. time order - now newest is on the top
+	Files:  index.php, _nav.php, _header.php, script/cms.js, style/colors.css
+    
+2016-10-05, 19.00:00
+    Info:   Automated subject on Problem Report mailto buttom
+    Info:   Launch searching with Enter key
+	Files:  script/footer.js, script/cms.js, style/nav.css
+    
+2016-10-06, 00.30:00
+    Info:   Auto focus & enter key actions in popups applied
+    Info:   Some cosmetic changes & fixes
+	Files:  script/cms.js
+    
+2016-10-07, 18.00:00
+    Info:   IMPORTANT - major changes in cms files structure!
+    Info:   Installer changed to Update pannel: Update & Install / Create package pannel
+    Info:   Updated installer scripts: temp files delete after install, .log support
+    Info:   new js function: urlQuery() added to functions.js - url query read/add/delete/change
+	Files:  *
+
+2016-10-10, 16:15:00
+	Info:	New Creator pannel: Explorer - simple webapp FTP client 
+	Info:	New features in Creator Update pannel - Preview changelog, Add new changelog
+	Info:	Improoved copyDir() php function - full folder copy
+	Files:	*
+
+2016-10-10, 18:21:39
+	Info:	Fixed - restore xable.ini on Install-Update
+	Files:	_installer/install.php
+
+2016-10-10, 23:50:00
+	Info:	Creator Update & Explorer converted to one-document script
+	Info:	Image & PDF preview added to Creator Explorer + some minor fixes
+	Files:	*
+
+2016-10-11, 14:14:40
+	Info:	Fixes in Creator modules
+	Info:	Linked edit pathes between index/creator/explorer
+	Files:	*
+    
+2016-10-11, 18:21:29
+	Info:	Added Libraries manual
+	Info:	Editor buttons order changed
+	Info:	Add new file feature in Advanced-Explorer
+	Files:	index.php, xable_explorer.php, modules/nav.php, modules/header.php, script/cms.js
+
+2016-10-12, 18:16:13
+	Info:	New feature: $_SESSION variables reset by keys set in xable.ini
+	Files:	xable.ini, _publish.php
+
+2016-10-12, 22:57:33
+	Info:	New feature: exclude in backup list set in xable.ini
+	Info:	Unified all multiple values format in xable.ini: val1,val2,val3
+	Info:	Some minor fixes
+	Files:	xable.ini, backup.php, _publish.php
+
+2016-10-28, 00:18:27
+	Info:	Back to edited page after remove other page fixed
+	Files:	_remove.php
+
+2016-11-29, 16:49:14
+	Info:	Fixed bug: auto-select first media on new post now works properly (typo)
+	Files:	script/cms.js
+
+2016-12-01, 13:40:31
+	Info:	New DetectChanges system based on comparision initail & current output
+	Files:	index.php, script/cms.js
+
+2016-12-07, 19:38:08
+	Info:	v.3.0 released
+	Info:	Added "show hidden files" to Creator-Explorer module
+	Files:	xable_update.php, script/xable_update.js, style/xable_update.css
+
+2017-01-05, 00:07:23
+	Info:	ZIP functions moved from cms.php to functions.php
+	Info:	Fixed important bug in Explorer module (all actions were disabled)
+    Info:	Added unzip.php & readme.txt download links on Update pannel
+	Files:	xable_explorer.php, xable_update.php, script/cms.php, script/functions.php, script/xable_explorer.js
+
+2017-01-05, 16:25:12
+	Info:	Fixed URL hash bug in preview mode.
+	Info:	New menu group auto fold/expand script, considering the library group & new page template group
+	Info:	Fix for replace special characters in upload filename ("[", "]", "@")
+	Files:	modules/nav.php, script/cms.js
+
+2017-01-05, 17:20:57
+	Info:	Installer fixes: Unzip.php renamed to txt to enable code content download, Delete install folder after installation moved to index.php on first run, Readme updated
+	Files:	index.php, _installer/install.php, _installer/unzip.php.txt, _installer/readme.txt
+
+2017-01-06, 00:26:41
+	Info:	Fixed installer in update mode will move old backups to new admin folder
+	Files:	_installer/install.php
+
+=======================================================
+TODO:
+    - Language unification: PL or EN.

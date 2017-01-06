@@ -1,0 +1,164 @@
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+/* ================================== */
+/*                Edit               */
+/* ================================== */
+
+table {
+    margin-top: 30px;
+    width: 100%;
+}
+
+table tr {
+    display: block;
+	position: relative;
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+table td {
+    padding: 10px 8px;
+}
+
+table .login {
+    position: relative;
+    top: 4px;
+    min-width: 70px;
+    font-style: bold;
+}
+
+td span, td p, td select, td button {
+    float: left;
+}
+
+.icon {
+    margin: 0 20px 0 10px;
+    font-size: 1.5em;
+    color: #00bbaa;
+}
+
+.group {
+    min-width: 80px;
+}
+
+table button {
+    margin: 0;
+}
+
+.new_article {
+    margin-left: 12px;
+}
+
+.updated {
+    background-color: #ddfff4;
+}
+
+span.ini:hover, span.delete:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+span.delete {
+    color: #888888;
+}
+
+/* ================================== */
+/*                Popup               */
+/* ================================== */
+
+.popup nav p {
+    margin-left: 20px;
+}
+
+#new_user, #change_password {
+	display: none;
+    width: 300px;
+}
+
+form {
+    margin: 20px;
+}
+
+form p {
+    margin-top: 10px;
+}
+
+form button {
+    margin: 0;
+    margin-top: 20px;
+}
+
+form hr {
+    border: 0;
+    border-top: 1px solid #333333;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+/* ================================== */
+/*              INI edit              */
+/* ================================== */
+
+#ini_content { display: none; }
+
+#popup_container {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	overflow-y: auto;
+}
+.edit_popup {
+	position: relative;
+	top: 5vh;
+	display: block;
+	width: 80%;
+	padding: 20px;
+	padding-top: 80px;
+	height: 75%;
+	margin: 0 auto;
+	background-color: #ffffff;
+	overflow: hidden;
+}
+.edit_popup button {
+	padding: 5px 20px;
+}
+.edit_popup .file {
+	position: absolute;
+	width: 200px;
+	top: 20px;
+	left: 20px;
+	font-weight: bold;
+}
+.edit_popup .textarea {
+	margin: 0;
+    padding: 10px;
+	width: 100%;
+	height: 100%;
+    overflow: auto;
+    border: 1px solid #aaaaaa;
+    
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
+}
+
+.edit_popup textarea {
+    display: none;
+}
+
+.comment {
+    color: #00bbaa;
+}
+
+#main_ini {
+    color: #888888;
+    opacity: 0.75;
+}

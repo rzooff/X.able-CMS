@@ -1,0 +1,92 @@
+/* std button color */
+.buttons button { background-color: #bbbbbb; }
+
+/* ================================== */
+/*           Dark background          */
+/* ================================== */
+
+body, nav, #style_buttons, #show_nav, tr.title { background-color: #3b464a; }
+
+/* ================================== */
+/*              Edit Form             */
+/* ================================== */
+
+.color_published { color: inherit; }
+.color_draft { color: #ffaa33; }
+.color_unpublished { color: #ff484e; }
+.color_template { color: #46d6ce; }
+
+form { background-color: #d7dddd; }
+
+/* ================================== */
+/*             Pull down              */
+/* ================================== */
+
+#lang li:hover { color: #ffffff; background-color: #93aeb8; }
+.pull_down li.action:hover { color: #ffffff; background-color: #93aeb8; }
+#menu_notifications .count_marker { background-color: #ff484e; }
+.warning { color: #ff484e; }
+
+/* ================================== */
+/*          Navigation panel          */
+/* ================================== */
+
+nav #search button span { color: #556062; }
+nav #search:hover button span { color: #46d6ce; }
+
+nav .buttons button { background-color: #46d6ce; }
+
+/* Nav icons */
+nav dl span { color: #556062; }
+
+/* Active nav item */
+nav a.current dd {
+    background-color: #556062;
+    border-left: 2px solid #46d6ce;
+    transition: 0.1s;
+    /* padding fix */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+/* Active nav item icon */
+nav a.current span { color: #46d6ce; }
+
+/* Draft status indicator */
+nav .saved-draft { color: #ffaa33 }
+nav .new-draft { color: #ff484e }
+
+/* ================================== */
+/*          Buttons & Icons           */
+/* ================================== */
+
+/* icons */
+h3 span, .file_icon { color: #46d6ce; }
+#password h6, #backup h6 { background-color: #46d6ce; }
+#info_box h6.color_done { background-color: #46d6ce; }
+#info_box h6.color_error { background-color: #fd585e; }
+
+/* buttons */
+button.icon { background-color: transparent; border: 1px solid #93aeb8; color: #556062; }
+button.cancel { background-color: #93aeb8; }
+button.confirm, button.hard_save { background-color: #46d6ce; }
+button.publish { background-color: #46d6ce; color: #ffffff; border: none; }
+/* button.publish { background-color: #ffaa33; color: #ffffff; border: none; } */
+/* button.draft_save { background-color: #01e6ae; } */
+/* button.publish { background-color: #2db2aa; color: #ffffff; border: none; } */
+button.new { background-color: #46d6ce; }
+.buttons .fi-info { color: #556062; }
+
+
+/* ================================== */
+/*               Preview              */
+/* ================================== */
+
+/* Link preview colors */
+.black_bubble a { color: #46d6ce; }
+#preview_popup a { color: #2ea29c; }
+
+/* Highlight color */
+.code { color: #46d6ce; }
+.code { color: #93aeb8; }

@@ -1,0 +1,170 @@
+.center { text-align: center; }
+
+/* ================================== */
+/*              Browser               */
+/* ================================== */
+
+article { padding: 20px; }
+
+button { margin-top: 20px; margin-left: 0; margin-right: 5px; margin-bottom: 0; }
+
+button:focus { outline: none; }
+
+#current_dir button {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#current_dir button.disabled { opacity: 0.25; }
+
+#current_dir h2 {
+    margin-top: 5px;
+    font-weight: bold;
+    float: left;
+}
+
+#browser {
+    padding: 0;
+}
+
+#browser table {
+    width: 101%;
+    border-spacing: 0;
+}
+
+#browser table tr.header {
+    color: #ffffff;
+    background-color: #bbbbbb;
+}
+#browser table tr.header td:last-of-type {
+    border-right: 1px solid #bbbbbb;
+}
+
+#browser table td {
+    padding: 2px 5px;
+    border-right: 1px solid #dddddd;
+}
+
+#browser table tr td:first-of-type { border: none; }
+#browser table tr td:last-of-type { border: none; }
+
+#browser table .icon { width: 16px; text-align: center; }
+#browser table .size { width: 50px; }
+#browser table .time { width: 120px; }
+
+#browser .icon span {
+    font-size: 1.2em;
+    /* opacity: 0.33; */
+}
+#browser .folder .filename { font-weight: bold; overflow: hidden; }
+#browser .file_info span { font-size: 0.75em; opacity: 0.5; }
+#browser .file .icon span, #browser .file .filename span { opacity: 0.7; }
+
+@media only screen and (max-width: 1400px) {
+    #browser table .time { display: none; }
+}
+@media only screen and (max-width: 1200px) {
+    #browser table .size { display: none; }
+}
+@media only screen and (max-width: 960px) {
+    #browser table .size { display: table-cell; }
+    #browser table .time { display: table-cell; }
+}
+@media only screen and (max-width: 700px) {
+    #browser table .time { display: none; }
+}
+@media only screen and (max-width: 600px) {
+    #browser table .size { display: none; }
+}
+
+#browser tr.path {
+    cursor: default;
+}
+#browser tr.path:nth-of-type(2n+1) {
+    background-color: #eeeeee;
+}
+#browser tr.path:hover {
+    color: #ffffff;
+    background-color: #000000;
+}
+#browser tr.current { color: #00bbaa; }
+
+#browser tr.selected td {
+    background-color: rgba(0,187,170,0.5);
+}
+
+#browser button { min-width: 90px; }
+
+#browser form { margin: 0; }
+#browser form input { width: auto; display: none; }
+
+#context_menu {
+    display: none;
+    position: fixed;
+    left: 50px;
+    top: 50px;
+    color: #ffffff;
+    background-color: #00bbaa;
+    overflow: hidden;
+}
+#context_menu li { padding: 5px 15px; cursor: default; }
+#context_menu li:hover { background-color: #000000; color: #ffffff; }
+
+#upload form input {
+    width: auto;
+    margin-right: 5px;
+}
+
+#clipboard { opacity: 0; }
+#clipboard .clipboard { font-size: 0.75em; opacity: 0.7; }
+#explorer .deselect { cursor: pointer; }
+#explorer .deselect:hover { color: #000000; }
+
+#explorer #show_hidden_trigger { margin: 10px 10px 0 0; }
+.hidden_path { opacity: 0.5; }
+
+/* ================================== */
+/*                Code                */
+/* ================================== */
+
+#code a { color: inherit; }
+#code hr { margin: 10px 0; }
+#code .edit { cursor: pointer; }
+#code .edit:hover { text-decoration: underline; }
+
+#code figure, #code embed {
+    width: 100%;
+    height: 90%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+aside #code {
+    word-wrap: break-word;
+    overflow-x: hidden;
+}
+
+/* ================================== */
+/*               Popup                */
+/* ================================== */
+
+#popup_container .popup { width: 400px; }
+#popup_container nav, #popup_container form { padding: 0 20px; }
+#popup_container .center button { margin-top: 15px; margin-bottom: 10px; min-width: 90px; }
+#file_content { display: none; }
+.float-right { float: right; margin: 0; margin-top:  10px; margin-left: 10px; }
+#editor textarea {
+    margin-top: 20px;
+    clear: both;
+    width: 100%;
+    height: 100%;
+    min-height: 70vh;
+}
+
+#popup_container #editor {
+    width: 80%;
+    margin: 5% auto;
+}
+
