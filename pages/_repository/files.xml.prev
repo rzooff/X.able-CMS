@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<page_link>
+		<active_link>
+			<type>string</type>
+			<disabled>true</disabled>
+			<string>admin/repository/files.php</string>
+		</active_link>
+	</page_link>
+	<multi_folder>
+		<name>
+			<type>text</type>
+			<label>Nazwa</label>
+			<text>
+				<pl>Załączniki</pl>
+				<en>Attachments</en>
+			</text>
+		</name>
+		<files>
+			<type>media</type>
+			<media>
+				<files>media/_files/Xable_CMS_3.0_instrukcja_PL.pdf</files>
+			</media>
+			<set>files</set>
+		</files>
+	</multi_folder>
+</xable>

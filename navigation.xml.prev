@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<facebook>
+		<href>
+			<type>string</type>
+			<label>Link do profilu na facebook'u</label>
+			<string>https://www.facebook.com/maciej.nowak.5832</string>
+		</href>
+	</facebook>
+	<multi_page>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywna</option>
+			</checkbox>
+			<selected>Aktywna</selected>
+		</active>
+		<title>
+			<type>text</type>
+			<label>Nazwa podstrony</label>
+			<text>
+				<pl>START</pl>
+				<en>START</en>
+			</text>
+		</title>
+		<href>
+			<type>string</type>
+			<label>Odnośnik</label>
+			<string>#start</string>
+		</href>
+	</multi_page>
+	<multi_page>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywna</option>
+			</checkbox>
+			<selected>Aktywna</selected>
+		</active>
+		<title>
+			<type>text</type>
+			<label>Nazwa podstrony</label>
+			<text>
+				<pl>O NAS</pl>
+				<en>ABOUT US</en>
+			</text>
+		</title>
+		<href>
+			<type>string</type>
+			<label>Odnośnik</label>
+			<string>#about</string>
+		</href>
+	</multi_page>
+	<multi_page>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywna</option>
+			</checkbox>
+			<selected>Aktywna</selected>
+		</active>
+		<title>
+			<type>text</type>
+			<label>Nazwa podstrony</label>
+			<text>
+				<pl>GALERIA</pl>
+				<en>GALLERY</en>
+			</text>
+		</title>
+		<href>
+			<type>string</type>
+			<label>Odnośnik</label>
+			<string>#gallery</string>
+		</href>
+	</multi_page>
+	<multi_page>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywna</option>
+			</checkbox>
+			<selected>Aktywna</selected>
+		</active>
+		<title>
+			<type>text</type>
+			<label>Nazwa podstrony</label>
+			<text>
+				<pl>KONTAKT</pl>
+				<en>CONTACT</en>
+			</text>
+		</title>
+		<href>
+			<type>string</type>
+			<label>Odnośnik</label>
+			<string>#contact</string>
+		</href>
+	</multi_page>
+</xable>

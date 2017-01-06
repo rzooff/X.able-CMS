@@ -1,0 +1,12 @@
+@media all and (max-width: 700px) {
+    * { font-size: 12px; }
+    nav h1, nav ul.menu li { padding-right: 15px; }
+    section figure { width: 150px; height: 150px; }
+}
+
+@media all and (max-width: 480px) {
+    * { font-size: 10px; }
+    nav h1, nav ul.menu li { display: none; font-size: 1.1em; }
+    nav h1, nav ul.menu li:first-of-type { display: inherit; border: none; }
+    section figure { width: 100px; height: 100px; }
+}

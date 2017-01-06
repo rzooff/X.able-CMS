@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+
+	<multi_post>
+		<title>
+			<type>text</type>
+			<label>Tytuł</label>
+			<text>
+				<pl></pl>
+				<en></en>
+			</text>
+		</title>
+		<text>
+			<type>textarea</type>
+			<label>Opis</label>
+			<format>*</format>
+			<text>
+				<pl></pl>
+				<en></en>
+			</text>
+		</text>
+		<media>
+			<type>media</type>
+			<label>Multimedia</label>
+			<media>
+				<image>media/@filename</image>
+				<gallery>media/@filename</gallery>
+				<file>media/@filename</file>
+				<files>media/@filename</files>
+				<video></video>
+				<none></none>
+			</media>
+			<set></set>
+		</media>
+	</multi_post>
+
+</xable>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+
+	<page_link>
+		<active_link>
+			<disabled>true</disabled>
+			<type>string</type>
+			<string>admin/repository/temp.php</string>
+		</active_link>
+	</page_link>
+
+</xable>
