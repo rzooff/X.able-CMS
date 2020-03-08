@@ -1,0 +1,76 @@
+<?php
+
+    // --------------------------------------------------
+    // ><.able CMS (C) by maciej@maciejnowak.com
+    // --------------------------------------------------
+    // Installation:
+    // 1. Upload Xable packag (zip)e & unzip.php.txt files to your FTP server.
+    // 2. Rename file "unzip.php.txt" to "unzip.php".
+    // 3. Open your browser and open unzip.php location (eg. "http://your_server.com/unzip.php").
+    // 4. Follow onscreen instructions...
+    // --------------------------------------------------
+
+    // -----------------------------------------------
+    //                   FUNCTIONS
+    // -----------------------------------------------
+
+    // ====== extract zip archive / begin ======
+    function extractArchive($file, $destination) {
+    // -----------------------------------------------
+    // $file = <string> zip FILE path
+    // $destination = <string> destination directory path
+    // -----------------------------------------------
+    // Extract ZIP archive to specified location
+    // RETURN: <boolean> Unzip success
+    // -----------------------------------------------
+        $zip = new ZipArchive;
+        if ($zip->open($file) == true) {
+            $zip->extractTo($destination);
+            $zip->close();
+            return true;
+        } else {
+            return false;
+        };
+    };
+    // ====== extract zip archive / end ======
+
+    // -----------------------------------------------
+    //                     UNZIP
+    // -----------------------------------------------
+
+    $installer = "install/install.php";
+    $root = getcwd();
+
+    // Find zip file(s)
+    $zip_files = [];
+    $dir = opendir( $root );
+    while(false !== ($file = readdir( $dir ))) {
+        $info = pathinfo($file);
+        $name = $info["filename"];
+        if(strtolower($info["extension"]) == "zip" && strstr(strtolower($name), "xable")) {
+            $build = array_pop(explode("_", $name));
+            $zip_files[$build] = $file;
+        };
+    };
+
+    if(count($zip_files) > 0) {
+        ksort($zip_files);
+        $zip_path = array_pop($zip_files);
+        $path_info = pathinfo($zip_path);
+        $filename = $path_info["filename"];
+        
+        //echo "filename: $filename<br>\n";
+        
+        extractArchive($zip_path, $root);
+        if(file_exists($installer)) {
+            header("Location: $installer");
+        }
+        else {
+            echo "X.able install ERROR!<br>Filepath: $zip_path<br>Unzip failed - check sever permissions and if PHP zip extension is enabled\n";
+        }
+    }
+    else {
+        echo "X.able install ERROR!<br>Installer package not found!<br>Upload X.able zip to the same location as \"unzip.php\"  file\n";
+    };
+
+?>
