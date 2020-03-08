@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_statistics>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywne</option>
+			</checkbox>
+			<selected>Aktywne</selected>
+		</active>
+		<name>
+			<type>string</type>
+			<label>Nazwa</label>
+			<string></string>
+		</name>
+		<placement>
+			<type>option</type>
+			<label>Umieść kod w sekcji</label>
+			<radio>
+				<option>head</option>
+				<option>body</option>
+			</radio>
+			<selected>head</selected>
+		</placement>
+		<code>
+			<type>code</type>
+			<label>Kod</label>
+			<code></code>
+		</code>
+	</multi_statistics>
+</xable>

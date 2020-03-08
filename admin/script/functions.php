@@ -1,18 +1,13 @@
 <?php
+    error_reporting(E_ERROR | E_PARSE); // Disable warnings output
+
 // ===================================================
 //               X.able PHP FUNCTIONS
-//           (C)2016 maciej@maciejnowak.com
+//           (C)2018 maciej@maciejnowak.com
 // ===================================================
-// compatibility: php5.3+
-// build: 20170107
+// compatibility: php6+
+// build: 20200224
 // ===================================================
-
- function uppercase($string) {
-     return mb_convert_case($string, MB_CASE_UPPER, "UTF-8");
- };
- function lowercase($string) {
-     return mb_convert_case($string, MB_CASE_LOWER, "UTF-8");
- };
 
 // ===================================================
 //                      ARRAYS
@@ -25,7 +20,7 @@
     // -----------------------------------------------
     // RETURNS: <array> input array with keys sorted ascending from 0
     // -----------------------------------------------
-        $output = array();
+        $output = [];
         foreach($array as $element) {
             $output[] = $element;
         };
@@ -38,7 +33,7 @@
 // ===================================================
 
 	// ====== Mailer / begin ======
-	function mailer($to, $from, $subject, $message, $files) {
+	function mailer($to, $from, $subject, $message, $files = false) {
     // ----------------------------------------
     // $to = <string> recipient's email address:
     //  - for multiple recipient, divide addresses with ";" or ",".
@@ -53,7 +48,7 @@
     // ----------------------------------------
         $message = stripcslashes($message); // fix for quotation
         $flag = true; // cancel if error flag
-        $to = split("/", $to); // split for To/Cc/Bcc
+        $to = explode("/", $to); // split for To/Cc/Bcc
         $separator = md5(time()); // a random hash will be necessary to send mixed content
         $eol = PHP_EOL; // carriage return type (we use a PHP end of line constant)
         // main header (multipart mandatory)
@@ -75,7 +70,7 @@
         if($files != false) {
 			if(substr($files, 0, 1) == ";") { $files = substr($files, 1, (strlen($files) - 1)); };
 			if(substr($files, (strlen($files) - 1), 1) == ";") { $files = substr($files, 0, (strlen($files) - 1)); };
-            $files = split(";", $files); // split file pathes
+            $files = explode(";", $files); // split file pathes
             foreach($files as $file) {
                 unset($content);
                 if(file_exists($file)) {
@@ -85,7 +80,7 @@
                     $handle = fopen($file, "r");
                     $content = fread($handle, $file_size);
                     fclose($handle);
-                    $content = chunk_split(base64_encode($content));
+                    $content = chunk_explode(base64_encode($content));
                     // Add file
                     $headers .= "--".$separator.$eol;
                     $headers .= "Content-Type: application/octet-stream; name=\"".$filename."\"".$eol;
@@ -101,7 +96,7 @@
         };
 		$headers .= "--".$separator."--";
         //SEND Mail
-        if ($flag == true && mail($to[0], $subject, "", $headers)) {
+        if ($flag == true && mail($to[0], $subject, "", $headers, "-f ".$from)) { // Updated -> need to be tested
             $log = "@sent";
             $ext = "eml";
             $time = date("Y.m.d G:i:s");
@@ -113,19 +108,41 @@
             $file = "$time $recipients | $subject.$ext";
             if($files != false) { $attachements = "(".count($files)."): ".join(", ", $files); } else { $attachements = ": none"; };
             file_put_contents("$log/$file", "$time\n$recipients\n[From:] $from\n[Subject:] $subject\nAttachements $attachements\n-\n$message");
-            return array($to, $from, $subject, $message, $files);
+            return [ $to, $from, $subject, $message, $files ];
         }
         else {
             return false;
         };
 	}; // ====== Mailer / end ======
 
+    // ====== sendMail / begin ======
+    function sendMail($to, $from, $subject, $message) {
+    // ----------------------------------------
+    // $to = <string> Recipient email adress
+    // $from = <string> Sender email adress
+    // $subject = <string> Email subject
+    // $message = <string> Email message
+    // ----------------------------------------
+    // Send email & RETURN: <true> if sent or <false> if failed to send
+    // ----------------------------------------
+        $header = "";
+        $header .= "Content-type: text/html; charset=utf-8\r\n";
+        $header .= "Content-Transfer-Encodin: 8bitr\n";
+        if(mail($to, $subject, $message, $header."Reply-to: ".$from, "-f ".$from)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    // ====== sendMail / end ======
+
 // ===================================================
 //                   FILES & FOLDERS
 // ===================================================
 
     // ====== clear duplicated Filename time stamp / begin ======
-    function clearFilename($path, $no_extension) {
+    function clearFilename($path, $no_extension = false) {
     // ----------------------------------------
     // $path = <string> file path
     // $no_extension = <boolean> not include the extension flag
@@ -135,8 +152,8 @@
         if($no_extension) { $ext = ""; }
         else {  $ext = ".".path($path, "extension"); };
         $filename = path($path, "filename");
-        if(is_string($time = array_pop(split("_", $filename))) &&
-           count($time = split("-", $time)) == 2 &&
+        if(is_string($time = array_pop(explode("_", $filename))) &&
+           count($time = explode("-", $time)) == 2 &&
            strlen($time[0]) == 8 &&
            strlen($time[1]) == 6 &&
            is_numeric($time[0]) &&
@@ -177,14 +194,14 @@
     // ====== copy DIRectory content / end ======
 
 	// ====== LIST DIRectory / begin ======
-	function listDir($path, $options) {
+	function listDir($path, $options = false) {
 	// -----------------------------------------------
 	// $path = <string> directory path, <false> for current
     // $options = <string> options, for multiple use coma, eg:"/,jpg"
     //      <none> or "*"=include all (files & folders),
     //      "." = include files,
     //      "/" = include folders,
-    //      "extension" = include specified file type (case insesitive), for multiple use coma, eg: "jpg,gif"
+    //      "<extension>" = include specified file type (case insesitive), for multiple use coma, eg: "jpg,gif"
     //      "?" = return full path
 	// -----------------------------------------------
     // RETURNS: <array> files/folders list
@@ -197,10 +214,10 @@
             $current = false;
         };
         if(file_exists($path)) {
-            $files_array = array();
-            if ($options == "?") { $options = array("?", "*"); }
+            $files_array = [];
+            if ($options == "?") { $options = [ "?", "*" ]; }
             elseif ($options != false ) { $options = explode(",", strtolower($options)); }
-            else { $options = array("*"); };
+            else { $options = [ "*" ]; };
             $dir = opendir($path);
             while(false !== ($file = readdir($dir))) {
                 $ext = pathinfo($file);
@@ -224,7 +241,7 @@
 	}; // ====== LIST DIRectory / end ======
 	
 	// ====== list all DIRectories TREE / begin ======
-	function dirTree($path, $ignore) {
+	function dirTree($path, $ignore = false) {
     // -----------------------------------------------
 	// $path = <string> directory path
 	// $ignore = <string> path or <array> pathes to ignore
@@ -233,8 +250,9 @@
     // <array> folders list (with patches) including it's subfolders
     // -----------------------------------------------
 		$flag = true;
-		if(is_string($ignore)) { $ignore = array($ignore); };
-        $folders = array();
+		if(is_string($ignore)) { $ignore = [ $ignore ]; }
+        elseif(!$ignore) { $ignore = []; };
+        $folders = [];
         //$folders = listDir($path, "/,?");
         foreach(listDir($path, "/,?") as $folder) {
             if(!in_array($folder, $ignore)) {
@@ -250,7 +268,7 @@
 	}; // ====== list all DIRectories TREE / end ======
 	
 	// ====== list all FILES TREE / begin ======
-	function filesTree ($path, $options, $ignore) {
+	function filesTree ($path, $options = false, $ignore = false) {
     // -----------------------------------------------
 	// $path = <string> directory path
     // $options = <string> options, for multiple use coma, eg:"/,jpg"
@@ -263,7 +281,7 @@
     // <array> files/folders list (with patches) including it's subfolders
     // -----------------------------------------------
 		$flag = true;
-		if(is_string($ignore)) { $ignore = array($ignore); };
+		if(is_string($ignore)) { $ignore = [ $ignore ]; };
 		if(is_array($ignore)) {
 			foreach($ignore as $ommit) {
 				if(substr($path, 0, strlen($ommit)) == $ommit) { $flag = false; };
@@ -287,7 +305,7 @@
 	}; // ====== list all FILES TREE / end ======
 	
     // ====== MAP files & directories TREE to array / begin ======
-    function mapTree($path, $options, $ignore) {
+    function mapTree($path, $options = false, $ignore = false) {
     // -----------------------------------------------
 	// $path = <string> directory path
     // $options = <string> files extension filter eg: "jpg", "jpg,gif"
@@ -297,14 +315,14 @@
     // <array> files and folder array map
     // -----------------------------------------------
         if($path == "") { $path = getcwd(); };
-        if(is_string($ignore)) { $ignore = array($ignore); };
-        if(!is_array($ignore)) { $ignore = array(); };
+        if(is_string($ignore)) { $ignore = [ $ignore ]; };
+        if(!is_array($ignore)) { $ignore = []; };
         if(!is_string($options) || $options == "") { $options = "."; };
         $tree = listDir($path, $options);
         foreach(listDir($path, "/") as $folder) {
             if(!in_array($folder, $ignore)) {
                 $branch = mapTree("$path/$folder", $options, $ignore);
-                if(!is_array($branch)) { $branch = array(); }; // empty folder
+                if(!is_array($branch)) { $branch = []; }; // empty folder
                 $tree[$folder] = $branch;
             };
         }; 
@@ -313,7 +331,7 @@
     // ====== MAP files & directories TREE to array / end ======
 	
 	// ====== build HTML files/folders TREE / begin ======
-	function htmlTree($path, $sortBy, $filter, $disabled) {
+	function htmlTree($path, $sortBy = false, $filter = false, $disabled = false) {
 	// -----------------------------------------------
 	// $path = <string> base directory PATH
 	// $sortBy = <string> (optional) SORT BY option: "name", "kind", "size", "modified"
@@ -341,25 +359,25 @@
 		// Check sortBy option
 		if($sortBy == "name" || $sortBy == "filename") { $sortBy = "basename"; };
 		if($sortBy == "kind" || $sortBy == "type") { $sortBy = "extension"; };
-		$sortKeys = array("basename", "extension", "modified", "size");
+		$sortKeys = [ "basename", "extension", "modified", "size" ];
 		if(is_string($sortBy)) { $sortBy = strtolower($sortBy); };
 		if(!in_array($sortBy, $sortKeys)) { $sortBy = "basename"; };
 		// Check filetypes filter
-		if(is_string($filter) && strlen($filter) > 1) { $filter = split(",", $filter); }
-		elseif(!is_array($filter)) { $filter = array(); };
+		if(is_string($filter) && strlen($filter) > 1) { $filter = explode(",", $filter); }
+		elseif(!is_array($filter)) { $filter = []; };
 		// Check disabled
-		if(is_string($disabled)) { $disabled = array($disabled); }
-		elseif(!is_array($disabled)) { $disabled = array(); };
+		if(is_string($disabled)) { $disabled = [ $disabled ]; }
+		elseif(!is_array($disabled)) { $disabled = []; };
 		// ====== Sort directory content ======
-		$dir_content = array();
+		$dir_content = [];
 		foreach(listDir($path, "?") as $item) {
-			$sortData = array();
+			$sortData = [];
 			foreach($sortKeys as $key) { $sortData[$key] = path($item, $key); };
 			if(is_dir($item)) { $sortData['extension'] = "*folder*"; };
 			$sortData = path($item, $sortBy)."/".join("/", $sortData); // "sortBy/name/kind/modified/size"
 			$dir_content[$sortData] = $item;
 		};
-		$dir_sorted = array();
+		$dir_sorted = [];
 		$dir_keys = array_keys($dir_content);
 		natcasesort($dir_keys);
 		// ====== Build tree ======
@@ -370,7 +388,7 @@
 				$itemPath = substr($itemPath, strlen($currentDir) + 1);
 			};
 			// Output
-			list($itemSort, $itemName, $itemKind, $itemModified, $itemSize) = split("/", $key);
+			list($itemSort, $itemName, $itemKind, $itemModified, $itemSize) = explode("/", $key);
             if(substr($itemName, 0, 1) == ".") { $hidden = "hidden"; } else { $hidden = ""; };
 			if($itemKind == "*folder*") {
 				$itemSize = count(listDir($itemPath));
@@ -429,8 +447,8 @@
             return $path; // already exists
         }
         else {
-            $dir = array();
-            foreach(split("/", $path) as $folder) {
+            $dir = [];
+            foreach(explode("/", $path) as $folder) {
                 $dir[] = $folder;
                 if(!file_exists(join("/", $dir))) { mkdir(join("/", $dir)); };
             };
@@ -453,7 +471,7 @@
             }
             else {
                 foreach(array_reverse(filesTree($path)) as $item) {
-                    if(path($item, "extension") == "") { rmdir($item); } // folder
+                    if(is_dir($item)) { rmdir($item); } // folder
                     else { unlink($item); }; // file
                 };
                 rmdir($path); // main folder
@@ -499,7 +517,7 @@
     // ====== safe Save / end ======
 
     // ====== safe Delete / begin ======
-    function safeDelete($path, $content) {
+    function safeDelete($path) {
     // ----------------------------------------
     // $path = <string> file path
     // ----------------------------------------
@@ -522,25 +540,45 @@
     };
     // ====== safe Delete / end ======
 
+    // ====== unique Filename / begin ======
+    function uniqueFilename($filepath) {
+    // ----------------------------------------
+    // $filepath = <string> File path
+    // ----------------------------------------
+    // RETURNS: <string> Unique filename path (with added nuber if needed)
+    // ----------------------------------------
+        $num = 1;
+        $dirname = path($filepath, "dirname");
+        if($dirname != "") { $dirname = $dirname."/"; };
+        $filename = path($filepath, "filename");
+        $extension = path($filepath, "extension");
+        if($extension != "") { $extension = ".".$extension; };
+        while(file_exists($filepath)) {
+            $filepath = $dirname.$filename." (".$num++.")".$extension;
+        }
+        return $filepath;
+    };
+    // ====== unique Filename / end ======
+
 // ===================================================
 //                        ZIP
 // ===================================================
 
 	// ====== archive files into zip / begin ======
-	function archiveFiles($zippath, $files, $exclude) {
+	function archiveFiles($zip_path, $files, $exclude = false) {
 		// -----------------------------------------------
-		// $zippath = <string> Zip file path
+		// $zip_path = <string> Zip file path
 		// $files = <array> files to zip pathes or <string> for single file zip
         // $exclude = <array> optional - exclude specified files by extension, eg: [ "bak", "zip" ]
 		// -----------------------------------------------
 		// SAVES specified files into zip archive
 		// -----------------------------------------------
-		//echo "ZIP FILE: $zippath<br>\n";
-		if(is_string($files)) { $files = array( $files ); };
+		//echo "ZIP FILE: $zip_path<br>\n";
+		if(is_string($files)) { $files = [ $files ]; };
 		if(is_array($files)) {
-			if(file_exists($zippath)) { unlink($zippath); }; // Overwrite existing!
+			if(file_exists($zip_path)) { unlink($zip_path); }; // Overwrite existing!
 			$zip = new ZipArchive;
-			if ($zip->open($zippath,  ZipArchive::CREATE)) {
+			if($zip->open($zip_path, ZipArchive::CREATE)) {
 				foreach($files as $file) {
                     if(file_exists($file) && !is_dir($file)) { // ommit folders patches if any
                         if(!is_array($exclude) || count($exclude) == 0 || !in_array(path($file, "extension"), $excllude)) {
@@ -552,7 +590,7 @@
                                 $zip_path = $file;
                             };
                             // fix .name files & folders --> will be ranemed to _name
-                            $zip_path = split("/", $zip_path);
+                            $zip_path = explode("/", $zip_path);
                             foreach(array_keys($zip_path) as $i) {
                                 $part = $zip_path[$i];
                                 if(substr($part, 0, 1) == ".") {
@@ -567,7 +605,7 @@
                     };
                 };
 				$zip->close();
-				return $zippath;
+				return $zip_path;
 			}
 			else {
 				echo "Zip saving error!<br>";
@@ -579,39 +617,74 @@
 	}; // ====== archive files into zip / end ======
 
     // ====== extract zip archive / begin ======
-    function extractArchive($file, $destination) {
+    function extractArchive($zip_path, $destination) {
     // -----------------------------------------------
-    // $file = <string> zip FILE path
+    // $zip_path = <string> ZIP file PATH
     // $destination = <string> destination directory path
     // -----------------------------------------------
     // Extract ZIP archive to specified location
     // RETURN: <boolean> Unzip success
     // -----------------------------------------------
-        $zip = new ZipArchive;
-        if ($zip->open($file) == true) {
-            $zip->extractTo($destination);
-            $zip->close();
-            return true;
-        } else {
+        if($destination == "") { $destination = getcwd(); };
+        if(file_exists($zip_path) && is_string($destination)) {
+            $zip = new ZipArchive;
+            if ($zip->open($zip_path) == true) {
+                $zip->extractTo($destination);
+                $zip->close();
+                return true;
+            } else {
+                return false;
+            };
+        }
+        else {
             return false;
-        };
+        }
     };
     // ====== extract zip archive / end ======
 
 // ===================================================
-//                      STRINGS
+//                      IMAGES
 // ===================================================
 
+    // ====== get Image Size / begin ======
+    function imageSize($image_path) {
+    // -----------------------------------------------
+    // $image_path = <string> IMAGE file PATH
+    // -----------------------------------------------
+    // RETURN: <array> Image size: [ <width>, <height> ]
+    // -----------------------------------------------
+        if(file_exists($image_path)) {
+            $ext = path($image_path, "extension");
+            if($ext == "svg") {
+                $svgXML = simplexml_load_file($image_path);
+                list($originX, $originY, $width, $height) = explode(' ', $svgXML['viewBox']);
+            }
+            else {
+                list($width, $height) = getimagesize($image_path);
+            }
+            return [ $width, $height ];
+        }
+        else {
+            return false;
+        }
+    };
+    // ====== get Image Size / end ======
+
+// ===================================================
+//                      STRINGS
+// ===================================================
+    
     // ====== apply BBCode Style / begin ======
-    function BBCode($text) {
+    function BBCode($text, $dead_links = false) {
     // ----------------------------------------
     // $text = <string>
+    // $dead_links = <boolean> Return "dead" links with data-href attribute
     // ----------------------------------------
     // RETURNS: <string> text converted from BBCode to HTML tags format
     // ----------------------------------------
         // Special characters
         $text = str_replace("\"", "&quot;", $text);
-        //$text = str_replace("'", "&#39;", $text);
+        //$text = str_replace("\'", "&#39;", $text);
         
         // Lists
         $text = str_replace("[/list][br]", "[/list]", $text);
@@ -621,30 +694,32 @@
         if($n > 0) {
             foreach(array_keys($found[1]) as $num) {
                 $list = $found[1][$num];
-                $style_list = "</p>\n<ul class='bbcode'>\n\t<li>".str_replace("[br]", "</li>\n\t<li>", $list)."</li>\n</ul>\n<p>";
+                $style_list = "</p>\n<ul class='bbcode'>\n\t<li>".str_replace("[br]", "</li>\n\t<li>", $list)."</li>\n</ul>\n<p class='bbcode'>";
+                
+                $style_list = str_replace("<li>-", "<li style='list-style:none'>-", $style_list);
                 $text = str_replace($found[0][$num], $style_list, $text);
             };
         };
         // Other styles
-        $bbcode = array(
-            
+        $bbcode = [
             "/\\\\\[/" => "&#91;", // "["
             "/\\\\\]/" => "&#93;", // "]"
 			"/\[br\]/i" => "<br>", // line break
         
             // Banner
-            "/\[banner(.*?)\[img=(.*?)\](.*?)\[\/banner\]/i" => "[banner$1<div class='figure' style='background-image:url(\"$2\")'></div><p>$3</p>[/banner]", // banner image
+            "/\[banner(.*?)\[url(.*?)\[img=(.*?)\]\[\/url\](.*?)\[\/banner\]/i" => "[banner$1[url$2<figure class='img' style='background-image:url(\"$3\")'></figure>[/url]<p class='bbcode'>$4</p>[/banner]", // banner link image
+            "/\[banner(.*?)\[img=(.*?)\](.*?)\[\/banner\]/i" => "[banner$1<div class='figure' style='background-image:url(\"$2\")'></div><p class='bbcode'>$3</p>[/banner]", // banner image
             "/\[\/banner\]<br>/i" => "[/banner]", // enter fix 1
-            "/\[banner\|r\](.*?)\[\/banner\]/i" => "</p><div class='banner text_right'>$1</div><p>", // banner|r
-            "/\[banner\|l\](.*?)\[\/banner\]/i" => "</p><div class='banner text_left'>$1</div><p>", // banner|l
-            "/\[banner\](.*?)\[\/banner\]/i" => "</p><div class='banner'>$1</div><p>", // banner
+            "/\[banner\|r\](.*?)\[\/banner\]/i" => "</p><div class='banner text_right'>$1</div><p class='bbcode'>", // banner|r
+            "/\[banner\|l\](.*?)\[\/banner\]/i" => "</p><div class='banner text_left'>$1</div><p class='bbcode'>", // banner|l
+            "/\[banner\](.*?)\[\/banner\]/i" => "</p><div class='banner'>$1</div><p class='bbcode'>", // banner
             
             // Button
             "/\[\/button\]\[button(.*?)\]/i" => "", // join touching buttons (unify size -> first)
             "/\[\/button\]<br>/i" => "[/button]", // enter fix 1
             "/<br>\[button(.*?)\]/i" => "[button$1]", // enter fix 2            
-            "/\[button\|(.*?)\](.*?)\[\/button\]/i" => "</p><div class='button size_$1'>$2</div><p>", // sized button
-            "/\[button\](.*?)\[\/button\]/i" => "</p><div class='button'>$1</div><p>", // button
+            "/\[button\|(.*?)\](.*?)\[\/button\]/i" => "</p><div class='button size_$1'>$2</div><p class='bbcode'>", // sized button
+            "/\[button\](.*?)\[\/button\]/i" => "</p><div class='button'>$1</div><p class='bbcode'>", // button
             
             // ====== 'Enter' fixes ======
             "/\[hr\]<br>/i" => "[hr]", // enter fix
@@ -655,27 +730,30 @@
             "/\[img=(.*?)\]/i" => "<img src='$1'>", // image
             
             // Complex
-            "/\[url\|i=(.*?)\](.*?)\[\/url\]/i" => "<a href='$1'>$2</a>", // forced internal links
-            "/\[url\|e=(.*?)\](.*?)\[\/url\]/i" => "<a href='$1' target='blank'>$2</a>", // forced external links
-            "/\[url=http:\/\/(.*?)\](.*?)\[\/url\]/i" => "<a href='http://$1' target='blank'>$2</a>", // auto external links
-            "/\[url=https:\/\/(.*?)\](.*?)\[\/url\]/i" => "<a href='https://$1' target='blank'>$2</a>", // auto external links
-            "/\[url=(.*?)\](.*?)\[\/url\]/i" => "<a href='$1'>$2</a>", // std links
+            "/\[url\|i=(.*?)\](.*?)\[\/url\]/i" => "<a class='internal' data-href='$1'>$2</a>", // forced internal links
+            "/\[url\|e=(.*?)\](.*?)\[\/url\]/i" => "<a href='$1' target='_blank'>$2</a>", // forced external links
+            "/\[url=http:\/\/(.*?)\](.*?)\[\/url\]/i" => "<a href='http://$1' target='_blank'>$2</a>", // auto external links
+            "/\[url=https:\/\/(.*?)\](.*?)\[\/url\]/i" => "<a href='https://$1' target='_blank'>$2</a>", // auto external links
+            "/\[url=(.*?)\](.*?)\[\/url\]/i" => "<a class='internal' data-href='$1'>$2</a>", // std links
             "/\[email=(.*?)\](.*?)\[\/email\]/i" => "<a href=\"mailto:$1\">$2</a>", // mailto
             "/\[tel=(.*?)\](.*?)\[\/tel\]/i" => "<a href=\"tel:$1\">$2</a>", // tel
             "/\[color=(.*?)\](.*?)\[\/color\]/i" => "<span class='color_$1'>$2</span>", // color
             "/\[size=(.*?)\](.*?)\[\/size\]/i" => "<span class='size_$1'>$2</span>", // size
             "/\[\*\]/i" => "&bull;", // bullet character
-            "/\[hr\]/i" => "</p><div class='hr'><hr></div><p>", // horizintal line
+            "/\[hr\]/i" => "</p><div class='bbcode hr'><hr></div><p class='bbcode'>", // horizintal line
             // Simple
             "/\[b\](.*?)\[\/b\]/i" => "<b>$1</b>", // bold
             "/\[i\](.*?)\[\/i\]/i" => "<i>$1</i>", // italic
             "/\[u\](.*?)\[\/u\]/i" => "<u>$1</u>", // unerline
             "/\[sup\](.*?)\[\/sup\]/i" => "<sup>$1</sup>", // superscript
             "/\[sub\](.*?)\[\/sub\]/i" => "<sub>$1</sub>", // subscript
-            "/\[center\](.*?)\[\/center\]/i" => "</p><p style='text-align:center'>$1</p><p>", // center
+            "/\[center\](.*?)\[\/center\]/i" => "</p><p class='bbcode' style='text-align:center'>$1</p><p class='bbcode'>", // center
             
-        );
+            "/ +/" => " ", // multiple spaces
+            "/ (.?) /" => " $1&nbsp;", // widow letters fix
+        ];
         foreach($bbcode as $find => $replace){ $text = preg_replace($find, $replace, $text); };
+        if($dead_links) {  $text = preg_replace("/<a href='(.*?)'>/i", "<a class='bbcode' data-href='$1'>", $text); }
         return $text;
     };
 
@@ -686,7 +764,8 @@
     // ----------------------------------------
     // RETURNS: <string> pure text without BBCode tags
     // ----------------------------------------
-        $bbcode = array(
+        $bbcode = [
+            "/\[br\]/i" => " ", // line break
             "/\[url=(.*?)](.*?)\[\/url\]/i" => "$2", // external links
             "/\[email=(.*?)\](.*?)\[\/email\]/i" => "$2", // mailto
             "/\[tel=(.*?)\](.*?)\[\/tel\]/i" => "$2", // tel
@@ -699,9 +778,8 @@
             "/\[\/(...?)\]/i" => "", // index tag close
             "/\[(.?)\]/i" => "", // simple tag open
             "/\[\/(.?)\]/i" => "", // simple tag close
-            "/\[br\]/i" => " ", // line break
             "/  /i" => " ", // double spaces
-        );
+        ];
         foreach($bbcode as $find => $replace){ $text = preg_replace($find, $replace, $text); };
         return $text;
     }; // ====== strip off BBCode / end ======
@@ -715,7 +793,7 @@
     // RETURNS: <string> with line break tag after specified number of words
     // ----------------------------------------
         $text = str_replace(" i ", " i[space]", $text);
-        $words = split(" ", $text);
+        $words = explode(" ", $text);
         if(is_numeric($num) && count($words) > $num) {
             if(count($words) == $num + 1 && $num > 1) { $num--; };
             $line_1 = array_slice($words, 0, $num);
@@ -756,12 +834,34 @@
     // -----------------------------------------------
     // RETURNS: <string> without polish diacritic characters
     // -----------------------------------------------
-        $pl = array("ą" => "a", "ć" => "c", "ę" => "e", "ł" => "l", "ń" => "n",  "ó" => "o", "ś" => "s", "ź" => "z", "ż" => "z", "Ą" => "A", "Ć" => "C", "Ę" => "E", "Ł" => "L", "Ń" => "N",  "Ó" => "O", "Ś" => "S", "Ź" => "Z", "Ż" => "Z");
+        $pl = [ "ą" => "a", "ć" => "c", "ę" => "e", "ł" => "l", "ń" => "n",  "ó" => "o", "ś" => "s", "ź" => "z", "ż" => "z", "Ą" => "A", "Ć" => "C", "Ę" => "E", "Ł" => "L", "Ń" => "N",  "Ó" => "O", "Ś" => "S", "Ź" => "Z", "Ż" => "Z" ];
         foreach(array_keys($pl) as $key) {
             $txt = str_replace($key, $pl[$key], $txt);
         };
         return $txt;
     }; // ====== KILL PLiterki / end ======
+
+    function makeId($string) {
+    // ----------------------------------------
+    // $string = <string>
+    // ----------------------------------------
+    // RETURNS = <string> Lowercase without spaces & special characters
+    // ----------------------------------------
+        $string = strtolower(killPl($string));
+        $string = preg_replace("/ |\n|\t/", "_", $string);
+        $string = preg_replace("/[^a-z0-9|^&|^_|^\-|^\+]/i", "", $string);
+        $string = preg_replace("/_+/", "_", $string);
+        return $string;
+    };
+
+    function nbsp($txt) {
+    // -----------------------------------------------
+    // $txt = <string>
+    // -----------------------------------------------
+    // RETURNS: <string> with non breaking spaces (HTML)
+    // -----------------------------------------------
+        return str_replace(" ", "&nbsp;", $txt);
+    };
 
     // ====== verify Email / begin ======
 	function verifyEmail($val) {
@@ -770,7 +870,7 @@
     // -----------------------------------------------
     // RETURNS: <string> if input string is valid email or <false> if not
     // -----------------------------------------------
-		if(($val != false) && (count(split(" ", $val)) == 1) && ($val == killPl($val)) && (count($val = split("@", $val)) == 2) && (count(split(".", $val[1])) > 1)) { return $val; }
+		if(($val != false) && (count(explode(" ", $val)) == 1) && ($val == killPl($val)) && (count($val = explode("@", $val)) == 2) && (count(explode(".", $val[1])) > 1)) { return $val; }
 		else { return false; };		
 	}; // ====== verify Email / end ======
     
@@ -781,7 +881,7 @@
     // -----------------------------------------------
     // RETURNS: <string> "Forename Surname" if input string is valid name or <false> if not
     // -----------------------------------------------
-        if($val != false && $val != "" && count($val = split(" ", $val)) == 2) {
+        if($val != false && $val != "" && count($val = explode(" ", $val)) == 2) {
             $val = array_map("strtolower", $val);
             $val = array_map("ucfirst", $val);
             return join(" ", $val);
@@ -790,5 +890,36 @@
             return false;
         };
     }; // ====== verify Name (forename + surname) / end ======
+
+	// ====== generate Password / begin ======
+    function generatePassword($length = false, $characters = false) {
+    // -----------------------------------------------
+    // $length = <integer> output length (optional)
+    // $characters = <string> allowed characters (optional)
+    // -----------------------------------------------
+    // RETURNS: <string> Random string matching given conditions
+    // -----------------------------------------------
+        // Default values
+        if(!is_int($length)) { $length = 8; } // Default length
+        if(!is_string($characters)) {
+            $characters = "0123456789".         // digits
+                "abcdefghijklmnopqrstuvwxyz".   // small letters
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ".   // big letters
+                ".!-_";                         // special chars
+        }
+        // Generate
+        $password = "";
+        for ($i = 0; $i < $length; $i++) {
+            $password .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $password;
+    }; // ====== generate Password / end ======
 	
+    // ====== Case conversion with pl characters support
+    function uppercase($string) { return mb_convert_case($string, MB_CASE_UPPER, "UTF-8"); };
+    function lowercase($string) { return mb_convert_case($string, MB_CASE_LOWER, "UTF-8"); };
+    function capitalize($string) {
+        return mb_convert_case(substr($string, 0, 1), MB_CASE_UPPER, "UTF-8").mb_convert_case(substr($string, 1, mb_strlen($string, "UTF-8") - 1), MB_CASE_LOWER, "UTF-8");
+    };
+
 ?>

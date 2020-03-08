@@ -1,0 +1,54 @@
+/* ================================== */
+/*              Cookies               */
+/* ================================== */
+
+#cookies_popup * { font-size: inherit; }
+
+#cookies_popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: left;
+    font-size: 15px;
+    z-index: 9;
+}
+
+#cookies_popup p {
+    position: relative;
+    margin: 15px;
+    float: right; /* left or right */
+    padding: 25px 30px;
+    padding-right: 50px;
+    /* color: #222; */
+    color: #eee;
+    /* background-color: rgba(255,255,255,1); */
+    background-color: rgba(0,0,0,0.85);
+    /* box-shadow: 0 0 20px rgba(0,0,0,0.2); */
+    border-radius: 3px;
+    font-weight: 400;
+}
+
+#cookies_popup button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 30px;
+    height: 30px;
+    background-color: #a7b4b6;
+    background-color: transparent;
+    border: none;
+    /* color: #222; */
+    color: #fff;
+    cursor: pointer;
+}
+
+#cookies_popup button i { font-size: 1.75em; }
+
+/* ================================== */
+/*             Responsive             */
+/* ================================== */
+
+@media all and (max-width: 800px) {
+    #cookies_popup p { float: none; width: 100%;  margin: 0; border-radius: 0; }
+}

@@ -1,17 +1,24 @@
 <?php
+    //error_reporting(E_ALL);
+
     require("modules/_session-start.php");
 
     $pass_path = $ini_pathes['passwords'];
     $admin_folder = $_SESSION['admin_folder'];
     $backup_folder = $ini_pathes['backup'];
+
+    //if(!file_exists($backup_folder)) { mkdir($backup_folder); };
+
+    //echo "folder: $backup_folder\n";
     $installer_folder = "$root/$admin_folder/_installer";
 
     // ====== BACKUP NOW ======
-    $site_name = $site_options['site_ID'];
+
+    $site_name = $_SESSION["ini_site_options"]['site_ID'];
 
     $exclude = array($backup_folder, $installer_folder);
-    if(is_string($site_options['backup_exclude']) && $site_options['backup_exclude']) {
-        foreach(split(",", $site_options['backup_exclude']) as $path) {
+    if(is_string($_SESSION["ini_site_options"]['backup_exclude']) && $_SESSION["ini_site_options"]['backup_exclude']) {
+        foreach(explode(",", $_SESSION["ini_site_options"]['backup_exclude']) as $path) {
             $exclude[] = $root."/".$path;
         };
     };
@@ -39,7 +46,7 @@
         };
     }
     else {
-        echo "<script> alert('Niestety wystąpił problem z odczytem ustawień.\nSpróbuj jeszcze raz.'); </script>\n";
+        echo "<script> alert(".localize("settings-load-fail")."); </script>\n";
     };
 ?>
 
@@ -49,14 +56,16 @@
         <style><?php include "style/loader.css"; ?></style>
         
 		<meta charset="UTF-8">
-		<title>X.able CMS / Backup</title>
+		<title><?php echo localize("xable-backup"); ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
 		<link rel="stylesheet" type="text/css" href="style/index.css" />
 		<link rel="stylesheet" type="text/css" href="style/cms.css" />
         <link rel="stylesheet" type="text/css" href="style/colors.css" />
         <link rel="stylesheet" type="text/css" href="style/password.css" />
+        <link rel="stylesheet" type="text/css" href="style/_responsive.css" />
 		<link rel="stylesheet" type="text/css" href="style/foundation-icons.css" />
-		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		
         <script src='script/jquery-3.1.0.min.js'></script>
         <script src='script/functions.js'></script>
@@ -69,20 +78,27 @@
             </div>
         </div>
         
+        <div id='backup_info'>
+            <div class='popup'>
+                <p><?php echo localize("backup-in-progress"); ?>...</p>
+                <div class="uploader"><?php echo localize("working"); ?>...</div>
+            </div>
+        </div>
+        
         <form id="backup" method='post' action='backup.php?action=backup'>
             <div id="page_fader"></div>
             <div id="popup_container">
                 <div id="popup_box">
                     <h6><span class="fi-save"></span></h6>
-                    <h3>Kopia zapasowa</h3>
+                    <h3><?php echo localize("site-backup"); ?></h3>
                     <div class='inputs'>
-						<p class='label'>Data ostatniej archiwizacji</p>
+						<p class='label'><?php echo localize("last-backup-date"); ?></p>
 						<?php
 							// ====== Sort backups by creation date (in filenames) ======
 							$backups = array();
 							$backup_files = listDir($backup_folder, "zip");
 							foreach($backup_files as $file) {
-								$date = array_pop(split("_", path($file, "filename")));
+								$date = array_pop(explode("_", path($file, "filename")));
 								if(is_string($date)) { $backups[$date] = $file; }
 							};
 							ksort($backups); // sort by creation date
@@ -92,15 +108,15 @@
 							};
 							// ====== LAST BACKUP ======
 							if($_GET['action'] == "backup") {
-								echo "<input type='text' class='string' value='Przed chwilą' disabled>\n";
+								echo "<input type='text' class='string' value='".localize("moment-label")."' disabled>\n";
 							}
 							else {
 								$last = end($backups);
 								if(!is_string($last) || $last == "") {
-									echo "<input type='text' class='string' value='Brak' disabled>\n";
+									echo "<input type='text' class='string' value='".localize("status-none")."' disabled>\n";
 								}
 								else {
-									$date = array_pop(split("_", path($last, "filename")));
+									$date = array_pop(explode("_", path($last, "filename")));
 									$date = substr($date, 0, 4)."-".substr($date, 4, 2)."-".substr($date, 6, 2).
 										", ".substr($date, 9, 2).":".substr($date, 11, 2);
 									echo "<input type='text' class='string' value='$date' disabled>\n";
@@ -110,8 +126,8 @@
                         
                         
                         <div class='text'>
-                            <p class='label'>Pobierz archiwum</p>
-                            <p class='description'>Najnowsze na górze</p>
+                            <p class='label'><?php echo localize("archive-download"); ?></p>
+                            <p class='description'><?php echo localize("new-on-top"); ?></p>
                             <ul>
 								<?php
 
@@ -127,12 +143,12 @@
 							
                         </div>
                         <div class='text'>
-                            <p class='description'>Gdy liczba plików przekracza 10, najstarszy z nich jest kasowany.</p>
+                            <p class='description'><?php echo localize("max-archives"); ?></p>
                         </div>
                     </div>
                     <div class='buttons'>
-                        <button class='confirm'>Archiwizuj teraz</button>
-                        <button class='cancel' href='index.php?path=<?php echo $_GET['page']; ?>'>Zamknij</button>
+                        <button class='confirm'><?php echo localize("backup-now"); ?></button>
+                        <button class='cancel' href='index.php?path=<?php echo urlencode($_GET['page']); ?>'><?php echo localize("close-label"); ?></button>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>enter-tag</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Tekst nie może zawierać spacji ani znaków specjalnych.</pl>
+				<en>The text can't contain spaces or special characters.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>enter-number</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Musisz wpisać liczbę.</pl>
+				<en>You must enter a number.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>enter-integer</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Musisz wpisać liczbę całkowitą.</pl>
+				<en>You must enter an integer.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>enter-url</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wpisz poprawny adres URL.</pl>
+				<en>Enter valid URL address.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>enter-letter</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Musisz wpisać pojedyńczą literkę.</pl>
+				<en>You must enter a single letter.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>post-sorted-by-date</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Artykuły zostały ustawione wg daty.\nZapisz plik by zapamiętać nową kolejność.</pl>
+				<en>Articles have been sorted by date.\nSave the file to keep changes.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>navigation-href-duplicated</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Uwaga! Ten sam odnośnik został użyty wielokrotnie:</pl>
+				<en>Warning! The same link has been used repeatedly:</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>navigation-title-autofill-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>To pole jest wypełniane automatycznie\nna podstawie Tytułu w sekcji Nagłówek strony.</pl>
+				<en>This input is filled automatically\nby Title in the Header section of a page.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>required-select-option</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Musisz wybrać opcję z listy</pl>
+				<en>You must select an option from the list</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>required-date-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Data jest wymagana</pl>
+				<en>The date is required</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>invalid-date-format</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Data musi być zgodna z formatem</pl>
+				<en>The date must match this format</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nav-item-add-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Dodanie wpisu do nawigacji nie tworzy samej strony</pl>
+				<en>Adding a navigation item does not create the page itself</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nav-item-remove-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Usunięcie wpisu z nawigacji nie usuwa samej strony</pl>
+				<en>Deleting a navigation item does not delete the page itself</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>title-required</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Wpisz tytuł dokumentu</pl>
+				<en>Enter document title</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>please-wait</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Proszę czekać...</pl>
+				<en>Please wait...</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>are-you-sure</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Czy jesteś pewien?</pl>
+				<en>Are you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-spaces-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Nie może zawierać spacji</pl>
+				<en>Cant contain spaces</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>too-short-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl></pl>
+				<en>Jest zbyt krótki</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>login-exists-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Taki login już istnieje</pl>
+				<en>Login exists</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-save-error</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Błąd zapisu pliku</pl>
+				<en>File save error</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>settings-load-fail</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Niestety wystąpił problem z odczytem ustawień.\nSpróbuj jeszcze raz.</pl>
+				<en>Sorry, there was a problem with loading the settings. \ NTry again.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>loading</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Ładowanie</pl>
+				<en>Loading</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>upload-in-progress</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Trwa ładowanie plików na serwer</pl>
+				<en>Files upload in progress</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>short-text-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Wpisana fraza jest za krótka</pl>
+				<en>Entered text is too short</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>valid-address-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Wpisz poprawny adres</pl>
+				<en>Please enter a valid address</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>empty-input-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Pole adresu nie może być puste</pl>
+				<en>Address field can't be empty</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>text-not-selected</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Najpierw zaznacz tekst, który chcesz sformatować</pl>
+				<en>Select the text you want to format!</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-not-selected</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Nie zaznaczono żadnego pliku</pl>
+				<en>None file selected</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>disabled-input-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Tego pola nie można edytować</pl>
+				<en>This field is blocked</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>name-taken-alert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Ta nazwa jest już zajęta</pl>
+				<en>This name is already taken</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>tiff-alert-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>UWAGA[br]Plik typu TIFF ma zwykle duży rozmiar i może nie załadować się na serwer!</pl>
+				<en>WARNING[br]The TIFF file is usually large and may fail to upload!</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nothing-to-unpublish</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Brak wersji publicznej do wycofania</pl>
+				<en>No public version to unpublish</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nothing-to-revert</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Brak poprzedniej wersji do przywrócenia</pl>
+				<en>No previous version to revert to</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nothing-to-discard</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Brak wersji roboczej do odrzucenia</pl>
+				<en>No draft to discard</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>draft-only-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Ta strona posiada jedynie wersję roboczą</pl>
+				<en>This page has only a draft version</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nothing-to-publish</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Brak zmian do publikacji</pl>
+				<en>No changes to publish</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-changes-done</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Nie dokonano żadnych zmian</pl>
+				<en>No changes have been made</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>upload-inputs-limit-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>UWAGA[br]Przekroczyłeś/aś limit jednoczesnego użycia pól ładowania plików: 24.[br]Kolejne pliki możesz dodać przy kolejnej edycji.</pl>
+				<en>WARNING[br]Limit of simultaneous uploads exceeded: 24.[br]You can add more files next time.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-protected</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Tego pliku nie można usunąć</pl>
+				<en>This file can't be deleted</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>page-delete-alert-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>&lt;em&gt;&lt;b&gt;UWAGA!&lt;/b&gt;[br]Usunięte zostaną wszystkie powiązane z nią pliki.[br]Tej operacji nie da się cofnąć!&lt;/em&gt;</pl>
+				<en>&lt;em&gt;&lt;b&gt;WARNING!&lt;/b&gt;[br]All associated files will be deleted.[br]This operation can not be undone!&lt;/em&gt;</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

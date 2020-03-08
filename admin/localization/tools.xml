@@ -1,0 +1,635 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>link-invalid</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Błędny link aktywacyjny</pl>
+				<en>Invalid activation link</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>link-expired</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Czas ważności linku minął</pl>
+				<en>The link activity time has expired</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>link-used</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>link został już wykorzystany</pl>
+				<en>The link has already been used</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>unknown-login</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nie ma takiego użytkownika</pl>
+				<en>There is no such user</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>invalid-login</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Błędny login</pl>
+				<en>Login is invalid</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-email</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brak adresu email</pl>
+				<en>No email address</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>reset-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Resetuj</pl>
+				<en>Reset</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>reset-password</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Resetowanie hasła</pl>
+				<en>Reset password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>login-button</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zaloguj</pl>
+				<en>Login</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nothing-found</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Niestety nic nie znaleziono...</pl>
+				<en>Unfortunately nothing was found ...</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>search-results</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wyniki wyszukiwania</pl>
+				<en>Search Results</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>search-phrase</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wyszukiwana fraza</pl>
+				<en>Search phrase</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>disabled-feature</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Funkcja niedostępna</pl>
+				<en>Feature not available</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>same-passwords</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Obecne i nowe hasło są takie same</pl>
+				<en>Current and new password are the same</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-password-too-short</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowe hasło jest za krótkie</pl>
+				<en>New password is too short</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-current-password</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Musisz podać aktualne hasło</pl>
+				<en>You must enter current password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-requirements</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Minimum 6 znaków, bez odstępów</pl>
+				<en>At least 6 characters, no spaces</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-password-confirm</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Potwierdź nowe hasło</pl>
+				<en>Confirm new password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-password</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowe hasło</pl>
+				<en>New password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>current-password</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Aktualne hasło</pl>
+				<en>Current password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>user-password-change</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zmiana hasła użytkownika</pl>
+				<en>Change user password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-changed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Hasło zostało zmienione</pl>
+				<en>Password has been changed</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-password</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nie podano hasła</pl>
+				<en>No password entered</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>different-passwords</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Podane hasła różnią się</pl>
+				<en>The passwords are different</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>invalid-current-password</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Błędne aktualne hasło</pl>
+				<en>Invalid current password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>log-header</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>czas;dokument;akcja;użytkownik</pl>
+				<en>time;document;action;user</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>empty-log</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brak zarejestrowanych zdarzeń</pl>
+				<en>None events found</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>events-log</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dziennik zdarzeń</pl>
+				<en>Events log</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>backup-now</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Archiwizuj teraz</pl>
+				<en>Backup now</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>last-backup-date</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Data ostatniej archiwizacji</pl>
+				<en>Last backup date</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>max-archives</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Gdy liczba plików przekracza 10, najstarszy z nich jest kasowany.</pl>
+				<en>When the number of files exceeds 10, the oldest is deleted.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-on-top</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Najnowsze na górze</pl>
+				<en>Latest on top</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>archive-download</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pobierz archiwum</pl>
+				<en>Archive download</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>moment-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Przed chwilą</pl>
+				<en>A moment ago</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>logout-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wylogowano z panelu</pl>
+				<en>You have been logged out</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-recovery-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Odzyskiwanie hasła jest możliwe\ntylko gdy login jest adresem email</pl>
+				<en>Password recovery is possible only when login is an email address</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-input</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Podaj hasło</pl>
+				<en>Enter the password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>login-input</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wpisz nazwę użytkownika</pl>
+				<en>Enter your login</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Hasło</pl>
+				<en>Password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>login-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Login</pl>
+				<en>Login</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>login-fail</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Błędny login lub hasło</pl>
+				<en>Wrong login or password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>last-backup</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Ostatnia archiwizacja</pl>
+				<en>Last backup</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-backup</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Strona nie ma jeszcze backupu</pl>
+				<en>Website has no backup yet</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>30-days-without-backup</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Backup jest starszy niż 30 dni</pl>
+				<en>Last backup is older than 30 days</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

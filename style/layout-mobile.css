@@ -1,12 +1,69 @@
-@media all and (max-width: 700px) {
-    * { font-size: 12px; }
-    nav h1, nav ul.menu li { padding-right: 15px; }
-    section figure { width: 150px; height: 150px; }
+/* ================================== */
+/*             Navigation             */
+/* ================================== */
+
+
+
+/* ================================== */
+/* ================================== */
+/* ================================== */
+/*             RESPONSIVE             */
+/* ================================== */
+/* ================================== */
+/* ================================== */
+
+@media all and (max-width: 1400px) {
+    body { font-size: 15px; }
+    section article, #download .multi_post_box { width: 80vw; }
+    #download .multi_post_box .num_0 { width: 50vw; }
+    #download .multi_post_box .num_1 { width: 30vw; }
+    .subpages_box article { min-height: 20vw; }
 }
 
-@media all and (max-width: 480px) {
-    * { font-size: 10px; }
-    nav h1, nav ul.menu li { display: none; font-size: 1.1em; }
-    nav h1, nav ul.menu li:first-of-type { display: inherit; border: none; }
-    section figure { width: 100px; height: 100px; }
+@media all and (max-width: 1100px) {
+    body { font-size: 14px; }
+    section .multi_feature_box article { width: 36%; margin: 2%; }
+    #download .multi_post_box .num_0 { width: 53vw; }
+    #download .multi_post_box .num_1 { width: 27vw; padding-left: 60px; }
+}
+
+@media all and (max-width: 900px) {
+    #download .multi_post_box .num_0 { width: 46vw; }
+    #download .multi_post_box .num_1 { width: 34vw; padding-left: 40px; }
+}
+
+@media all and (max-width: 700px) {
+    section { padding: 70px 0; }
+    section article, #download .multi_post_box { width: 90vw; }
+    section#start .image_box { font-size: 0.8em; margin-bottom: 15vw; }
+    section#start .text_box { padding: 0 20px; }
+    section#start .text_box h3 { line-height: 1.4; margin-top: 30px; }
+    section#start .text_box p.text { line-height: 1.6; }
+    .button_box button, .button_box .button { width: 100%; margin-top: 30px; min-width: auto; }
+    section .multi_feature_box article { width: 70%; margin: 2%; }
+    #download .multi_post_box .num_0 { width: 100%; padding-bottom: 40px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.3); }
+    #download .multi_post_box .num_1 { width: 100%; padding: 40px 0; }
+    #download .button_box button, #download .button_box .button { width: 90vw; }
+    
+    .subpages_box article { width: 100%; }
+    .subpages_box .button_box a { margin: 20px 10%; width: 80%; }
+}
+
+@media all and (max-width: 500px) {
+    section { padding: 60px 0; }
+    body { font-size: 12px; }
+    section .multi_feature_box article { width: 75%; margin: 20px 2%; }
+}
+
+@media all and (max-height: 500px) {
+    body { font-size: 12px; }
+    section .text_box h2, section .text_box h3 { margin-bottom: 20px; font-size: 2.0em; }
+    .button_box button, .button_box .button { margin-top: 20px; }
+    #start, .button_box button, .button_box .button { font-size: 13px; }
+    section#start .image_box { margin-bottom: -20vh; }
+    section#start .text_box h3 { margin-bottom: 5px; }
+}
+@media all and (max-height: 300px) {
+    body { font-size: 10px; }
+    section#start .image_box { margin-bottom: -40vh; }
 }

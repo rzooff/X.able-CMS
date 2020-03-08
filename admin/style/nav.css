@@ -1,16 +1,32 @@
+#tester {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    padding: 50px;
+    background-color: #000;
+    color: #fff;
+    z-index: 9999;
+}
+
 /* ================================== */
-/*                Nav                 */
+/*             Navigation             */
 /* ================================== */
 
 nav {
     display: block;
-    width: 270px;
-    color: #ffffff;
+    width: 300px;
     float: left;
-    
-    height: 100%;
+    height: 100vh;
     min-height: 100vh;
 }
+
+#toogle_mobile_menu {
+    display: none;
+}
+
+/* ================================== */
+/*                Logo                */
+/* ================================== */
 
 nav h1, nav h1 strong {
     font-size: 25px;
@@ -19,21 +35,14 @@ nav h1, nav h1 strong {
 }
 
 nav h1 {
-    height: 81px;
+    height: 80px;
     padding-top: 14px;
-    background-color: rgba(0,0,0,0.2);
-    
-    /* padding fix */
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 nav h1 strong {
     position: relative;
     top: 3px;
     font-size: 35px;
-    text-shadow: 0 0 10px #ffffff;
 }
 
 nav h1 span {
@@ -42,18 +51,16 @@ nav h1 span {
     font-size: 0.33em;
 }
 
+/* ================================== */
+/*             Search bar             */
+/* ================================== */
+
 #search {
     display: block;
     position: relative;
     padding-right: 50px;
     width: 100%;
     overflow: hidden;
-    background-color: rgba(0,0,0,0.7);
-
-    /* padding fix */
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 #search input {
@@ -61,22 +68,10 @@ nav h1 span {
     padding: 16px 20px;
     padding-right: 50px;
     border: none;
-    color: #b4b4b4;
     background-color: transparent;
-    /* border: 1px solid #2d363b; */
     border-radius: 99px;
-    
-    /* padding fix */
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 #search input:focus { outline: none; }
-
-#search input::-webkit-input-placeholder { color: #666666; }
-#search input:-moz-placeholder { color: #666666; } /* FF 4-18 */
-#search input::-moz-placeholder { color: #666666; } /* FF 19+ */
-#search input:-ms-input-placeholder { color: #666666; } /* IE 10+ */
 
 #search button {
     position: absolute;
@@ -89,96 +84,164 @@ nav h1 span {
 }
 
 #search button span {
+    position: relative;
+    top: 1px;
     font-size: 1.75em;
     transition: 0.5s;
 }
 
-nav dd, nav dt, nav h1, nav #search {
-    border-bottom: 1px solid #2d363b;
-}
-nav dd, nav dt {
-    padding: 12px 0 15px 20px;
-    overflow: hidden;
-}
+/* ================================== */
+/*                Nav                 */
+/* ================================== */
 
-nav dt {
-    position: relative;
-    transition: 0.5s;
-    cursor: row-resize;
-	color: #46d6ce;
+/* reset master buttons styles */
+nav dl button { 
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    height: 32px;
 }
-
-nav dt span {
-    margin-left: 10px;
-    opacity: 0;
-    transition: 0.5s;
+nav dl button:focus {
+    outline: 0;
 }
-
-nav dt:hover > span {
+nav dl button .icon {
+    font-size: 1.5em;
+}
+nav dl button .more {
+    font-size: 0.85em;
+    opacity: 0.5;
+}
+nav dl button .more:hover {
     opacity: 1;
 }
 
-nav dt .show_manual {
-    float: right;
-    margin-right: 20px;
-    opacity: 0.75;
-    color: #46d6ce;
-    cursor: default;
-}
+/* Items list */
 
-nav a {
+nav .nav_item {
+    position: relative;
+    width: 100%;
+    border-left: 2px solid transparent;
+    padding: 0 10px;
     overflow: hidden;
+    box-sizing: border-box;
+    transition: 0.25s;
 }
 
-nav a dd {
-    position: relative;
-    transition: 0.5s;
+nav .nav_item > * { float: left; }
+nav div.current { cursor: default; }
+
+nav .item_label { padding: 0 4px; text-align: left; }
+nav dd .item_label { width: 50px; }
+
+nav .item_label .lang_title {
+    top: 0;
 }
 
-nav a .remove, nav .current .remove {
-    float: right;
-    color: transparent;
-    transition: 0.5s;
-    cursor: pointer;
-}
+nav .item_label small {
+    opacity: 0.33;
+    margin-left: 5px;
+} 
 
-nav a dd:hover > .remove { color: rgba(255,255,255,0.3); }
-nav a dd:hover { background-color: rgba(0,0,0,0.4); }
+nav .item_label:hover { opacity: 1; }
 
-nav a.current dd { cursor: default; }
-
-nav a.current dd {
-    color: #ffffff;
-    font-weight: 500;
-}
-
-nav span {
-    position: relative;
-    top: 2px;
-    font-size: 1.2em;
-}
-
-nav dd span {
-    margin-right: 20px;
-}
-
-nav dl a {
-    color: rgba(255,255,255,0.8);
+nav .item_label a {
+    height: 100%;
+    color: inherit;
     text-decoration: none;
 }
 
-nav dd.template {
-    color: rgba(255,255,255,0.3);
+nav dt .item_label p { font-weight: 400; }
+
+nav .item_indent, nav .item_icon {
+    width: 22px;
+    cursor: default;
+    background-position: center;
+    background-size: cover;
 }
 
-nav dd.template {
-    cursor: pointer;
-    transition: 0.5s;
+nav .brench-t { background-image: url("../images/brench-t.svg"); }
+nav .brench-l { background-image: url("../images/brench-l.svg"); }
+nav .brench-i { background-image: url("../images/brench-i.svg"); }
+
+nav .item_indent span {
+    position: relative;
+    top: -7px;
+    left: -6px;
+    padding: 0;
+    font-size: 3em;
+    opacity: 0.12;
+    text-align: right;
 }
-nav dd.template:hover {
-    color: rgba(255,255,255,1);
-    background-color: rgba(0,0,0,0.5);
+
+nav .add_item .item_label { opacity: 0.33; }
+
+nav .nav_container > dl { padding-top: 10px; }
+
+nav dd.folder > div > .item_icon { cursor: pointer; }
+nav dd.folder > div > .item_icon:hover { opacity: 1; }
+
+nav .external_item button {
+    cursor: default;
 }
+
+/* ================================== */
+/*              Options               */
+/* ================================== */
+
+nav .item_options {
+    position: absolute;
+    top: 0;
+    right: 7px;
+    width: 30px;
+    background-color: transparent;
+}
+
+nav .item_options_box {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0 12px;
+    transition: 0.25s;
+}
+
+nav dt:hover .item_options_box,
+nav .active_item:hover .item_options_box,
+nav .current:hover .item_options_box {
+    display: block;
+}
+
+nav .item_options_box button {
+    display: inline-block;
+    width: 32px;
+    margin: 0 -4px;
+    border-radius: 99px;
+    opacity: 0.33;
+}
+
+nav .item_options_box button:hover { opacity: 1; }
+
+nav dt .change-subpages-order i {
+    opacity: 0.33;
+    transition: 0.25s;
+}
+nav dt .change-subpages-order:hover i { opacity: 1; }
+
+/* ================================== */
+/*            Active mode             */
+/* ================================== */
+
+nav .item_label .active_mode {
+    font-size: 1em;
+    padding-left: 8px;
+}
+
+nav .item_label .color_published { display: none; }
+nav .item_label .color_outside { opacity: 0.3; }
+
+/* ================================== */
+/*           Preview button           */
+/* ================================== */
 
 nav .buttons {
     text-align: center;
@@ -189,6 +252,8 @@ nav .buttons button {
     width: 100%;
     margin: 0 auto;
 }
+
+nav .buttons button:focus { outline: none; }
 
 /* ================================== */
 /*           Template popup           */
@@ -202,32 +267,3 @@ nav .buttons button {
 #popup_box select {
     margin-bottom: 20px;
 }
-
-/* ================================== */
-/*             Login info             */
-/* ================================== */
-
-#login_info {
-    padding: 20px;
-    padding-top: 0;
-    font-size: 0.8em;
-    opacity: 0.5;
-}
-
-#login_info em {
-    font-size: 1em;
-    font-style: inherit;
-    opacity: 0.5;
-}
-
-#login_info a {
-    color: #ffffff;
-    opacity: 0.5;
-    transition: 0.5s;
-}
-#login_info a:hover {
-    opacity: 1.0;
-}
-
-    
-    

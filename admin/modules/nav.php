@@ -1,10 +1,12 @@
 <?php
     echo "\n";
 
-    echo "\t\t<nav>\n";
-    echo "\t\t\t<h1><strong>><</strong>.able<span>CMS</span></h1>\n";
-    echo "\t\t\t<aside id='search'>\n";
-    echo "\t\t\t\t<input type='text' name='search' placeholder='Szukaj...' value=''>\n";
+    echo "\t\t<nav><div class='nav_container'>\n";
+    // Logo
+    echo "\t\t\t<h1><strong>&gt;&lt;</strong>.able<span>CMS</span></h1>\n";
+    // Search box
+    echo "\t\t\t<aside id='search' class='search_box'>\n";
+    echo "\t\t\t\t<input type='text' name='search' placeholder='".localize("search-label")."...' value=''>\n";
     echo "\t\t\t\t<button type='submit'><span class='fi-magnifying-glass'></span></button>\n";
     echo "\t\t\t</aside>\n";
 
@@ -12,283 +14,446 @@
     //        Define editable content
     // ======================================
 
-    function getNavLabels($path, $admin_lang) {
-    // --------------------------------
-    // $path = <string> menu xml file path
-    // $admin_lang = <string> lang code
-    // --------------------------------
-    // RETURNS: <array> Page titles associatet with target links
-    // --------------------------------
-        $nav_xml = loadXml($path);
-        $nav_tag = "multi_page";
-        $navigation = array(); // links & titles
-        foreach($nav_xml[$nav_tag] as $page) {
-            //arrayList($page);
-            $href = $page['href'][0]['string'][0];
-            $label = $page['title'][0]['text'][0][$admin_lang][0];
-            $hash_link = split("#", $href);
-			$file_link = split("\.", $href);
-            if(count($hash_link) == 2) { // #hash
-                $key = $hash_link[1];
-            }
-			elseif(count($file_link) == 2) { // page.ext
-				$key = $file_link[0];
-			}
-            else { // page
-                $key = $href;
-            };
-			// Add to list
-            if(substr($href, 0, 7) != "http://" && substr($href, 0, 8) != "https://" && !$navigation[$key]) { // ignore external links & not already defined
-                $navigation[$key] = $label;
-            };
-        };
-        return $navigation;
+    function getIcon($type) {
+    // -------------------------------------------
+    // $type = <string> Item type name
+    // -------------------------------------------
+    // RETURNS: <string> Icons class
+    // -------------------------------------------
+        $icons = [
+            "page" => "fi-page",
+            "attachement" => "fi-paperclip",
+            "blog" => "fi-comments",
+            "file" => "fi-page",
+            "files" => "fi-page-copy",
+            "image" => "fi-photo",
+            "user" => "fi-torso",
+            "users" => "fi-torsos",
+            "link" => "fi-link",
+            "list" => "fi-list",
+            "contact" => "fi-mail",
+            "gallery" => "fi-thumbnails",
+            "options" => "fi-checkbox",
+            "quiz" => "fi-list-thumbnails",
+            "plugin" => "fi-puzzle",
+            "settings" => "fi-widget",
+            "statistics" => "fi-graph-bar",
+            "time" => "fi-clock",
+            "tools" => "fi-wrench",
+            "trash" => "fi-trash",
+            "website" => "fi-web",
+        ];
+        if($icons[$type]) {
+            return $icons[$type];
+        }
+        else {
+            return reset($icons);
+        }
     };
 
-    function checkVersion($label, $document_path, $site_options) {
-    // --------------------------------
-    // $label = <string> document title
-    // $document_path = <string> document path
-    // $site_options = <array> xable.ini site options
-    // --------------------------------
-    // RETURNS: <string> Document title label with version status indicatior (if needed)
-    // --------------------------------
-        $draft_ext = "draft";
-        if($site_options['draft_supprt'] != "false" && file_exists("$document_path.$draft_ext")) {
-            if(file_exists($document_path)) {
-                $label = $label."<b class='saved-draft manual' help='Edytowany'>&nbsp;&nbsp;&bull;</b>";
-            }
-            else {
-                $label = $label."<b class='new-draft manual' help='Edytowany, bez publikacji'>&nbsp;&nbsp;&bull;</b>";
-            };
-        };
-        return $label;
-    };
+    //arrayList($_SESSION["ini_site_options"]);
 
-    // ======================================
-    //          generate Navigation
-    // ======================================
-
-	$nav_list = array();
-    $nav_pathes_list = array();
-
-    echo "\t\t\t<dl>\n";
-
-
-
-    foreach(array_keys($nav_documents) as $title) {
-        $data = split("@", $nav_documents[$title]);
+    function pagesTree($path, $indent_depth = 0, $nav_file = false, $type = false, $templates = false) {
+    // -------------------------------------------
+    // $path = <string> Folder path
+    // $indent_depth = <integer> Brench depth
+    // $nav_file = <string> Navigation file path, optional
+    // $type = <string> Files icon type
+    // $templates = <array> Templates list
+    // -------------------------------------------
+    // GENERATES: Files / Folders / Subfolders tree
+    // -------------------------------------------
         
-        //echo $title."<br>\n";
-        //arrayList($data);
-        $items = split(";", $data[1]);
-        $icon = $data[0];
-        if($icon == "") { $icon = "fi-page"; };
+        $html = array();
+        $taken = listDir($path, "xml,draft");
+        if(!$templates) { $templates = listDir($path, "template,?"); };
+
+        $pages = pagesOrder($path, $nav_file);
+        $n = 0; // count to last
         
-        // Manual
-        $manual = $root."/".array_shift(split("\|", $items[0]));
-        $manual_html = "";
-        if(in_array($manual, $ini_libraries)) {
-            $manual = path(path($manual, "dirname"), "basename");
-            if(substr($manual, 0, 1) == "_") { $manual = substr($manual, 1); };
-            if(file_exists("$manual_folder/$manual.manual")) {
-                $manual_html = array_map("trim", file(("$manual_folder/$manual.manual")));
-                $manual_html = "help='".join("<br>", $manual_html)."'";
-            };
-        };
+        $default_icon = getIcon($type);
         
-		$nav_group = array();
-        $nav_group[] = "\t\t\t\t<div class='group'>\n";
-        $nav_group[] = "\t\t\t\t\t<dt $manual_html>$title<span class='expand fi-minus manual' help='Zwiń listę podstron'></span></dt>\n";
-        
-        foreach($items as $item) {
-            // Content analyze
-            $item = split("\|", $item);
-            $navigation = false;
-            // second value: xml navigation file path
-            if(is_string($item[1]) && $item[1] != "" && file_exists($root."/".$item[1])) {
-                $navigation = getNavLabels($root."/".$item[1], $admin_lang);
-                $label = "*";
-            }
-            // second value: menu label 
-            elseif(is_string($item[1]) && $item[1] != "") {
-                $label = $item[1];
-            }
-            // no second value
-            else {
-                $label = path($item[0], "filename");
-            };
-            $document_path = $root."/".$item[0];
-            // ====== List all files in folder ======
-            if($label == "*") {
-                // Template -> Add page button
-				if($ini_enable['template'] != "false") {
-					if(count($templates = listDir( path($document_path, "dirname"), "template,?" )) >0) {
-                        // Already taken xml names
-						$taken_names = array_map("strtolower", listDir( path($document_path, "dirname"), "xml,draft" ));
-                        // Draft names fix
-                        foreach(array_keys($taken_names) as $i) {
-                            $item = $taken_names[$i];
-                            if(path($item, "extension") == "draft") { $item = path($item, "filename"); };
-                            $taken_names[$i] = $item;
-                        };
-                        // Output
-						$nav_group[] = "\t\t\t\t\t<dd class='template' taken='".join(";", $taken_names)."' href='".join(";", $templates)."'><span class='fi-plus'></span>Dodaj stronę</dd>\n";
-					};
-				};
-                // Pages list
-                $group_by_nav = array();
-                $group_by_name = array();
+        foreach(array_keys($pages) as $item_path) {
+            $title = $pages[$item_path];
+
+            //echo "> ".join(",", $indent)." @ $title<br>\n";
+            $subfolder = path($item_path, "dirname")."/".path($item_path, "filename");
+            if(is_dir($subfolder)) {
                 
-                // ====== Order ======
-                $folder_path = path($document_path, "dirname");
-                $file_extension = path($document_path, "extension");
-                
-                if($order = array_shift(listDir($folder_path, "order"))) {
-                    $pathes_list = array();
-                    foreach(array_map("trim", file("$folder_path/$order")) as $file_name) {
-                        //echo "order -> $file_name\n";
-                        $file_path = "$folder_path/$file_name.$file_extension";
-                        if(file_exists($file_path) || file_exists("$file_path.$draft_ext")) {
-                            $pathes_list[] = "$folder_path/$file_name.$file_extension";
-                        };
-                    };
-                    //arrayList($pathes_list);
-                    $sorted_flag = true;
-                }
-                // ====== Non-Order ======
-                else {
-                    $pathes_list = array();
-                    foreach(listDir( $folder_path, ".,?" ) as $item) {
-                        // Draft without published version
-                        if(path($item, "extension") == "draft") {
-                            $published = path($item, "dirname")."/".path($item, "filename");
-                            if(!file_exists($published) && path($published, "extension") == $file_extension) {
-                                //echo "> $item -> ".path($item, "filename")."<br>\n";
-                                $pathes_list[] = $published;
-                            };
-                        }
-                        // Published
-                        elseif(path($item, "extension") == $file_extension) {
-                            $pathes_list[] = $item;
-                        };
-                    };
-                    $sorted_flag = false; // Keep sorted by filename
+                if(file_exists("$subfolder/.order")) {
+                    $options = [ "change-subpages-order" => "$subfolder/.order" ];
                 };
-                //arrayList($pathes_list);
-                // ====== Navigation list ======
-                foreach($pathes_list as $document_path) {
-					//echo "> $document_path<br>\n";
-                    if(file_exists($document_path) || file_exists("$document_path.$draft_ext")) {
-                        $label = path($document_path, "filename");
-                        if(is_array($navigation) && is_string($navigation[$label])) {
-							$label = $navigation[$label];
-							$html = "\t\t\t\t\t<a href='index.php?path=$document_path'><dd><span class='$icon'></span>".checkVersion($label, $document_path, $site_options)."</dd></a>\n";
-							$group_by_nav[strtolower($label)] = $html;
-						}
-						else {
-							$label = ucfirst(str_replace("_", " ", $label));
-							$html = "\t\t\t\t\t<a href='index.php?path=$document_path'><dd><span class='$icon'></span>".checkVersion($label, $document_path, $site_options)."</dd></a>\n";
-							$group_by_name[strtolower($label)] = $html;
-						};
-                        $nav_pathes_list[] = $document_path;
+                
+                $folder_icon = "fi-folder";
+                echo "\t<dd class='folder' data-type='$type'>\n";
+                navItem($item_path, $indent_depth, $folder_icon, $title, $options);
+                
+                echo "\t\t<dl>\n";
+
+                pagesTree($subfolder, $indent_depth + 1, false, $type, $templates);
+                echo "\t\t</dl>\n";
+                
+                echo "\t</dd>\n";
+            }
+            else {
+                
+                $max_depth = $_SESSION["ini_site_options"]["subpages_depth"];
+                
+                if(!isset($max_depth) || intval($max_depth) >= $indent_depth) {
+                    $options = [ "add-subpage" => join(";", $templates), "remove-page" => $item_path ];
+                }
+                else {
+                    $options = [ "remove-page" => $item_path ];
+                };
+                
+                echo "\t<dd data-type='$type'>\n";
+                navItem($item_path, $indent_depth, $default_icon, $title, $options);
+                echo "\t</dd>\n";
+            }
+        }
+
+        // ====== Add page button ======
+        if($templates && count($templates) > 0) {
+            if($default_icon == "fi-torso") { $label = localize("add-user"); }
+            else { $label = localize("add-page"); };
+            
+            echo "\t<dd class='add_page'>\n";
+            echo "\t\t<input type='hidden' class='taken_filenames' value='".join(";", $taken)."'>\n";
+            echo "\t\t<input type='hidden' class='folder_path' value='".$path."'>\n";
+            navItem(join(";", $templates), $indent_depth, "fi-plus", $label, false);
+            echo "\t</dd>\n";
+        };
+
+    };
+
+    function pagesOrder($path, $nav_file = false) {
+    // -------------------------------------------
+    // $path = <string> Folder path
+    // $nav_file = <string> Navigation file path, optional
+    // -------------------------------------------
+    // RETURNS: <array> Pages list [ <path> => <title>, (...) ]
+    // -------------------------------------------
+        $pages = array();
+        
+        // ====== by Xml Order file ======
+        if($order = loadXml("$path/.order")) {
+            foreach($order["multi_item"] as $item) {
+                $item_path = $path."/".readXml($item, "path");
+                $item_title = xmlLanguageTitles($item);
+                //$item_title = readXml($item, "title", $_SESSION["edit_lang"]);
+                if(xmlExists($item_path)) { $pages[$item_path] = $item_title; };
+            }
+        }
+        // ====== by Order file ======
+        elseif($order = array_shift(listDir($path, "order,?"))) {
+            foreach(array_map("trim", file($order)) as $item) {
+                $item = explode("|", $item);
+                $item_path = $path."/".array_shift($item);
+
+                if(is_array($item)) { $title = join("\|", $item); }
+                else { $title = false; };
+                
+                if(strlen(path($item_path, "extension")) < 2) { $item_path = "$item_path.xml"; };
+                
+                if(xmlExists($item_path)) {
+                    //$title = readXml(loadXml($item_path), "header title");
+                    if(!is_string($title) || trim($title) == "") { $title = ucwords(path($item_path, "filename")); };
+                    $pages[$item_path] = $title;
+                };
+            };
+        }
+        // ====== by Navigation file ======
+        elseif(file_exists($nav_file)) {
+            $nav_xml = loadXml($nav_file, "draft", true);
+            
+            //arrayList($nav_xml);
+            foreach($nav_xml["multi_page"] as $page) {
+                $title = readXml($page, "title", $_SESSION['edit_lang']);
+                $href = readXml($page, "href");
+                
+                if(substr($href, 0, 1) == "#") { $item = substr($href, 1); } // #link
+                else { $item = $href; };
+
+                $item_title = xmlLanguageTitles($page);
+
+                if(strstr($href, "://")) {
+                    // External links
+                    $pages[$href] = "<span class='external'>".$item_title."</span><i class='active_mode color_outside fi-info manual' help='".localize("style-link-external").":<br><span class=\"code\">".$href."</span>'></i>"; // v1
+                    //$pages[$href] = "<span class='external manual' help='".localize("style-link-external").":<br><span class=\"code\">".$href."</span>'>".$item_title."</span>"; // v2
+                }
+                else {
+                    // Document subpage
+                    $item_path = "$path/$item.xml";
+                    if(xmlExists($item_path)) {
+                        if(!is_string($item_title) || trim($item_title) == "") { $item_title = $item; };
+                        $pages[$item_path] = $item_title;
                     }
                     else {
-                        $label = $document_path;
-                        $html = "<dd style='color:#fd585e'><span class='$icon'></span>Not found: '$label'</dd>\n";
-						$group_by_name[strtolower($label)] = $html;
-                    };
-                };
-
-                if(!$sorted_flag) { ksort($group_by_name); };
-				foreach($navigation as $label) {
-					if($item = $group_by_nav[strtolower($label)]) { $nav_group[] = $item; };
-				};
-				foreach($group_by_name as $item) { $nav_group[] = $item; };
+                        $pages[$item_path] = "<span class='error'>".$item_title."</span><i class='active_mode color_outside fi-alert manual' help='".localize("not-found").":<br><span class=\"code\">".$item_path."</span>'></i>";
+                    }
+                }
             }
-            // ====== Single file ======
-            elseif(file_exists($document_path) || file_exists("$document_path.$draft_ext")) {
-                if(is_array($navigation) && is_string($navigation[$label])) { $label = $navigation[$label]; };
-                $label = ucfirst(str_replace("_", " ", $label));
-                if(path($document_path, "extension") == "order") { $item_icon = "fi-list"; } else { $item_icon = $icon; }; // Order icon override -> list
-                $nav_group[] = "\t\t\t\t\t<a href='index.php?path=$document_path'><dd><span class='$item_icon'></span>".checkVersion($label, $document_path, $site_options)."</dd></a>\n";
-                $nav_pathes_list[] = $document_path;
+            // Show items outside NAV
+            foreach(listDirXml($path, "?") as $file) {
+                if(!$pages[$file]) {
+                    // Format to match "link" field in navigation.xml
+                    $link = explode("/", $file);
+                    array_shift($link); // -root
+                    array_shift($link); // -pages
+                    $basename = array_pop($link);
+                    if(count($link) > 0) { $link = join("/", $link)."/"; } else { $link = ""; };
+                    $link = $link.path($basename, "filename");
+                    // Add info                    
+                    $pages[$file] = xmlTitle($file, "*", "draft")." <i class='active_mode color_outside fi-alert manual' help='".localize("not-in-navigation").":<br><span class=\"code\">".$link."</span>'></i>";
+                }
+            }
+        }
+        // ====== by Filenames ======
+        else {
+            foreach(listDirXml($path, "?") as $item_path) {
+                $pages[$item_path] = xmlTitle($item_path, "*", "draft");
+            }
+        }
+        return $pages;
+    };
+
+    function listDirXml($path, $options = false) {
+    // -------------------------------------------
+    // $path = <string> Xable document path
+    // $options = <string> based on listDir(), eg: "?", optional
+    // -------------------------------------------
+    // RETURNS: <array> "Xml" or "draft" documents patches with xml extension
+    // -------------------------------------------
+        $files = array();
+        if(is_string($options) && $options != "") { $options = ",$options"; };
+        foreach(listDir($path, "xml,draft".$options) as $file_path) {
+            $filename = $file_path;
+            while(path($filename, "extension") != "") {
+                $filename = path($filename, "filename");
+            };
+            $folder = path($file_path, "dirname");
+            if(!in_array($filename, $files)) {
+                $files[] = "$folder/$filename.xml";
+            };
+        }
+        return $files;
+    };
+
+    function navItem($href, $indent_depth, $icon, $label, $options) {
+    // -------------------------------------------
+    // $href = <string> Document path
+    // $indent_depth = <integer> Indent level depth
+    // $icon = <string> Document icon class
+    // $label = <string> Document name
+    // $options = <array> Options button actions: [ "key" => "value" ]
+    // -------------------------------------------
+    // GENERATE: navigation item row
+    // -------------------------------------------        
+        if(!is_string($icon)) { $icon = "fi-page-filled"; };
+
+        if(!is_string($href) || $href == "") { $class = ""; }
+        elseif(strstr($href, "://")) { $class = "external_item"; $icon = "fi-link"; }
+        elseif($href == $_SESSION["edit_path"]) { $class = "current"; }
+        elseif(array_pop(explode(".", $href)) == "template") { $class = "add_item active_item"; }
+        else { $class = "active_item"; }
+
+        echo "\t\t<div class='nav_item nav_group_title $class'>\n";
+        
+        $indent_html = [];
+        while(count($indent_html) < $indent_depth) {
+            $indent_html[] = "<button class='item_indent'></button>";
+        }
+        echo "\t\t\t".join("", $indent_html)."\n";
+        
+
+        echo "\t\t\t<button class='item_icon'><i class='icon ".$icon."'></i></button>\n";
+        
+        // ====== Link ======
+        if($mode = array_pop(xmlExists($href))) {
+            $modes = [ "draft" => "edited", "published" => "published", "unpublished" => "unpublished" ];
+            $help = localize("status-".$modes[$mode]);
+            $mode = "<i class='active_mode color_$mode manual fi-flag' help='$help'></i>";
+        }
+        else {
+            $mode = "";
+        };
+        
+        echo "\t\t\t<button class='item_label' href='$href'><p>".BBCode($label).$mode."</p></button>\n";
+        
+        // Help
+        if(is_string($options["help"])) {
+            echo "\t\t\t<button class='item_options manual' help='".$options["help"]."'><i class='icon fi-info'></i></button>\n";
+        }
+        elseif(is_string($options["order"])) {
+            echo "\t\t\t<button class='item_options manual change-subpages-order' value='".$options["order"]."' help='".localize("change-subpages-order")."'><i class='icon fi-list'></i></button>\n";
+        }
+        elseif(is_array($options)) {
+            
+            if(path($href, "dirname") == $_SESSION["admin_root"]) {
+                unset($options["remove-page"]);
+            }
+            
+            echo "\t\t\t<div class='item_options_box'>\n";
+            
+            foreach(array_keys($options) as $key) {
+                $val = $options[$key];
+                $icons = [
+                    "add-subpage" => "fi-folder-add",
+                    "change-subpages-order" => "fi-list-thumbnails",
+                    "remove-page" => "fi-x",
+                ];
+                
+                echo "\t\t\t\t<button class='item_option action-$key manual' value='$val' help='".localize($key)."'><i class='icon ".$icons[$key]."'></i></button>\n";
+            };
+            //echo "\t\t\t<button class='item_options'><i class='icon more'>&bull;&bull;&bull;</i></p>\n";
+            echo "\t\t\t</div>\n";
+        }
+        echo "\t\t</div>\n";
+    };
+
+    // ======================================
+    // ======================================
+    // ======================================
+    //        Define editable content
+    // ======================================
+    // ======================================
+    // ======================================
+
+    foreach(array_keys($nav_documents) as $group_label) {
+        $nav_group = $nav_documents[$group_label];
+
+        echo "<dl>\n";
+        
+        // Help / manual
+        if(is_string($nav_group["help"]) && $nav_group["help"] != "") {
+            $options = [ "help" => localize($nav_group["help"]) ];
+        }
+        else {
+            //$options = [ "order" => ".order" ];
+            $options = false;
+        };
+            
+        echo "\t<dt>\n";
+        
+        // ====== Add change order button form Navigation file ======
+        if(count($nav_group["items"]) == 1) {
+            $nav_file = array_pop(explode("|", $nav_group["items"][0]));
+            if(path($nav_file, "extension") == "xml" && file_exists("$root/$nav_file")) {
+                echo "<!-- Group label: $group_label -->\n";
+                $options = [ "change-subpages-order" => "$root/$nav_file" ];
+            }
+        };
+        
+        navItem(false, 0, $nav_group["icon"], $group_label, $options, false);
+        if(isset($nav_group["fold"])) {
+            echo "\t\t<input type='hidden' class='ini_fold' value='".$nav_group["fold"]."'>\n";
+        }
+        
+        echo "\t</dt>\n";
+        
+        $items = $nav_group["items"];
+        
+        foreach(array_keys($items) as $n) {
+            
+            // Variables
+            $item = $items[$n];
+            $indent_level = 1;
+            list($item_path, $item_option) = explode("|", $item);
+            $item_path = $root."/".$item_path;
+            
+            // ====== Get type & Icon ======
+            if(is_string($nav_group["types"][$n]) && $nav_group["types"][$n] != "") {
+                $type = $nav_group["types"][$n];
+            }
+            elseif($nav_group["types"][0]) {
+                $type = $nav_group["types"][0];
             }
             else {
-                $nav_group[] = "<dd style='color:#fd585e'><span class='$icon'></span>Not found: '$document_path'</dd>\n";
+                $type = "page";
             };
-        };
-		// No files found -> set correct label name!
-		// ====== OUTPUT ======
-        $nav_group[] = "\t\t\t\t</div>\n";
-		$nav_list[] = join("", $nav_group);
-		
-		//echo "-----------------------------\nNAV: [$title]\n-----------------------------\n";
-		//arrayList($nav_group);
-    };
-	echo join("", $nav_list);
-    echo "\t\t\t</dl>\n";
-
-    $_SESSION['nav_pathes_list'] = $nav_pathes_list;
-
-
-    // ====================================
-    //          Preview page button
-    // ====================================
-
-    $domain = $settings['page'][0]['domain'][0]['string'][0]; // not-used
-    $link = $root; // go back to site root
-
-    // Use link pattern
-    $link_pattern = $site_options['link_pattern'];
-    if(is_string($link_pattern) && $link_pattern != "") {
-        $preview = array();
-        $relative_path = substr($path, strlen($root) + 1);
-        $preview['folder'] = path($relative_path, "dirname");
-        $preview['filename'] = path($relative_path, "filename");
-        //arrayList($preview);
-        if($preview['folder'] != "" && path($preview['folder'], "filename") != "_repository") { // disable link to root & repository
-            // subpages support
-            if(path($preview['folder'], "dirname") != "") {
-                if($site_options['link_subpages'] == "true") {
-                    $preview['filename'] = path($preview['folder'], "filename")."/".$preview['filename'];
+            
+            // Single file(s)
+            if(xmlExists($item_path)) {
+                // Options
+                $options = [ "remove-page" => $item_path ];
+                
+                if(($n + 1) == count($items)) { $last_flag = true; } else { $last_flag = false; };
+                if(!is_string($item_option) || trim($item_option) == "") {
+                    $item_label = ucwords(path($item_path, "filename"));
                 }
                 else {
-                    $preview['filename'] = path($preview['folder'], "basename");
+                    $item_label = $item_option;
+                }
+                // HTML output
+                echo "\t<dd data-type='$type'>\n";
+                navItem($item_path, $indent_level, getIcon($type), $item_label, $options, $last_flag);
+                echo "\t</dd>\n";
+            }
+            
+            // Multiple files
+            elseif(path($item_path, "filename") == "*") {
+                $folder_path = path($item_path, "dirname");
+                
+                // templates
+                if(is_string($nav_group["template"]) && is_dir($root."/".$nav_group["template"])) {
+                    $templates = listDir($root."/".$nav_group["template"], "template,?");
+                }
+                else {
+                    $templates = false;
                 };
-            };
-            foreach(array_keys($preview) as $key) {
-                $link_pattern = str_replace("@".$key, $preview[$key], $link_pattern);
-            };
-            $link = $link."/".$link_pattern;
-        };
-    };
+                
+                $nav_file = "$root/$item_option";
+                if(!file_exists($nav_file) || is_dir($nav_file)) { $nav_file = false; };
 
-    // Query data (GET) support
-    $link = split("\?", $link);
-    if(count($link) == 2) {
-        $query = split("&", $link[1]);
-        $link = $link[0];
+                pagesTree($folder_path, $indent_level, $nav_file, $type, $templates);
+            }
+        }
+        
+        echo "</dl>\n";
+    }
+
+    //arrayList($nav_documents);
+
+    // ======================================
+    //            Preview Button
+    // ======================================
+    
+    $link_pattern = readXml($settings, "links link_pattern");
+    // Backward compatibility - link from xable.ini
+    if(!is_string($link_pattern)) {
+        $link_pattern = $_SESSION["ini_site_options"]["link_pattern"];
+        $link_pattern = str_replace("@dirname/@filename", "@path", $link_pattern);
+    };
+    // Get page href (url path)
+    $href = explode("/", path($path, "dirname")."/".path($path, "filename"));
+    array_shift($href); // - root
+    array_shift($href); // - pages
+    $href = join("/", $href);
+    // Get page folder
+    if(strstr($href, "/")) {
+        $folder = explode("/", $href);
+        array_pop($folder);
+        $folder = join("/", $folder);
     }
     else {
-        $query = array();
-        $link = $link[0];
+        $folder = "";
     };
 
-    // Add draft preview trigger
-    if($site_options['draft_support'] != "false") { $query[] = "preview=draft"; };
-
-    // Hash data support
-    $link = split("#", $link);
-    if(count($link) == 2) { $hash = $link[1]; } else { $hash = false; };
-    $link = $link[0];
+    $patterns = [
+        "@path" => $href,
+        "@folder" => $folder,
+        "@dirname" => path($current_path, "dirname"), // obsolete
+        "@filename" => path($current_path, "filename"), // obsolete
+        //"@language" => $_SESSION["admin_lang"], // off -> changable in js
+    ];
+    $link = $link_pattern;
+    foreach(array_keys($patterns) as $key) { $link = preg_replace("/".$key."/", $patterns[$key], $link); };
+    // Add preview trigger
+    if($_SESSION["ini_site_options"]["draft_support"] == "true") { $link = "xable-preview/".$link; };
+    // ====== Button ======
+    echo "\t\t\t<div class='buttons'><a href='$root/' data-link='$link' target='_blank'><button id='page_preview' class='manual' help='".localize("changes-preview")."'>".localize("page-preview")."</button></a></div>\n";
+    // Show menu mobile
+    echo "\t\t\t<button id='toogle_mobile_menu'><i class='icon fi-list'></i></button>\n";
     
-    // Complete link URL with queries & hash
-    if(count($query) > 0) { $link = $link."?".join("&", $query); };
-    if($hash) { $link = $link."#".$hash; };
-
-    // ====== BUTTON ======
-    echo "\t\t\t<div class='buttons'><a href='$link' target='_blank'><button id='page_preview' class='manual' help='Podgląd zapisanych zmian'>Podgląd strony</button></a></div>\n";
-
-    echo "\t\t</nav>\n";
+    echo "\t\t</div></nav>\n";
 ?>

@@ -10,14 +10,16 @@
         <style><?php include "style/loader.css"; ?></style>
         
 		<meta charset="UTF-8">
-		<title>X.able CMS / Log</title>
+		<title><?php echo localize("xable-log"); ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
 		<link rel="stylesheet" type="text/css" href="style/index.css" />
 		<link rel="stylesheet" type="text/css" href="style/cms.css" />
         <link rel="stylesheet" type="text/css" href="style/colors.css" />
         <link rel="stylesheet" type="text/css" href="style/show-log.css" />
+        <link rel="stylesheet" type="text/css" href="style/_responsive.css" />
 		<link rel="stylesheet" type="text/css" href="style/foundation-icons.css" />
-		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		
         <script src='script/jquery-3.1.0.min.js'></script>
         <script src='script/functions.js'></script>
@@ -35,7 +37,7 @@
             <div id="popup_container">
                 <div id="popup_box">
                     <h6><span class="fi-calendar"></span></h6>
-                    <h3>Dziennik zdarzeń</h3>
+                    <h3><?php echo localize("events-log"); ?></h3>
                     <div class='inputs'>
 
 						<?php
@@ -45,15 +47,16 @@
                                 echo "<table class='log'>\n";
                                 $log_content = array_map("trim", file($log_file));
                                 
-                                $titles = array_shift($log_content);
+                                array_shift($log_content); // Cut header titles
+                                $titles = localize("log-header");
                                 //$log_content[] = $titles;
-                                echo "\t\t<td>".join("</td>\n\t\t<td>", split(";", $titles))."</td>\n";
+                                echo "\t\t<td>".join("</td>\n\t\t<td>", explode(";", $titles))."</td>\n";
                                 
                                 foreach(array_reverse($log_content) as $log) {
                                     
                                     echo "\t<tr>\n";
-                                    //echo "\t\t<td>".join("</td>\n\t\t<td>", split(";", $log))."</td>\n";
-                                    $log = split(";", $log);
+                                    //echo "\t\t<td>".join("</td>\n\t\t<td>", explode(";", $log))."</td>\n";
+                                    $log = explode(";", $log);
                                     echo "\t\t<td class='time'><span class='date'>".str_replace(" ", "</span>, ", $log[0])."</td>\n";
                                     
                                     if(file_exists($log[1]) || file_exists($log[1].".draft")) {
@@ -80,7 +83,7 @@
                                 echo "</table>\n";
                             }
                             else {
-                                echo "<p class='description justify-center'>Brak zarejestrowanych zdarzeń.</p>";
+                                echo "<p class='description justify-center'>".localize("empty-log")."</p>";
                             };
 	
 						?>
@@ -89,7 +92,7 @@
 
                     </div>
                     <div class='buttons'>
-                        <button class='cancel' href='index.php?path=<?php echo $_GET['page']; ?>'>Zamknij</button>
+                        <button class='cancel' href='index.php?path=<?php echo $_GET['page']; ?>'><?php echo localize("close-label"); ?></button>
                     </div>
                 </div>
             </div>

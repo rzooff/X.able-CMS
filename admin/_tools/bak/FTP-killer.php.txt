@@ -1,0 +1,155 @@
+<?php
+
+    // ====== RESET array KEYS / begin ======
+    function resetKeys($array) {
+    // -----------------------------------------------
+    // $array = <array> simple array with unsorted integer keys
+    // -----------------------------------------------
+    // RETURNS: <array> input array with keys sorted ascending from 0
+    // -----------------------------------------------
+        $output = array();
+        foreach($array as $element) {
+            $output[] = $element;
+        };
+        return $output;
+    };
+    // ====== RESET array KEYS / end ======
+
+    // ====== remove Directory / begin ======
+    function removeDir($path) {
+    // ----------------------------------------
+    // $path = <string> full directory PATH
+    // ----------------------------------------
+    // Delete folder with it's content
+    // ----------------------------------------
+        if($path != "" && !path != "/") { // safety protection!
+            if(!file_exists($path)) {
+                return true; // nothing to remove
+            }
+            else {
+                foreach(array_reverse(filesTree($path)) as $item) {
+                    if(is_dir($item)) { rmdir($item); } // folder
+                    else { unlink($item); }; // file
+                };
+                rmdir($path); // main folder
+                if(!file_exists($path)) { return $path; }
+                else { return false; };
+            };
+        }
+        else {
+            echo "\n<b>ERROR! removeDir() -> root directory remove forbidden!</b><br>";
+            return false;
+        };
+    };
+    // ====== remove Directory / end ======
+
+	// ====== LIST DIRectory / begin ======
+	function listDir($path, $options = false) {
+	// -----------------------------------------------
+	// $path = <string> directory path, <false> for current
+    // $options = <string> options, for multiple use coma, eg:"/,jpg"
+    //      <none> or "*"=include all (files & folders),
+    //      "." = include files,
+    //      "/" = include folders,
+    //      "extension" = include specified file type (case insesitive), for multiple use coma, eg: "jpg,gif"
+    //      "?" = return full path
+	// -----------------------------------------------
+    // RETURNS: <array> files/folders list
+	// -----------------------------------------------
+        if($path == false || $path == "") {
+            $path = getcwd();
+            $current = true;
+        }
+        else {
+            $current = false;
+        };
+        if(file_exists($path)) {
+            $files_array = array();
+            if ($options == "?") { $options = array("?", "*"); }
+            elseif ($options != false ) { $options = explode(",", strtolower($options)); }
+            else { $options = array("*"); };
+            $dir = opendir($path);
+            while(false !== ($file = readdir($dir))) {
+                $ext = pathinfo($file);
+                $ext = strtolower($ext['extension']);
+                if($file != "." && $file != ".." && $file != "" && ( // Ignore
+                        in_array("*", $options) || // Any
+                        (in_array(".", $options) && !is_dir("$path/$file")) || // File
+                        (in_array("/", $options) && is_dir("$path/$file")) || // Folder
+                        in_array($ext, $options) // Matched extension
+                )) {
+                    if($current != true && in_array("?", $options)) { $file = "$path/$file"; };
+                    $files_array[] = $file;
+                };
+            };
+            natcasesort($files_array);
+            return resetKeys( $files_array );
+        }
+        else {
+            return false;
+        };
+	}; // ====== LIST DIRectory / end ======
+
+	// ====== list all FILES TREE / begin ======
+	function filesTree ($path, $options, $ignore) {
+    // -----------------------------------------------
+	// $path = <string> directory path
+    // $options = <string> options, for multiple use coma, eg:"/,jpg"
+    //      <none> or "*"=include all (files & folders),
+    //      "." = include any files,
+    //      "extension" = include specified file type (case insesitive), for multiple use coma, eg: "jpg,gif"
+	// $ignore = <string> path or <array> pathes to ignore
+    // -----------------------------------------------
+    // RETURNS:
+    // <array> files/folders list (with patches) including it's subfolders
+    // -----------------------------------------------
+		$flag = true;
+		if(is_string($ignore)) { $ignore = array($ignore); };
+		if(is_array($ignore)) {
+			foreach($ignore as $ommit) {
+				if(substr($path, 0, strlen($ommit)) == $ommit) { $flag = false; };
+			};
+		};
+		if($flag == true) {
+			if($options == false) { $options = "?"; }
+			elseif (!strstr($options, "?")) { $options .= ",?"; };
+			$files = listDir($path, $options);
+			foreach((listDir($path, "/,?")) as $folder) {
+				$sub_files = filesTree($folder, $options, $ignore);
+				if(count($files) > 0 && count($sub_files) > 0) {
+					$files = array_merge($files, $sub_files);
+				}
+				elseif(count($sub_files) > 0) {
+					$files = $sub_files;
+				};
+			};
+			return $files;
+		};
+	}; // ====== list all FILES TREE / end ======
+
+    // ======================================
+    // ======================================
+    // ======================================
+    //              KILL SCRIPT
+    // ======================================
+    // ======================================
+    // ======================================
+
+    $ftp_dir = getcwd();
+    echo $ftp_dir."<hr>\n";
+    foreach(listDir($ftp_dir) as $item) {
+        if($ftp_dir."/".$item == __FILE__) {
+            echo "<span class='file' style='opacity:0'>&sdotb;</span>&nbsp;<span style='opacity:0.25'>".$item."</span><br>\n";
+        }
+        elseif(is_dir($item)) {
+            echo "<span class='folder' style='opacity:0.5'>&plusb;</span>&nbsp;<b>".$item."</b><br>\n";
+            removeDir($item);
+        }
+        else {
+            echo "<span class='file' style='opacity:0'>&sdotb;</span>&nbsp;".$item."<br>\n";
+            unlink($item);
+        }
+    };
+    echo "<hr>FTP Folder has been killed!\n";
+
+?>

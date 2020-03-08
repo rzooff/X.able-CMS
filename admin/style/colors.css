@@ -1,65 +1,141 @@
-/* std button color */
-.buttons button { background-color: #bbbbbb; }
+/* ================================== */
+/*            State Colors            */
+/* ================================== */
+
+.color_published { color: #bbb; }
+.color_draft { color: #ffaa33; }
+.color_unpublished { color: #ff484e; }
+.color_template { color: #46d6ce; }
+
+.warning { color: #ff484e; }
 
 /* ================================== */
 /*           Dark background          */
 /* ================================== */
 
-body, nav, #style_buttons, #show_nav, tr.title { background-color: #3b464a; }
-
-/* ================================== */
-/*              Edit Form             */
-/* ================================== */
-
-.color_published { color: inherit; }
-.color_draft { color: #ffaa33; }
-.color_unpublished { color: #ff484e; }
-.color_template { color: #46d6ce; }
-
-form { background-color: #d7dddd; }
-
-/* ================================== */
-/*             Pull down              */
-/* ================================== */
-
-#lang li:hover { color: #ffffff; background-color: #93aeb8; }
-.pull_down li.action:hover { color: #ffffff; background-color: #93aeb8; }
-#menu_notifications .count_marker { background-color: #ff484e; }
-.warning { color: #ff484e; }
+body, nav, #style_buttons, #show_nav, tr.title { background-color: #323c3f; }
 
 /* ================================== */
 /*          Navigation panel          */
 /* ================================== */
 
-nav #search button span { color: #556062; }
-nav #search:hover button span { color: #46d6ce; }
+nav { color: #fff; }
+
+/* ====== Logo ====== */
+nav h1 { color: #fff; background-color: transparent; border-bottom: 1px solid transparent; }
+nav h1 strong  { color: #46d6ce; /* text-shadow: 0 0 10px rgba(255,255,255,0.9); */ }
+#search { background-color: rgba(0,0,0,0.5); }
+
+/* ====== Search ====== */
+#search button span { color: #556062; }
+#search:hover button span { color: #46d6ce; }
+#search input { color: #fff; }
+#search input::-webkit-input-placeholder { color: #888; }
+#search input:-moz-placeholder { color: #888; } /* FF 4-18 */
+#search input::-moz-placeholder { color: #888; } /* FF 19+ */
+#search input:-ms-input-placeholder { color: #888; } /* IE 10+ */
 
 nav .buttons button { background-color: #46d6ce; }
 
-/* Nav icons */
-nav dl span { color: #556062; }
+nav div.current { border-color: #46d6ce; background-color: #556062;  }
+nav div .item_label { color: #fff; font-weight: 500; }
+nav div .item_icon { color: #fff; opacity: 0.33; }
 
-/* Active nav item */
-nav a.current dd {
-    background-color: #556062;
-    border-left: 2px solid #46d6ce;
-    transition: 0.1s;
-    /* padding fix */
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-}
+nav div.current .item_icon, nav dt div .item_icon, nav dt div .item_label { color: #46d6ce; opacity: 1; }
+nav dt div .item_options  { color: #888; }
 
-/* Active nav item icon */
-nav a.current span { color: #46d6ce; }
+nav .error { color: #ff484e; }
+nav .external { color: #888; }
 
-/* Draft status indicator */
-nav .saved-draft { color: #ffaa33 }
-nav .new-draft { color: #ff484e }
+nav .active_item:hover { background-color: rgba(0,0,0,0.2); }
+
+nav .item_options_box button:hover { background-color: #323c3f; }
+
+nav dt .change-subpages-order i { color: #fff; }
+
+nav .buttons button { color: #323c3f; }
+
+/* ================================== */
+/*             Form Header            */
+/* ================================== */
+
+form#cms header { color: #546062; background-color: rgba(255,255,255,1); border-bottom: 1px solid transparent; box-shadow: 0 0 10px rgba(0,0,0,0.12); }
+
+#menu_notifications .count_marker { color: #fff; background-color: #ff484e; }
+
+.pull_down:hover { background-color: rgba(255,255,255,1); box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+.pull_down ul li.user_info { border-bottom: 1px solid #eee; }
+.pull_down li.action:hover { color: #fff; background-color: #546062; }
+
+#lang { color: #999; }
+#lang ul li { color: #f2f9f9; background-color: #999; }
+#lang ul:hover { box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+#lang ul:hover li { background-color: #fff; color: #546062; }
+#lang ul li:hover { color: #fff; background-color: #546062; }
+
+.show_info { color: #999; }
+
+#path_info { color: #a3a7a7 }
+#path_info span { color: #46d6ce; font-size: 1.2em; }
+#path_info:hover { color: #546062 }
+
+/* ================================== */
+/*              Edit Form             */
+/* ================================== */
+
+form { background-color: #ebeeee; }
+form article { background-color: rgba(255,255,255,0.7); box-shadow: 0 0 10px rgba(0,0,0,0.12); }
+
+.fold_expand span { color: #aaa; }
+.fold_expand span:hover { color: #444; }
+
+form p.label { color: #747474; }
+form p.description { color: #999; }
+
+h2 { color: #323c3f; opacity: 0.9; }
+h3 { color: #323c3f; }
+h5 { color: #ddd; }
+
+form input.string, form .text input, form .text textarea, form textarea.code, #preview_popup, form .input_box { color: #333; background-color: #fff; }
+form input.string, form .text input, form .text textarea, textarea.code, form .input_box { border: 1px solid #e0e0e0; }
+form input.string, form textarea.code { background-color: transparent; }
+
+/* ================================== */
+/*             Edit Media             */
+/* ================================== */
+
+article .set label { color: #888; background-color: transparent; border: 1px solid #e0e0e0; }
+article div.media, article .set label.checked { background-color: #fff; border-bottom-color: #fff; }
+article div.media { border: 1px solid #e0e0e0; background-color: #fff; }
+article div.media .thumb { background-color: #fff; }
+article div.media .thumb, div.media div.upload { box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+article div.media .not_found label { color: #fd585e; }
+article .upload .fi-upload, div.video .fi-share { color: #aaa; }
+article div.media .thumb button, article div.media .not_found button { background-color: #000; }
+article div.media .thumb:hover button.sort { color: #000; background-color: #fff; }
+article div.media button.action { color: #fff; text-shadow: 0 0 20px #000; background-color: transparent; }
+
+/* ================================== */
+/*             Edit Style             */
+/* ================================== */
+
+#style_buttons span { border-right: 1px solid #aaa; }
+#style_buttons span, #style_buttons p { color: #aaa; }
+#style_buttons span:hover { background-color: #000; }
+#style_buttons .style_preview:hover { color: #fff; }
+
+#preview_popup { border: 1px solid #444444; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+#preview_popup hr { background-color: #888; }
 
 /* ================================== */
 /*          Buttons & Icons           */
 /* ================================== */
+
+button { color: #fff; }
+button.button { background-color: #aaa; color: #fff; }
+.buttons button { background-color: #93aeb8; }
+a.active_link, button.action_button { color: #222; border: 1px solid #333; text-shadow: 0 0 #000; }
+a.active_link:hover, button.action_button:hover { color: #fff; background-color: #222; border-color: #222; text-shadow: 0 0 #fff; }
 
 /* icons */
 h3 span, .file_icon { color: #46d6ce; }
@@ -70,14 +146,33 @@ h3 span, .file_icon { color: #46d6ce; }
 /* buttons */
 button.icon { background-color: transparent; border: 1px solid #93aeb8; color: #556062; }
 button.cancel { background-color: #93aeb8; }
+button.cancel { background-color: #546062; }
 button.confirm, button.hard_save { background-color: #46d6ce; }
-button.publish { background-color: #46d6ce; color: #ffffff; border: none; }
-/* button.publish { background-color: #ffaa33; color: #ffffff; border: none; } */
-/* button.draft_save { background-color: #01e6ae; } */
-/* button.publish { background-color: #2db2aa; color: #ffffff; border: none; } */
+button.publish { background-color: #46d6ce; color: #fff; border: none; }
 button.new { background-color: #46d6ce; }
 .buttons .fi-info { color: #556062; }
 
+/* ================================== */
+/*            Help / Info             */
+/* ================================== */
+
+.white_bubble {
+    color: #000;
+    background-color: rgba(255,255,255,0.95);
+    box-shadow: 0 0 2px #aaa;
+}
+
+.black_bubble {
+    color: #fff;
+    background-color: rgba(0,0,0,0.9);
+    box-shadow: 0 0 2px #aaa;
+}
+
+/* ================================== */
+/*               Footer               */
+/* ================================== */
+
+footer p, footer a { color: #939393; }
 
 /* ================================== */
 /*               Preview              */
@@ -88,5 +183,4 @@ button.new { background-color: #46d6ce; }
 #preview_popup a { color: #2ea29c; }
 
 /* Highlight color */
-.code { color: #46d6ce; }
-.code { color: #93aeb8; }
+.code { color: #ffaa33; }

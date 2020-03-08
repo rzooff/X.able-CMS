@@ -1,7 +1,7 @@
 <?php
 
     // ====== Image Resize / begin ======
-    function imageResize($in_file, $out_file, $mode) {
+    function imageResize($in_file, $out_file, $mode = "") {
     // -----------------------------------------------
     // $in_file = <string> full INput jpg FILE path
     // $out_file = <string> full OUTput jpg FILE path
@@ -95,7 +95,7 @@
                     $n_hei = $hei;
                 };
 			}
-			elseif((count($max = split("x", $dat[1])) == 2) && is_numeric($max[0]) && is_numeric($max[1])) {
+			elseif((count($max = explode("x", $dat[1])) == 2) && is_numeric($max[0]) && is_numeric($max[1])) {
 				// ====== "max:<width>x<height>" ======
 				list($n_wid, $n_hei) = $max;
 				$n_ratio = $n_wid / $n_hei; // r = w/h, w = r*h, h = w/r
@@ -193,7 +193,7 @@
 	}; // ====== image Orientation Fix / end ======
 
     // ====== Upload image(s) / begin ======
-	function uploadImages($key, $folder, $resize) {
+	function uploadImages($key, $folder, $resize = false) {
 	// -----------------------------------------------
 	// $key = <string> uploaded $_FILES (form) valid key name
 	// $folder = <string> destination FOLDER path
@@ -234,7 +234,7 @@
     }; // ====== Upload image(s) / end ======
 
     // ====== Upload image(s) / begin ======
-	function uploadRenameImages($key, $folder, $resize, $rename) {
+	function uploadRenameImages($key, $folder, $resize = false, $rename = false) {
 	// -----------------------------------------------
 	// $key = <string> uploaded $_FILES (form) valid key name
 	// $folder = <string> destination FOLDER path, existing!
@@ -251,7 +251,7 @@
 	// Save uploaded images to specified path & optionaly resize it.
     // RETURNS: <array> successfully uploaded files
 	// -----------------------------------------------
-        if(is_string($rename)) { $rename = split(":", $rename); };
+        if(is_string($rename)) { $rename = explode(":", $rename); };
         if(($file = $_FILES[$key]) != false && file_exists($folder)) {
             $names = $file['name'];
             $temps = $file['tmp_name'];
@@ -268,7 +268,7 @@
                         $image = str_replace(" ", "_", $image);
                     }
                     elseif(is_string($rename[1])) {
-                        $force_rename = split(";", $rename[1]);
+                        $force_rename = explode(";", $rename[1]);
                         
                         
                         $info = pathinfo($image);

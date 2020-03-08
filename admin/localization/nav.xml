@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>auto-sort</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Kolejność automatyczna</pl>
+				<en>Automatic order</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>date-sort</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Ustaw kolejność według dat w Nagłówkach</pl>
+				<en>Set the order by date in a Header</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>not-in-navigation</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<text>
+				<pl>Dokument nie dodany nawigacji</pl>
+				<en>Document not added to navigation</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-subpage</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj podstronę</pl>
+				<en>Add subpage</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>change-subpages-order</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zmień kolejność podstron</pl>
+				<en>Change subpages order</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>show-hide-folder-content</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pokaż / ukryj zawartość folderu</pl>
+				<en>Show / hide folder content</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-user</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj użytkownika</pl>
+				<en>Add user</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-page</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj stronę</pl>
+				<en>Add page</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-page</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowa strona</pl>
+				<en>New page</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>in-group</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>w grupie</pl>
+				<en>in group</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>remove-page</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuń stronę</pl>
+				<en>Remove page</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>expand-subpages</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Rozwiń listę podstron</pl>
+				<en>Show subpages list</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>fold-subpages</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zwiń listę podstron</pl>
+				<en>Hide subpages list</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>more-options</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Opcje</pl>
+				<en>More options</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>not-found</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brak pliku</pl>
+				<en>Not found</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>changes-preview</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Podgląd zapisanych zmian</pl>
+				<en>Saved changes preview</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>page-preview</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Podgląd strony</pl>
+				<en>Page preview</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>page-name-input</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Wpisz nazwę strony</pl>
+				<en>Enter page name</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>template-select</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Wybierz szablon</pl>
+				<en>Select template</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-page-name</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Nazwa dokumentu - link do strony</pl>
+				<en>Document name - page link</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>subpages-order</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Kolejność podstron</pl>
+				<en>Subpages order</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

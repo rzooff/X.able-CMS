@@ -4,16 +4,17 @@
 	require "script/functions.php";
 	require "script/xml.php";
 
+    $dev_group = "dev"; // Protected!
     //arrayList($_SESSION);
 	
 	$ini_folder = "_users"; // docelowo z danych w $SESSION
 
     // ====== Delete Group ======
-	if(is_string($_GET['delete_group']) && $_GET['delete_group'] != "") {
+	if(is_string($_GET['delete_group']) && $_GET['delete_group'] != "" && $_GET['delete_group'] != $dev_group) {
         $delete = path($_GET['delete_group'], "filename");
         $groups = array();
         foreach(array_map("trim", file($_SESSION['groups_file'])) as $group) {
-            $group_name = array_shift(split(":", $group));
+            $group_name = array_shift(explode(":", $group));
             if($group_name != $delete) {$groups[$group_name] = $group; }
             else {
                 echo "to delete -> $group_name<br>\n";

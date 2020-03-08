@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>xable-welcome-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Witaj w X.able CMS!</pl>
+				<en>Welcome to the X.able CMS!</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>installer-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Instalator</pl>
+				<en>Installer</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>instalation-options</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Opcje instalacji</pl>
+				<en>Instalation options</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>complete-install</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pełna</pl>
+				<en>Complete</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>update-install</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Aktualizacja</pl>
+				<en>Update</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>create-admin</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Utwórz konto</pl>
+				<en>Create account</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>admin-login</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Login administratora</pl>
+				<en>Admin login</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>continue-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dalej</pl>
+				<en>Continue</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>installation-complete-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Instalacja ukończona!</pl>
+				<en>Installation completed!</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>installation-failed-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Instalacja nie powiodła się!</pl>
+				<en>Installation failed!</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

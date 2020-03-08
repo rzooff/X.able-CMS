@@ -7,6 +7,11 @@ $(document).ready(function() {
     $("#loader").fadeOut(200, function() { infoPopup( message, icon ); });
     $("#popup_container").delay(200).fadeIn(500);
     
+    $("button.confirm").click(function() {
+        $("#backup_info").fadeIn(500);
+        return true;
+    });
+    
     $("button.cancel").click(function() {
         href = $(this).attr("href");
         $("#page_fader, #popup_container").fadeOut(500);
@@ -33,5 +38,7 @@ $(document).ready(function() {
         $(this).blur();
         return false;
     });
+    
+    urlQuery();
 
 });

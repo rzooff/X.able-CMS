@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>uncheck-button</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Odznacz</pl>
+				<en>Uncheck</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>job-in-progress</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Praca w toku</pl>
+				<en>Job in progress</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-to-group-confirm</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Umieść użytkownika "@user_name" w grupie: "@group_name"\nCzy jesteś pewien?</pl>
+				<en>Add user "@user_name" to the group: "@group_name" \ nAre you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>user-delete-confirm</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Czy na pewno chcesz usunąć użytkownika "@user_name"?</pl>
+				<en>Are you sure to delete user "@user_name"?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>user-delete-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nie można usunąć własnego konta</pl>
+				<en>Can't delete own user account</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>save-changes-confirm</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Czy na pewno zapisać zmiany?</pl>
+				<en>Are you sure to save changes?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>xable-name-protect</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nazwa "xable" jest zastrzeżona</pl>
+				<en>The name "xable" is reserved</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>group-delete-confirm</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Czy na pewno chcesz usunąć grupę "@group_name"?</pl>
+				<en>Are you sure to delete the group "@group_name"?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>user-group-delete-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nie można usunąć własnej grupy</pl>
+				<en>Can't delete your own group</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>group-not-empty-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Grupa nie jest pusta!\nNajpierw przenieś lub usuń użytkowników</pl>
+				<en>Group is not empty!\nMove or delete users first</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>dev-group-delete-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nie można usunąć grupy developera!</pl>
+				<en>Can't remove developer group</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-group-filename</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>nowa_grupa</pl>
+				<en>new_group</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>click-to-edit</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Kliknij aby edytować</pl>
+				<en>Click to edit</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>files-in-users</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pliki .ini w folderze "_users"</pl>
+				<en>.ini files in the "_users" folder</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-wrong-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>BŁĘDNE hasło</pl>
+				<en>WRONG password</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-corrent-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Hasło jest POPRAWNE</pl>
+				<en>Password is CORRECT</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>group-change-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zmiana grupy będzie aktywna dopiero po ponownym zalogowaniu</pl>
+				<en>Group change will take effect after re-login</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>last-dev-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nie można usunąć jedynego użytkownika z grupy "dev"</pl>
+				<en>Can't remove the only user from "dev" group</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>date-time-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Data, czas</pl>
+				<en>Date, time</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>changelog-preview</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Changelog - podgląd</pl>
+				<en>Changelog - preview</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>changelog-new</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Changelog - nowy wpis</pl>
+				<en>Changelog - new note</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>label-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Etykieta</pl>
+				<en>Label</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>title-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Tytuł</pl>
+				<en>Title</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>description-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Opis</pl>
+				<en>Description</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>missing-data-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Uzupełnij brakujące dane</pl>
+				<en>Fill missing data</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-zip-confirm</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj paczkę i instaluj.\nCzy jesteś pewien?</pl>
+				<en>Add a package and install.\nAre you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>select-zip-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wskaż paczkę do instalacji</pl>
+				<en>Select package to install</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>zip-delete-confirm</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuwanie archiwum.\nCzy jesteś pewien?</pl>
+				<en>Deleting the archive.\nAre you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>created-file</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Utworzony plik</pl>
+				<en>Created file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>zip-log</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Log zawartości archiwum</pl>
+				<en>Archive contents log</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>installer-zip</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Paczki instalatora</pl>
+				<en>Installer packages</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>click-download</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Kliknij aby pobrać</pl>
+				<en>Click to download</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>installer-files</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pliki instalatora</pl>
+				<en>Installer files</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>create-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Utwórz</pl>
+				<en>Create</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>zip-preview</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Podgląd zawartości archiwum</pl>
+				<en>View package contents</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>not-xable-zip</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wybrany plik nie jest instalatorem X.able</pl>
+				<en>Selected file is not a X.able installer</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>xable-zip-error</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Rozpakowanie instalatora nie powiodło sięBłąd instalatora - nie udało się rozpakować</pl>
+				<en>Selected file is not a X.able installer</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-zip</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Utwórz instalator</pl>
+				<en>Create installer</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>update-button</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Aktualizuj</pl>
+				<en>Update</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-zip</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj paczkę instalatora (zip)</pl>
+				<en>Add installer package (zip)</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>xable-website</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Strona X.able</pl>
+				<en>X.able webpage</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>check-for-updates</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Sprawdź dostępność aktualizacji</pl>
+				<en>Check for updates</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>installer-upload-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Błąd uploadu instalatora</pl>
+				<en>Installer upload failed</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>installer-unzip-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Błąd rozpakowywania instalatora</pl>
+				<en>Installer unzip failed</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>cms-updated-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Panel CMS został zaktualizowany</pl>
+				<en>CMS pannel has been updated</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>show-hidden-files</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pokaż ukryte pliki</pl>
+				<en>Show hidden files</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>edit-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Edytuj</pl>
+				<en>Edit</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>nothing-to-upload</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brak plików do załadowania</pl>
+				<en>Nothing to upload</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>overwrite-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nadpisać</pl>
+				<en>Overwrite</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>files-upload-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Upload plik(ów)</pl>
+				<en>File(s) upload</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-folder-name</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nazwa pliku/folderu</pl>
+				<en>File/folder name</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>name-exists-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Taka nazwa już istnieje!</pl>
+				<en>The name already exists</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>empty-name-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nazwa nie może być pusta!</pl>
+				<en>The name can't be empty</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>clipboard-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pamięć podręczna</pl>
+				<en>Clipboard</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>zip-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Spakuj</pl>
+				<en>Compress</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>unzip-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Rozpakuj</pl>
+				<en>Extract</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>delete-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuń</pl>
+				<en>Delete</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>duplicate-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Duplikuj</pl>
+				<en>Duplicate</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>rename-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zmień nazwę</pl>
+				<en>Rename</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>paste-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wklej</pl>
+				<en>Paste</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>cut-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wytnij</pl>
+				<en>Cut</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>copy-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Kopiuj</pl>
+				<en>Copy</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>upload-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Upload</pl>
+				<en>Upload</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-folder-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowy folder</pl>
+				<en>New folder</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-file-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowy plik</pl>
+				<en>New file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>mod-date-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Data mod.</pl>
+				<en>Modified</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>size-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Rozmiar</pl>
+				<en>Size</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>name-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nazwa</pl>
+				<en>Name</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>browser-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Przeglądarka</pl>
+				<en>Browser</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>save-done</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zapisano plik</pl>
+				<en>Saved file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>save-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zapisanie pliku nie powiodło się</pl>
+				<en>Failed to save</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>upload-done</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Załadowano plik</pl>
+				<en>Uploaded file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>upload-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Załadowanie pliku nie powiodło się</pl>
+				<en>Failed to upload</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-action</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl></pl>
+				<en>No action</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>clipboard-reset</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pamięć podręczna opróżniona</pl>
+				<en>Clipboard purged</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>cut-paste</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wytnij-wklej</pl>
+				<en>Cut-paste</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>copy-paste</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Kopiuj-wklej</pl>
+				<en>Copy-paste</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>added-to-clipboard</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodane do pamięci podręcznej</pl>
+				<en>Added to clipboard</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>copy-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Kopiowanie nie powiodło się</pl>
+				<en>Failed to copy</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>copy-done</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Skopiowane</pl>
+				<en>Copied</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>rename-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nie udało się zmienić nazwy</pl>
+				<en>Failed to rename</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>rename-done</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zmieniono nazwę</pl>
+				<en>Renamed</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-deleted</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Plik usunięty</pl>
+				<en>Deleted file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>important-folder-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Folder bazowy i administracyjny nie mogą zostac usunięte</pl>
+				<en>The root and administrative folders can't be deleted</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>folder-deleted</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Folder usunięty</pl>
+				<en>Deleted folder</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-folder-not-found</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brak pliku/folderu</pl>
+				<en>File/folder not found</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-file-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowy plik NIE został utworzony</pl>
+				<en>New file NOT created</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-file-created</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Utworzono nowy plik</pl>
+				<en>New file created</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-folder-failed</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowy folder NIE został utworzony</pl>
+				<en>New folder NOT created</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-folder-created</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Utwrzono nowy folder</pl>
+				<en>New folder created</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-folder-none</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Żaden z plików wymaga przeniesienia po zmianie lokalizacji folderów.</pl>
+				<en>No files to move found after folder location change.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-folder-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zmiana lokalizacji mediów jest możliwe tylko na opublikowanej wersji dokumentu.</pl>
+				<en>Media files location change is possible only on the published version of the document.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-folder-twice</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Lokalizacja mediów już została zmieniona.\nPrzeładuj dokument bez zapisywania zmian aby anulować.</pl>
+				<en>Media location already changed.\nReload document without saving to cancel.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-folder-info</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Po zapisaniu dokumentu:\n- Pliki mediów zostaną przeniesione z "@old_folders" do "@new_folder".\n- Poprzednia wersja dokumentu (jesli istnieje) zostanie usunięta.</pl>
+				<en>After document save:\n- Media files will be moved from "@old_folders" to "@new_folder".\n- Previous document version (if any) will be deleted.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-folder-done</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>@count plików zostało przeniesionych do nowej lokalizacji.</pl>
+				<en>@count files has been moved to the new location.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>previous-deleted</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Poprzednia wersja documentu została usunięta.</pl>
+				<en>Previous document version has been deleted.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>path-change-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Ścieżki do plików zostały zmienione.\nPamiętaj by je przenieść do nowej lokalizacji</pl>
+				<en>Existing file(s) path changed.\nRemember to move them to the new location!</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>folder-path-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Ścieżka do folderu</pl>
+				<en>Folder path</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>action-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Akcja</pl>
+				<en>Action</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>disabled-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zablokowane</pl>
+				<en>Locked</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>not-found-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Plik "@filename" nie został odnaleziony!</pl>
+				<en>File "@filename" not found!</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>overwrite-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>UWAGA!\nPlik "@filename" już istnieje! Nadpisać?</pl>
+				<en>WARNING!\nFile "@filename" exists!\nOverwrite?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>tag-too-short</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Tag musi składać się z minimóm 2 znaków</pl>
+				<en>Tag must be at least 2 characters long</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>empty-tag</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Tag nie może być pusty</pl>
+				<en>Tag can't be empty</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-browser</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Przeglądarka plików</pl>
+				<en>File browser</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>new-folder-path</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Nowa ścieżka do folderu</pl>
+				<en>New folder path</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>change-pathes</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zmiana lokalizacji mediów</pl>
+				<en>Change media location(s)</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>unify-sections-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pola multi sekcji zostaną ujednolicone wg pierwszej danego typu.\nCzy jesteś pewien?</pl>
+				<en>Missing content will be based on the first section. Are you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>unify-sections</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Ujednolicanie artykułów</pl>
+				<en>Sections unify</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-languages-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brak dodatkowych języków do uzupełnienia</pl>
+				<en>No additional languages to complete</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>clean-files-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wszystkie nieużywane dokumenty xml zostaną usunięte.\nCzy jesteś pewien?</pl>
+				<en>All unused xml documents will be deleted.\nAre you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>clean-files</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuń nieużywane pliki</pl>
+				<en>Delete unused files</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>make-template-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wszystkie treści i linki dokumentu zostaną wyczyszczone.\nCzy jesteś pewien?</pl>
+				<en>All document content and links will be cleared.\nAre you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>make-template</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Utwórz szablon</pl>
+				<en>Make a template</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>delete-unused-languages-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Treści w językach, których nie ma w Ustwieniach zostaną usunięte.\nCzy jesteś pewien?</pl>
+				<en>Content in languages that are not found in Settings will be removed.\nAre you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>delete-unused-languages</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuwanie nieużywanych języków</pl>
+				<en>Delete unused languages</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>fill-languages-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brakujące treści będą uzpełnione na podstawie pierwszego języka.\nCzy jesteś pewien?</pl>
+				<en>Missing content will be based on the first language.\nAre you sure?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>fill-languages</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Uzupełnianie języków</pl>
+				<en>Languages completion</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>tools-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Narzędzia</pl>
+				<en>Tools</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-explorer-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Mendżer plików</pl>
+				<en>File explorer</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>users-groups-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Uzytkownicy i grupy</pl>
+				<en>Users & groups</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>update-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Aktualizacja</pl>
+				<en>Update</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>creator-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Konstruktor</pl>
+				<en>Creator</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

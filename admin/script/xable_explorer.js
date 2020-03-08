@@ -1,6 +1,14 @@
 $(document).ready(function() {
     
+    current_path = $("#current_dir h2").text().substr(1);
+    
     urlQuery();
+    urlQuery("path=" + current_path);
+    
+    // Explorer script protection data
+    explorer_script_path = window.location.pathname;
+    explorer_sript = explorer_script_path.path("basename");
+    admin_path = explorer_script_path.path("dirname").split("/").pop();
 
     // ==========================================
     //           Hidden files / folders
@@ -35,22 +43,9 @@ $(document).ready(function() {
         };
     });
     
-
     // ==========================================
     //                 Menu bar
     // ==========================================
-
-	// Show menu dropdown
-    $("nav label.menu").mouseenter(function() {
-        $(this).find("ul").stop().show(200);
-        $(this).find("p").css({ "opacity": "0.25" });
-    });
-
-	// Hide menu dropdown
-    $("nav label.menu").mouseleave(function() {
-        $(this).find("ul").stop().hide(100);
-        $(this).find("p").css({ "opacity": "1" });
-    });
     
 	// Menu actions
 	$("nav li").click(function() {
@@ -58,7 +53,7 @@ $(document).ready(function() {
         $(this).closest("label").find("ul").stop().hide(100);
         $(this).closest("label").find("p").css({ "opacity": "1" });
         // Actions
-		action = $(this).html().replace(/&nbsp;/g, "_").toLowerCase();
+		action = $(this).attr("value");
 		if(action == "quit") {
             edit_path = $("#root").val() + "/" + $("#current_file").val();
             editable = [ "csv", "draft", "order", "prev", "template", "txt", "xml" ];
@@ -81,6 +76,9 @@ $(document).ready(function() {
         }
 		else if(action == "users" || action == "update" || action == "creator") {
             location.href = "xable_" + action + ".php";
+        }
+        else if(action == "separator") {
+            return false;
         }
         else {
             alert("Unimplemented: " + action)
@@ -153,14 +151,26 @@ $(document).ready(function() {
     // ==========================================
 
     function contextPopup(x, y, path, functions) {
-        functions = functions.split(",");
+        
+        //functions = functions.split(",");
         var html = [];
         for(i in functions) {
-            html[html.length] = "<li class='action' value='" + functions[i] + "'>" + functions[i].capitalize(1) + "</li>";
+            html[html.length] = "<li class='action' value='" + i + "'>" + functions[i].capitalize(1) + "</li>";
         };
         $("main").append("<ul id='context_menu'>\n\t" + html.join("\t\n") + "\n</ul>\n");
         $("#context_menu").css({ "left": x - 10, "top": y - 10 }).fadeIn(250);
-        $("#context_menu").mouseleave(function() { hideContextPopup(); });
+        
+        // Below visible window fix
+        win_bottom = $(window).scrollTop() + $(window).height();
+        menu_bottom = y + $("#context_menu").height();
+        if(menu_bottom > win_bottom) {
+            y = y - (menu_bottom - win_bottom);
+            $("#context_menu").css({ "top": y - 10 })
+        };
+        
+        $(window).scroll(function() { hideContextPopup(); })
+
+        $("#context_menu").mouseleave(function() {  });
         $("#context_menu li").click(function() {
             val = $(this).attr("value");
             action = $("#browser form").attr("action");
@@ -170,7 +180,11 @@ $(document).ready(function() {
                 $("#browser input.select:checked").each(function() {
                     to_delete[to_delete.length] = $(this).val();
                 });
-                if(confirm("Delete?\n-\n" + to_delete.join("\n"))) {
+                if(current_path == admin_path && to_delete.indexOf(explorer_sript) > -1) {
+                    alert(LOCALIZE["file-protected"] + ":\n" + explorer_sript);
+                    hideContextPopup();
+                }
+                else if(confirm(LOCALIZE["delete-label"] + "?\n-\n" + to_delete.join("\n"))) {
                     $("#browser form").attr("action", action.replace("@action", val)).submit();
                 }
                 else {
@@ -178,19 +192,19 @@ $(document).ready(function() {
                 };
             }
             else if(val == "duplicate" || val == "rename") {
-                $("main").append(getNamePopup(val));
+                $("main").append(getNamePopup(val, $(this).text()));
                 $("#popup_container").fadeIn(200, function() {
                     $("#popup_container input.filename").val( path.path("basename") ).focus();
                     $("#popup_container .confirm").click(function() {
                         input = $("#popup_container input.filename").val();
                         if(input == "") {
-                            alert("Name can't be empty!");
+                            alert(LOCALIZE["empty-name-alert"]); //Nazwa nie może być pusta!
                             $(this).blur();
                             $("#popup_container input.filename").focus();
                             return false;
                         }
                         else if(dir_list.indexOf(input) > -1) {
-                            alert("Name already exists!");
+                            alert(LOCALIZE["name-exists-alert"]); //Taka nazwa już istnieje!
                             $(this).blur();
                             $("#popup_container input.filename").focus();
                             return false;
@@ -208,6 +222,12 @@ $(document).ready(function() {
                     });
                 });
             }
+            else if(val == "zip1") {
+                to_zip = [];
+                $("#browser input.select:checked").each(function() { to_zip[to_zip.length] = $(this).val(); });
+                alert(to_zip);
+                return false;
+            }
             else {
                 $("#browser form").attr("action", action.replace("@action", val)).submit();
                 return false;
@@ -215,12 +235,42 @@ $(document).ready(function() {
         });      
 
     };
-
+    
     function hideContextPopup() {
         $("#context_menu").fadeOut(250, function() { $(this).remove(); });
         $("#browser tr.path").css({ "outline": "none" });
+        $(".fake_cover").hide();
         document.getSelection().removeAllRanges();
     };
+    
+    function getSelectionFunctions() {
+        var functions = false;
+        if($("#browser form input:checked").length == 1) {
+            //single selection functions = "copy,cut,delete,duplicate,rename";
+            functions = {
+                "copy": LOCALIZE["copy-label"].replace(/ /g, "&nbsp;"),
+                "cut": LOCALIZE["cut-label"].replace(/ /g, "&nbsp;"),
+                "delete": LOCALIZE["delete-label"].replace(/ /g, "&nbsp;"),
+                "duplicate": LOCALIZE["duplicate-label"].replace(/ /g, "&nbsp;"),
+                "rename": LOCALIZE["rename-label"].replace(/ /g, "&nbsp;"),
+                "zip": LOCALIZE["zip-label"].replace(/ /g, "&nbsp;"),
+            };
+            
+            if($("#browser form input:checked").val().path("extension") == "zip") {
+               functions["unzip"] = LOCALIZE["unzip-label"].replace(/ /g, "&nbsp;");
+            }
+        }
+        else {
+            // multiple selection functions = "copy,cut,delete"
+            functions = {
+                "copy": LOCALIZE["copy-label"].replace(/ /g, "&nbsp;"),
+                "cut": LOCALIZE["cut-label"].replace(/ /g, "&nbsp;"),
+                "delete": LOCALIZE["delete-label"].replace(/ /g, "&nbsp;"),
+                "zip": LOCALIZE["zip-label"].replace(/ /g, "&nbsp;")
+            };
+        };
+        return functions;
+    }
     
     $("#browser tr.path").contextmenu(function(e) {
         $(this).find("input.select").prop("checked", true);
@@ -228,28 +278,47 @@ $(document).ready(function() {
         var x = event.pageX;
         var y = event.pageY - $(window).scrollTop();
         var file_path = $(this).attr("path");
-        if($("#browser form input:checked").length == 1) { functions = "copy,cut,delete,duplicate,rename"; }
-        else { functions = "copy,cut,delete" }
+        functions = getSelectionFunctions();
         contextPopup(x, y, file_path, functions);
         $(this).blur();
         return false;
+    });
+
+    $("#browser tr .more_options").click(function() {
+        $tr = $(this).closest("tr");
+        setTimeout(function() {
+            // Reselect
+            $select = $tr.find("input.select");
+            if($select.prop("checked") == false) {
+                $select.prop("checked", true);
+                $tr.addClass("selected");
+            }
+            // Show context menu
+            $(".fake_cover").show();
+            xy = $tr.offset();
+            var file_path = $tr.attr("path");
+            functions = getSelectionFunctions();
+            contextPopup(xy.left, xy.top, file_path, functions);
+            $(".fake_cover").click(function() { hideContextPopup(); });
+        }, 100);
+        $(this).blur();
     });
     
     // ==========================================
     //              Browser: Actions
     // ==========================================
     
-    function getNamePopup(action) {
+    function getNamePopup(action, title) {
         var popup = "<div id='popup_container'>" +
             "<div class='popup'>" +
                 "<nav>" +
-                    "<p>" + action.replace("_", " ").capitalize(1) + "</p>" +
+                    "<p>" + title + "</p>" +
                     "<div class='buttons'><button class='cancel'><span class='fi-x'></span></button></div>" +
                 "</nav>" +
                 "<form>" +
-                    "<p>New filename:</p>" + 
+                    "<p>" + LOCALIZE["file-folder-name"] + "</p>" + 
                     "<input name='filename' type='text' class='filename'>" +
-                    "<div class='center'><button class='confirm'>OK</button></div>" +
+                    "<div class='center'><button class='confirm'>" + LOCALIZE["ok-label"] + "</button></div>" +
                 "</form>" +
             "</div>" +
         "</div>";
@@ -260,13 +329,13 @@ $(document).ready(function() {
         var popup = "<div id='popup_container'>" +
             "<div class='popup'>" +
                 "<nav>" +
-                    "<p>Upload file(s)</p>" +
+                    "<p>" + LOCALIZE["files-upload-label"] + "</p>" +
                     "<div class='buttons'><button class='cancel'><span class='fi-x'></span></button></div>" +
                 "</nav>" +
                 "<form action='xable_explorer.php?action=upload' method='post' enctype='multipart/form-data'>" +
                     "<input type='hidden' name='path' value='" + $("#browser input.path").val() + "'>" +
                     "<p><input class='files' type='file' name='upload[]' multiple></p>" +
-                    "<p><button class='confirm'>Upload</button></p>" +
+                    "<p><button class='confirm'>" + LOCALIZE["upload-label"] + "</button></p>" +
                 "</form>" +
             "</div>" +
         "</div>";
@@ -284,13 +353,16 @@ $(document).ready(function() {
                             overwrite[overwrite.length] = name;
                         };
                     };
-                    if(overwrite.length == 0 || (confirm("Overwite?\n-\n" + overwrite.join("\n")))) {
+                    if(overwrite.length == 0 || (confirm(LOCALIZE["overwrite-label"] + "?\n-\n" + overwrite.join("\n")))) {
+                        $("#popup_container").fadeOut(250, function() {
+                            $("#working_info").fadeIn(500);
+                        })
                         return true;
                     };
                     return false;
                 }
                 else {
-                    alert("Nothing to upload!");
+                    alert(LOCALIZE["nothing-to-upload"]);
                     return false;
                 }
             });
@@ -306,20 +378,20 @@ $(document).ready(function() {
     $("#explorer button.new_folder, #explorer button.new_file").click(function() {
         val = $(this).attr("class");
         dir_list = $("#dir_list").val().split(";");
-        $("main").append(getNamePopup(val));
+        $("main").append(getNamePopup(val, $(this).text()));
         $("#popup_container").fadeIn(200, function() {
             $("#popup_container input.filename").focus();
             var dir_list = $("#dir_list").val().split(";");
             $("#popup_container .confirm").click(function() {
                 input = $("#popup_container input.filename").val();
                 if(input == "") {
-                    alert("Name can't be empty!");
+                    alert(LOCALIZE["empty-name-alert"]);
                     $(this).blur();
                     $("#popup_container input.filename").focus();
                     return false;
                 }
                 else if(dir_list.indexOf(input) > -1) {
-                    alert("Name already exists!");
+                    alert(LOCALIZE["name-exists-alert"]);
                     $(this).blur();
                     $("#popup_container input.filename").focus();
                     return false;
@@ -356,7 +428,7 @@ $(document).ready(function() {
                 overwrite[overwrite.length] = name;
             };
         })
-        if(overwrite.length == 0 || confirm("Overwrite?\n-\n" + overwrite.join("\n"))) {
+        if(overwrite.length == 0 || confirm(LOCALIZE["overwrite-label"] + "?\n-\n" + overwrite.join("\n"))) {
             return true;
         }
         else {
@@ -375,8 +447,8 @@ $(document).ready(function() {
                 "<form action='xable_explorer.php?action=" + "save" + "' method='post'>" +
                     "<input type='hidden' name='path' value='" + encodeURI(path.path("dirname")) + "'>" +
                     "<input type='hidden' name='filename' value='" + encodeURI(path.path("basename")) + "'>" +
-                    "<button class='cancel float-right'>Cancel</button><button class='save float-right'>Save</button>" +
-                    "<p><b>Text Editor</b></p>" + 
+                    "<button class='cancel float-right'>" + LOCALIZE["cancel-label"] + "</button><button class='save float-right'>" + LOCALIZE["save-label"] + "</button>" +
+                    "<p><b>" + LOCALIZE["edit-label"] + "</b></p>" + 
                     "<textarea name='content'></textarea>" +
                 "</form>" +
             "</div>" +
@@ -384,7 +456,7 @@ $(document).ready(function() {
         
         $("main").append(popup);
         $("#popup_container form").append($("form input.show_hidden").clone());
-        alert($("#popup_container").html());
+        //alert($("#popup_container").html());
         
         $("#popup_container").fadeIn(200, function() {
             content = $("#file_content").val().replace("\t", "    ");
@@ -394,7 +466,7 @@ $(document).ready(function() {
             $("#editor .save").click(function() {
                 edited = $("#editor textarea").val();
                 if(content == edited) {
-                    alert("Nothing changed!");
+                    alert(LOCALIZE["no-changes-done"]);
                     return false;
                 }
                 else {
@@ -408,7 +480,7 @@ $(document).ready(function() {
             });
         });
     });
-    
+
     // ==========================================
     //                  Launch
     // ==========================================

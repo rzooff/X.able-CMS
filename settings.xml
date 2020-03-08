@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<page>
+		<title>
+			<type>text</type>
+			<label>Nazwa strony</label>
+			<description>widoczna na belce przeglądarki</description>
+			<text>
+				<pl>X.able CMS</pl>
+				<en>X.able Template</en>
+				<de></de>
+			</text>
+		</title>
+		<description>
+			<type>textarea</type>
+			<label>Opis strony</label>
+			<format></format>
+			<text>
+				<pl>X.able CMS</pl>
+				<en>X.able based website template</en>
+				<de></de>
+			</text>
+		</description>
+		<domain>
+			<type>string</type>
+			<label>Domena</label>
+			<string>xable.maciejnowak.com</string>
+			<options></options>
+		</domain>
+	</page>
+	<links>
+		<force_onepage>
+			<type>option</type>
+			<checkbox>
+				<option>Tryb "one-page"</option>
+			</checkbox>
+			<selected></selected>
+		</force_onepage>
+		<link_pattern>
+			<type>string</type>
+			<label>Format linków</label>
+			<description>Standardowe zmienne: @language, @path, @folder</description>
+			<string>@language/@folder/</string>
+			<options></options>
+		</link_pattern>
+		<href_404>
+			<type>string</type>
+			<label>Błąd 404</label>
+			<description>Nie znaleziono strony</description>
+			<string>@language/?error=page-not-found</string>
+			<options></options>
+		</href_404>
+		<redirects>
+			<type>code</type>
+			<label>Przekierowania</label>
+			<description>Kolejne w kolejnych liniach, format: [from] : [to]</description>
+			<code>@language/about/ : @language/</code>
+		</redirects>
+	</links>
+	<media>
+		<multimedia_size>
+			<type>string</type>
+			<label>Maksymalna rozdzielczość obrazków (w pikselach)</label>
+			<description>[pion]x[poziom], większe obrazy zostaną automatycznie zmniejszone, ale ich załadowanie na serwer może potrwać dłużej</description>
+			<string>2560x1920</string>
+			<options></options>
+		</multimedia_size>
+		<thumb>
+			<type>media</type>
+			<label>Miniaturka</label>
+			<description>Do udostępniania via facebook (1200x630px, jpg)</description>
+			<media>
+				<image>media/_images</image>
+			</media>
+			<set>image</set>
+		</thumb>
+		<logo>
+			<type>media</type>
+			<label>Logo</label>
+			<media>
+				<image>media/_images</image>
+			</media>
+			<set>image</set>
+		</logo>
+	</media>
+	<multi_language>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywny</option>
+			</checkbox>
+			<selected>Aktywny</selected>
+		</active>
+		<name>
+			<type>string</type>
+			<label>Nazwa</label>
+			<string>Polski</string>
+			<options></options>
+		</name>
+		<id>
+			<type>string</type>
+			<label>2-literowy skrót</label>
+			<string>pl</string>
+			<options></options>
+		</id>
+	</multi_language>
+	<multi_language>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywny</option>
+			</checkbox>
+			<selected>Aktywny</selected>
+		</active>
+		<name>
+			<type>string</type>
+			<label>Nazwa</label>
+			<string>English</string>
+			<options></options>
+		</name>
+		<id>
+			<type>string</type>
+			<label>2-literowy skrót</label>
+			<string>en</string>
+			<options></options>
+		</id>
+	</multi_language>
+</xable>

@@ -1,4 +1,5 @@
 <?php
+    //error_reporting(E_ALL);
 
     require("modules/_session-start.php");
 
@@ -16,8 +17,8 @@
         $passwords = array();
         $pass_file = array_map("trim", file($pass_path));
         foreach($pass_file as $user) {
-            if(substr($user, 0, 1) != ";" && strlen($user) > 3 && count(split(":", $user)) == 2) {
-                list($user_login, $user_pass) = split(":", $user);
+            if(substr($user, 0, 1) != ";" && strlen($user) > 3 && count(explode(":", $user)) == 2) {
+                list($user_login, $user_pass) = explode(":", $user);
                 $passwords[$user_login] = $user_pass;
             };
         };
@@ -32,20 +33,20 @@
         $new_pass = $_POST['new_password'];
         $confirm_pass = $_POST['confirm_password'];
         if($pass != crypt($current_pass, substr($pass, 0, 2))) {
-            $popup = "Błędne aktualne hasło|error";
+            $popup = localize("invalid-current-password")."|error"; //"Błędne aktualne hasło|error";
         }
         elseif($new_pass != $confirm_pass) {
-            $popup = "Podane hasła różnią się|error";
+            $popup = localize("different-passwords")."|error"; //Podane hasła różnią się
         }
         elseif($new_pass != $confirm_pass) {
-            $popup = "Nie podano hasła|error";
+            $popup = localize("no-password")."|error"; //Nie podano hasła
         }
         else {
             $pass_file = array();
-            $passwords[$login]= crypt($new_pass, substr($pass, 0, 2)); // update password array
+            $passwords[$login] = crypt($new_pass, substr($pass, 0, 2)); // update password array
             foreach(array_keys($passwords) as $user_login) { $pass_file[] = $user_login.":".$passwords[$user_login]; }; // array -> file content format
             safeSave($pass_path, join("\n", $pass_file));
-            $popup = "Hasło zostało zmienione|done";
+            $popup = localize("password-changed")."|done"; // Hasło zostało zmienione
             $redirect = "index.php";
             addLog("password changed", path($pass_path, "basename"));
         };
@@ -59,14 +60,16 @@
         <style><?php include "style/loader.css"; ?></style>
 
 		<meta charset="UTF-8">
-		<title>X.able CMS / Password</title>
+		<title><?php echo localize("xable-password"); ?></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         
 		<link rel="stylesheet" type="text/css" href="style/index.css" />
 		<link rel="stylesheet" type="text/css" href="style/cms.css" />
         <link rel="stylesheet" type="text/css" href="style/colors.css" />
         <link rel="stylesheet" type="text/css" href="style/password.css" />
+        <link rel="stylesheet" type="text/css" href="style/_responsive.css" />
 		<link rel="stylesheet" type="text/css" href="style/foundation-icons.css" />
-		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 		
         <script src='script/jquery-3.1.0.min.js'></script>
         <script src='script/functions.js'></script>
@@ -85,25 +88,25 @@
             <div id="popup_container">
                 <div id="popup_box">
                     <h6><span class="fi-torso-business"></span></h6>
-                    <h3>Zmiana hasła użytkownika</h3>
+                    <h3><?php echo localize("user-password-change"); ?></h3>
                     <div class='inputs'>
-                        <p class='label'>Login</p>
+                        <p class='label'><?php echo localize("login-label"); ?></p>
                         <input type='text' class='string' value='<?php echo $login; ?>' disabled>
                         <div class='text'>
-                            <p class='label'>Aktualne hasło</p>
+                            <p class='label'><?php echo localize("current-password"); ?></p>
                             <input type='password' id='current_password' name='current_password' value=''>
                         </div>
                         <div class='text'>
-                            <p class='label'>Nowe hasło</p>
-                            <p class='description'>Minimum 6 znaków, bez odstępów</p>
+                            <p class='label'><?php echo localize("new-password"); ?></p>
+                            <p class='description'><?php echo localize("password-requirements"); ?></p>
                             <input class='text' type='password' id='new_password' name='new_password' value=''>
-                            <p class='label'>Potwierdź nowe hasło</p>
+                            <p class='label'><?php echo localize("new-password-confirm"); ?></p>
                             <input type='password' id='confirm_password' name='confirm_password' value=''>
                         </div>
                     </div>
                     <div class='buttons'>
-                        <button class='confirm'>OK</button>
-                        <button class='cancel' href='index.php?page=<?php echo $_GET['page']; ?>'>Anuluj</button>
+                        <button class='confirm'><?php echo localize("ok-label"); ?></button>
+                        <button class='cancel' href='index.php?page=<?php echo urlencode($_GET['page']); ?>'><?php echo localize("cancel-label"); ?></button>
                     </div>
                 </div>
             </div>
@@ -117,6 +120,8 @@
             foreach(array_keys($ini_enable) as $key) {
                 echo "<input type='hidden' id='enable_$key' value='".$ini_enable[$key]."'>\n";
             };
+        
+            exportLocalization();
         ?>
         
         <script src='script/footer.js'></script>

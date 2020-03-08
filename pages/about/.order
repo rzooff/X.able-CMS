@@ -1,0 +1,32 @@
+<_order>
+	<title>header title</title>
+	<options></options>
+</_order>
+<multi_item>
+	<path>
+		<type>string</type>
+		<string>user.xml</string>
+	</path>
+	<title>
+		<type>text</type>
+		<text>
+			<pl>Dla użytkownika</pl>
+			<en></en>
+			<de></de>
+		</text>
+	</title>
+</multi_item>
+<multi_item>
+	<path>
+		<type>string</type>
+		<string>developer.xml</string>
+	</path>
+	<title>
+		<type>text</type>
+		<text>
+			<pl>Dla dewelopera</pl>
+			<en></en>
+			<de></de>
+		</text>
+	</title>
+</multi_item>

@@ -1,20 +1,26 @@
 <?php
     // ======================================
-    //          ><.able CMS - CREATOR
-    //        (C)2016 maciejnowak.com
-    //          v.2.0 build.0
+    //              ><.able CMS
+    //      (C)2015-2019 maciejnowak.com
     // ======================================
-	// compatibile: php4 or higher
+    // compatibile: php5.4+ or higher
+
+    //error_reporting(E_ALL);
 
     require("modules/_session-start.php");
+
+    $panel_name = "update";
+    $panel_label = localize("update-label");
+
     $installer_folder = "_installer"; // Installer archives repositories folder
-    $xable_website = "http://maciejnowak.com";
+    $xable_website = "http://xable.maciejnowak.com";
 
     // ======================================
     //               Actions
     // ======================================
 
-    $error = array();
+    $error = [];
+    $action_done = "";
 
     // ====== REMOVE ======
     if(is_string($_GET['remove']) && $_GET['remove'] != "") {
@@ -24,47 +30,75 @@
             //header("Location: xable_update.php");
         }
         else {
-            $error[] = "File not found: $filepath";
+            $error[] = str_replace("@filename", $filepath, localize("not-found-alert"));
         };
     }
     // ====== UPLOAD & INSTALL ======
-    elseif(is_array($_FILES['zip'])) {
-        echo "ZIP";
-        $zip = $_FILES['zip'];
-        if($zip['error'] == 0) {
+    elseif(is_array($_FILES['installer'])) {
+        $zip = $_FILES['installer'];
+
+        if(is_array($zip) && count($zip) > 0 && $zip['error'] == 0) {
+            
+            $root = $ini_pathes['root'];
+            $unzip = "unzip.php.txt";
             $filename = $zip['name'];
             $temp = $zip['tmp_name'];
-            copy($temp, "$installer_folder/$filename");
-            if(file_exists("$installer_folder/$filename") && file_exists("$installer_folder/unzip.php")) {
-                $root = $ini_pathes['root'];
-                $unzip = "unzip.php";
-                // Delete any previous xable package versions
-                foreach(listDir($root, "zip") as $file) {
-                    if(strstr(strtolower($file), "xable")) { unlink("$root/$file"); };
-                };
-                // Copy package files
-                copy("$installer_folder/$filename", "$root/$filename");
-                copy("$installer_folder/$unzip", "$root/$unzip");
-                if(file_exists("$root/$filename") && file_exists("$root/$unzip")) {
-                    header("Location: $root/$unzip");
+            $zip_path = "$installer_folder/$filename";
+
+            copy($temp, $zip_path);
+            extractArchive($zip_path, $root);
+            
+            if(file_exists("$root/install/xable")) {
+                // Copy new CMS from installer
+                rename("$root/install/xable/admin", "$root/admin-new");
+                
+                // Installer contents
+                mkdir("$root/admin-new/_installer/");
+                foreach(listDir("$root/admin/_installer", "zip,?") as $zip) {
+                    rename($zip, "$root/admin-new/_installer/".path($zip, "basename"));
                 }
-                else {
-                    $error[] = "Installer files copy error!";
+                foreach(listDir("$root/install", "txt,php,?") as $file) {
+                    rename($file, "$root/admin-new/_installer/".path($file, "basename"));
                 };
+                // Move site Backups
+                rename("$root/admin/_backup", "$root/admin-new/_backup");
+                
+                // Restore Users/Groups
+                removeDir("$root/admin-new/_users");
+                mkdir("$root/admin-new/_users");
+                copyDir("$root/admin/_users", "$root/admin-new/_users");
+                // Restore xable.ini file (keep copy of a new one)
+                rename("$root/admin-new/xable.ini", "$root/admin-new/xable-updated.ini.bak");
+                copy("$root/admin/xable.ini", "$root/admin-new/xable.ini");
+                // Restore Plugins
+                foreach(listDir("$root/admin/_plugins", "/") as $plugin) {
+                    if(!file_exists("$root/admin-new/_plugins/$plugin")) {
+                        copyDir("$root/admin/_plugins/$plugin", "$root/admin-new/_plugins/$plugin");
+                    }
+                };
+                
+                // PostInstall CleanUP
+                rename("$root/admin", "$root/admin-old");
+                removeDir("$root/install");
+                rename("$root/admin-new", "$root/admin");
+                $action_done = "updated";
+
             }
             else {
-                $error[] = "Installer files not found!";
+                $error[] = localize("installer-unzip-failed"); //Błąd uploadu instalatora
             };
         }
         else {
-            $error[] = "Package upload ERROR!";
+            $error[] = localize("installer-upload-failed"); //Błąd uploadu instalatora
         };
     }
     // ====== UPDATE CHANGELOG ======
     else if($_GET['action'] == "changelog") {
         $log_path = "doc/change.log";
-        $changes = array();
-        $notes = array();
+        $version_path = "doc/version.txt";
+        
+        $changes = [];
+        $notes = [];
         foreach(file($log_path) as $txt) {
             //echo "$txt<br>";
             if(count($notes) > 0 || substr($txt, 0, 1) == "=") {
@@ -75,93 +109,120 @@
             }
         }
         //arrayList($changes);
-        $new_change = array();
+        $new_change = [];
         $new_change[] = $_POST['time']."\n";
-        foreach(split("\n", $_POST['info']) as $txt) {
+        foreach(explode("\n", $_POST['info']) as $txt) {
             $new_change[] = "\tInfo:\t".$txt."\n";
         };
         $new_change[] = "\tFiles:\t".$_POST['files']."\n";
         $new_change[] = "\n";
         $log_content = array_merge($changes, $new_change, $notes);
         safeSave($log_path, join("", $log_content));
-        //header("Location: xable_update.php");
+        
+        $xable_version = trim(array_shift(file("doc/version.txt")));
+        
+        $version = array_shift(explode(";", $xable_version));
+        $build = str_replace("-", "", array_shift(explode(",", $_POST['time'])));
+        safeSave($version_path, "$version;$build");
     }
     else {
         // no action
     };
 
-
     // ======================================
     //               Pannel
     // ======================================
 
-    $installer_name = "Xable-CMS_".date("Ymd").".zip";  // New installer archive filename
-	$archive_main = "install";                          // Main folder in installer archive
-	$archive_content = "$archive_main/xable";	        // Contents folder in installer archive
-    $admin_folder = $_SESSION['admin_folder'];
-
-    // ====== Excluded ======
-    $exclude = array();
-	// Excluded in root
-    foreach(array("_bak", "install", "redirect") as $folder) { $exclude[] = "$root/$folder"; };
-	// Excluded in root/admin
-    foreach(array($installer_folder, "_backup", "_update", "_bak", "test") as $folder) { $exclude[] = "$root/$admin_folder/$folder"; };
-
     // ====== CREATE INSTALLER ======
     if($_GET['action'] == "installer") {
+        
+        $xable_version = trim(array_shift(file("doc/version.txt")));
+        $version = "v".array_shift(explode(";", $xable_version));
+        $installer_name = "Xable-CMS_".$version."_".date("Ymd").".zip";    // New installer archive filename
+        $archive_main = "install";                                         // Main folder in installer archive
+        $archive_content = "$archive_main/xable";                          // Contents folder in installer archive
+        $admin_folder = $_SESSION['admin_folder'];
+
+        // ====== Excluded ======
+        $exclude = [];
+        // Excluded in root
+        foreach(array("_bak", "install", "redirect") as $folder) { $exclude[] = "$root/$folder"; };
+        // Excluded in root/admin
+        foreach(array($installer_folder, "_backup", "_update", "_bak") as $folder) { $exclude[] = "$root/$admin_folder/$folder"; };
+        // Excluded list from xable.ini
+        foreach(explode(",", $_SESSION["ini_site_options"]["backup_exclude"]) as $folder) {
+            $folder = "$root/$folder";
+            if(!in_array($folder, $exclude)) { $exclude[] = $folder; };
+        };
+        
 		// ====== Update Scripts in site folder ======
 		// update sript: functions.php, xml.script
 		$update_script = array("functions.js", "functions.php", "xml.php");
 		$script_folder = "script";
 		foreach($update_script as $file) { copy("$script_folder/$file", "$root/$script_folder/$file"); };
 		// ====== Create ZIP Archive ======
-		$zip_log = array();
+		$zip_log = [];
 		$zip_path = "$installer_folder/$installer_name";
 		$zip_log[] = "$zip_path";
 		if(file_exists($zip_path)) { unlink($zip_path); }; // Overwrite existing!
-		$zip = new ZipArchive;
-		if ($zip->open($zip_path, ZipArchive::CREATE)) {
-			// Add installer
-			foreach(listDir($installer_folder) as $file) {
+        
+        $zip = new ZipArchive;
+        if($zip->open($zip_path, ZipArchive::CREATE)) {
+        
+            foreach(listDir($installer_folder) as $file) {
                 if(!is_dir("$installer_folder/$file") && path($file, "extension") != "zip") {
-					$path = "$installer_folder/$file";
-					$zip_path = "$archive_main/$file";
-					$zip_log[] = "$path -> $zip_path";
-					$zip->addFile($path, $zip_path);
-				};
-			};
-			// Add xable content
-			foreach(filesTree($root, false, $exclude) as $path) {
-				if(														// IGNORE:
-					!is_dir($path)  &&									// directories pathes
-					substr(path($path, "basename"), 0, 1) != "." &&		// .hidden files
-					path($path, "extension") != "bak" &&				// bak files
-					//path($path, "extension") != "prev" &&				// prev files
-					(!is_array($exclude) || count($exclude) == 0 || !in_array(path($path, "extension"), $excllude)) // non-excluded
-				) {
-					$relative_path = substr($path, strlen($root) + 1);
-					foreach(split("/", $relative_path) as $folder) { if(substr($folder, 0, 1) == ".") { $path = false; }; }; // IGNORE files in hidden folder
-					if(is_string($path)) {
-						$zip_path = $archive_content."/".$relative_path; // zip path -> instal/xable/<relative path>
-						$zip_log[] = "$path -> $zip_path";
-						$zip->addFile($path, $zip_path);
-					};
-				};
-			};
+                    $path = "$installer_folder/$file";
+                    $zip_path = "$archive_main/$file";
+                    $zip_log[] = "$path -> $zip_path";
+                    $zip->addFile($path, $zip_path);
+                };
+            };
+            
+            //arrayList($zip_log);
+            
+            $excluded_extensions = [ "bak", "prev" ];
+
+            foreach(filesTree($root, false, $exclude) as $path) {
+                
+                $basename = path($path, "basename");
+                $dirname = substr(path($path, "dirname"), strlen($root) + 1);
+                $extension = path($path, "extension");
+                $filename = path($path, "filename");
+                
+                // .hidden_folder test
+                $hidden = false;
+                foreach(explode("/", $dirname) as $folder) {
+                    if(substr($folder, 0, 1) == ".") { $hidden = true; };
+                }
+
+                //$brench_root = array_shift(explode("/", $dirname));
+                
+                if(!$hidden && !is_dir($path) && !in_array($extension, $excluded_extensions)) {
+                    if($dirname == "" && $basename == ".htaccess") { $basename = "_htaccess"; };
+                    if($dirname != "") { $dirname = $dirname."/"; };
+                    
+                    $zip_path = $archive_content."/".$dirname.$basename; // zip path -> instal/xable/<relative path>
+                    $zip->addFile($path, $zip_path);
+                    $zip_log[] = "$path -> $zip_path";
+                };
+
+            };
+
 			// Close zip
 			$zip->close();
-		}; // zip / end
+            
+        }; // zip / end
     } // Create installer / end
 	else {
 		$zip_log = false;
 	};
 
     // Installer archives list
-    $installer_packages = array();
+    $installer_packages = [];
     foreach(listDir($installer_folder, "zip") as $file) {
-        $date = split("_", path($file, "filename"));
-        if(count($date) > 1) {
-            $installer_packages[array_pop($date)] = $file;
+        $data = explode("_", path($file, "filename"));
+        if(count($data) > 1) {
+            $installer_packages[join("_", array_reverse($data))] = $file;
         };
     };
     krsort($installer_packages);
@@ -169,17 +230,7 @@
 
 <!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>X.able CMS / Update</title>
-        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="style/foundation-icons.css" />
-        <link rel="stylesheet" type="text/css" href="style/xable_creator.css" />
-        <link rel="stylesheet" type="text/css" href="style/xable_update.css" />
-        
-        <script src='script/jquery-3.1.0.min.js'></script>
-        <script src='script/functions.js'></script>
-	</head>
+    <?php require("modules/xable_head.php"); ?>
 	<body>
         
         <?php
@@ -192,40 +243,24 @@
         ?>
         
         <main>
-            <nav>
-                <div id="menu_bar">
-                    <label class='logo'>
-                        <span>&gt;&lt;</span>
-                    </label>
-                    <label class='title menu'>
-                        <p>Update</p>
-                        <ul>
-                            <li>Creator</li>
-                            <li>Users</li>
-                            <li>Explorer</li>
-							<li class='separator'><hr></li>
-                            <li>Quit</li>
-                        </ul>
-                    </label>
-                </div>
-            </nav>
+            <?php require("modules/xable_nav.php"); ?>
             
             <article id='update'>
-                <h3><span class="article_icon fi-upload-cloud"></span>Update</h3>
-                <p>Check for avaliable updates:</p>
-                <p><a href='<?php echo $xable_website; ?>' target='_blank'>Xable Website</a></p>
+                <h3><span class="article_icon fi-upload-cloud"></span><?php echo localize("update-label"); ?></h3>
+                <p><?php echo localize("check-for-updates"); ?>:</p>
+                <p><a href='<?php echo $xable_website; ?>' target='_blank'><?php echo localize("xable-website"); ?></a></p>
                 <form method='post' action='xable_update.php' enctype='multipart/form-data'>
-                    <p>Upload installer package (zip):</p>
+                    <p><?php echo localize("add-zip"); ?>:</p>
                     <section>
-                        <input name='zip' type='file' accept='.zip'>
+                        <input name='installer' class='installer' type='file' accept='.zip' value=''>
                     </section>
-                    <button class='update' name='action' value='upload'>Update</button>
+                    <button class='update' name='action' value='upload'><?php echo localize("update-button"); ?></button>
                 </form>
             </article>
                 
             <article id='create'>
-                <h3><span class="article_icon fi-archive"></span>Create package</h3>
-                <p>Archive content preview:</p>
+                <h3><span class="article_icon fi-archive"></span><?php echo localize("new-zip"); ?></h3>
+                <p><?php echo localize("zip-preview"); ?>:</p>
                 <section id='content_preview'>
 					<details>
 						<summary>install</summary>
@@ -243,7 +278,27 @@
 					</details>
 					<p class='file type_php'>readme.txt</p>
                 </section>
-                <button class='confirm'>Create</button>
+                <button class='confirm'><?php echo localize("create-label"); ?></button>
+            </article>
+            
+            <article>
+                <h3><span class="article_icon fi-wrench"></span><?php echo localize("tools-label"); ?></h3>
+                <section>
+                    <?php
+                        $tools_folder = "_tools";
+                        echo "\n";
+                        echo "<ul id='advanced_tools'>\n";
+                        foreach(listDir($tools_folder, "php") as $file) { 
+                            $title = explode("_", path($file, "filename"));
+                            if(strlen($title[0]) < 3 && is_numeric($title[0])) { $num = array_shift($title); } else { $num = 0; };
+                            $title = capitalize(join(" ", $title));
+                            if($_SESSION["logged_user"] == "rzooff" || $num < 90) {
+                                echo "<li>&bull; <a href='$tools_folder/$file' target='_blank'>$title</a></li>\n";
+                            }
+                        };
+                        echo "</ul>\n";
+                    ?>
+                </section>
             </article>
             
         </main>
@@ -255,8 +310,8 @@
                     <?php
                         $log_path = "doc/change.log";
                         echo "<input type='hidden' class='path' value='$log_path'>\n";
-                        $changes = array();
-                        $notes = array();
+                        $changes = [];
+                        $notes = [];
                         foreach(file($log_path) as $txt) { $changes[] = $txt; };
                         echo "<textarea class='changes'>".join("<br>", $changes)."</textarea>\n";
                     ?>
@@ -264,7 +319,7 @@
 
                 <?php
                     // Installer Files
-                    echo "<br><span class='flag'><hr>Installer files (click to download)<hr></span><br>\n";
+                    echo "<br><span class='flag'><hr>".localize("installer-files")." (".localize("click-download").")<hr></span><br>\n";
                     foreach(listDir($installer_folder, ".") as $file) {
                         if(path($file, "extension") != "zip" && $file != "install.php") {
                             $size = path("$installer_folder/$file", "size");
@@ -273,31 +328,27 @@
                     };
                 
                     // Installer Packages
-                    echo "<br><span class='flag'><hr>Installer packages (click to download)<hr></span><br>\n";
+                    echo "<br><span class='flag'><hr>".localize("installer-zip")." (".localize("click-download").")<hr></span><br>\n";
                     foreach($installer_packages as $file) {
                         $size = path("$installer_folder/$file", "size");
                         echo "<span class='tag'>$installer_folder/</span><a href='$installer_folder/$file' download>$file</a>&nbsp;<span class='flag'>$size kB</span> <span class='remove' value='$file'>[x]</span><br>\n";
                     };
 					
 					if(is_array($zip_log)) {
-						echo "<br><span class='flag'><hr>Installer log<hr></span><br>\n";
+						echo "<br><span class='flag'><hr>".localize("zip-log")."<hr></span><br>\n";
 						foreach(array_keys($zip_log) as $n) {
 							if($n == 0 && file_exists($zip_log[0])) {
-								echo "<span class='flag'>File created:</span> ".$zip_log[0]."<br><br>\n";
+								echo "<span class='flag'>".localize("created-file").":</span> ".$zip_log[0]."<br><br>\n";
 							}
 							else {
 								echo "<span class='flag'>$n.</span> <span class='tag'>".str_replace(" -> ", "</span> <span class='flag'>-></span> ", $zip_log[$n])."<br>\n";
 							};
 						};
 					};
+                
+                    echo "<input id='action_done' type='hidden' value='$action_done'>\n";
                 ?>
             </div>
         </aside>
-
-        <script src='script/xable_update.js'></script>
-        
 	</body>
 </html>
-
-    
-

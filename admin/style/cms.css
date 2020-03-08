@@ -1,4 +1,37 @@
 /* ================================== */
+/*                Order               */
+/* ================================== */
+
+#cms.order h3 .lang_title {
+    color: inherit;
+    font-size: inherit;
+    font-weight: 400;
+    top: 0;
+}
+
+#cms.order article._order-options {
+    padding: 0;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#cms.order article._order-options label span {
+    opacity: 0.33;
+}
+
+#cms.order article._order-options button {
+    width: 30px;
+    background-color: transparent;
+    border: solid 1px #aaa;
+}
+
+#cms.order article._order-options button span {
+    top: -1px;
+    color: #888;
+    font-size: 1.5em;
+}
+
+/* ================================== */
 /*               Library              */
 /* ================================== */
 
@@ -31,27 +64,18 @@
 	width: 850px;
 	margin: 5vh auto;
 	padding: 40px;
-	background-color: #ffffff;
+	background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 0 10px #888888;
-	
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
+    box-shadow: 0 0 10px #888;
 }
 
 #libraries .folder {
 	padding: 5px 20px;
     margin: 10px 0;
-	background-color: #ffffff;
+	background-color: #fff;
 	border: 1px solid #e9e9e9;
 	border-radius: 4px;
-	
     text-align: left;
-	
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
 }
 
 #libraries  .folder .name {
@@ -96,7 +120,7 @@
     width: 75px;
     height: 75px;
     box-shadow: 0 0 5px #cccccc;
-    border: 4px solid #ffffff;
+    border: 4px solid #fff;
     border-radius: 3px;
 	transition: 0.3s;
 	cursor: pointer;
@@ -161,7 +185,7 @@
 }
 
 /* ================================== */
-/*        Article fold / expand       */
+/*             Table Edit             */
 /* ================================== */
 
 b { font-style: bold; }
@@ -169,7 +193,7 @@ sup, sub { font-size: 0.8em; }
 
 table, table td {
     border-spacing: 0;
-    border: 1px #eeeeee;
+    border: 1px #eee;
     font-weight: 400;
 	transition: 0.5s;
 	table-layout: fixed;
@@ -182,11 +206,11 @@ table {
     border-style: solid none none solid;
     border-radius: 4px 4px 0 0;
     overflow: hidden;
-    background-color: #ffffff;
+    background-color: #fff;
 }
 
 table tr td:first-of-type {
-    width: 20px;
+    width: 30px;
 }
 
 table td {
@@ -196,8 +220,8 @@ table td {
 }
 
 table .heading {
-	background-color: #333333;
-	color: #ffffff;
+	background-color: #333;
+	color: #fff;
 	text-align: center;
 }
 
@@ -215,8 +239,8 @@ table .edit_row:hover, table .edit_column:hover {
     position: fixed;
     bottom: 0;
     right: 0;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px #888888;
+    background-color: #fff;
+    box-shadow: 0 0 10px #888;
 	border-radius: 4px 4px 0 4px;
     overflow: hidden;
 }
@@ -228,7 +252,7 @@ table .edit_row:hover, table .edit_column:hover {
 
 #table_edit li:hover {
     background-color: #93aeb8;
-    color: #ffffff;
+    color: #fff;
 }
 
 /* ================================== */
@@ -246,14 +270,9 @@ table .edit_row:hover, table .edit_column:hover {
 .fold_expand span {
     padding: 5px;
     font-size: 1.5em;
-    color: #aaaaaa;
     cursor: pointer;
     text-align: center;
     transition: 0.5s;
-}
-
-.fold_expand span:hover {
-    color: #444444;
 }
 
 .fold_expand .fi-minus {
@@ -264,44 +283,129 @@ table .edit_row:hover, table .edit_column:hover {
 /*            Form Inputs             */
 /* ================================== */
 
-form input.string, form .text input, form .text textarea, #preview_popup {
+form input.string, form .text input, form .text textarea, form textarea.code, #preview_popup {
     border-radius: 2px;
     padding: 8px;
-    color: #333333;
-    background-color: #ffffff;
 	font-family: 'Lato', sans-serif;
 	font-weight: 400;   
 }
 
-form input.string, form .text input, form .text textarea {
-    margin-bottom: 3px;
-    width: 100%;
-    border: 0;
-    border: 1px solid #e9e9e9;
-    /* padding fix */
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
+#preview_popup p {
+    font-weight: 400;
 }
 
-form textarea {
+form input.string, form .text input, form .text textarea, textarea.code {
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+form textarea, textarea.code {
     height: 200px;
 }
 
-form input.string {
-    background-color: transparent;
-    border-color: #d4d4d4;
-}
-
 ul.radio label span, ul.checkbox label span {
+    position: relative;
+    top: -1px;
     padding-left: 5px;
     font-weight: 400;
 }
 
 ul.radio li, ul.checkbox li {
     padding-bottom: 5px;
-    
 }
+
+form section._id {
+    display: none;
+}
+
+/* ================================== */
+/*            Browse Input            */
+/* ================================== */
+
+form .browse_box {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;
+    padding-right: 34px;
+    overflow: hidden;
+}
+
+form .browse_box input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background-color: transparent;
+}
+
+form .browse_box button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 34px;
+    height: 100%;
+    background-color: #fff;
+    /* border-left: 1px solid #ddd; */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+form .browse_box button:focus {
+    outline: none;
+}
+
+form .browse_box button span {
+    top: 0;
+    color: #888;
+    font-size: 1.5em;
+}
+
+/* ================================== */
+/*             Date Input             */
+/* ================================== */
+
+form .date_box button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 34px;
+    height: 100%;
+    margin: 0;
+    color: #888;
+    background-color: #fff;
+    border: none;
+    /* border-left: 1px solid #ddd; */
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+form .date_box button:disabled { cursor: default; }
+
+form .date_box button span {
+    top: 0;
+    font-size: 2em;
+}
+
+form .date_box {
+    position: relative;
+    padding: 0 34px 0 0;
+    float: left;
+    clear: right;
+    overflow: hidden;
+}
+
+form .date_box input {
+    width: 100px;
+    height: 100%;
+    padding: 8px;
+    border: none;
+    background-color: transparent;
+	font-family: 'Lato', sans-serif;
+	font-weight: 400;  
+}
+
+form .date_box input:disabled { color: #aaa; }
 
 /* ================================== */
 /*               Media                */
@@ -309,13 +413,6 @@ ul.radio li, ul.checkbox li {
 
 article .set {
     clear: both;
-    height: 30px;
-}
-
-article .set label {
-    border-radius: 4px 4px 0 0;
-    color: #aaaaaa;
-	margin-bottom: -1px;
 }
 
 article .set label span {
@@ -328,20 +425,14 @@ article div.media {
 
 article div.media, article .set label.checked {
     color: inherit;
-    background-color: #ffffff;
-}
-
-
-article div.set label, article div.media {
-    border: 1px solid #e9e9e9;
 }
 
 article div.set label {
     display: block;
-    height: 20px;
     margin-right: -1px;
+    margin-bottom: -1px;
     padding: 5px 20px;
-    border-style: solid solid none solid;
+    border-radius: 4px 4px 0 0;
     float: left;
     cursor: pointer;
 }
@@ -362,7 +453,6 @@ article div.media .thumb {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #ffffff;
 }
 
 article div.media .png {
@@ -375,7 +465,6 @@ article div.media .thumb, div.media div.upload {
     margin: 5px;
     width: 100px;
     height: 100px;
-    box-shadow: 0 0 5px #cccccc;
     border-radius: 3px;
 	text-align: center;
 	float: left;
@@ -389,7 +478,6 @@ article div.media .none .thumb {
 
 article div.media div.embed {
     width: 178px;
-    
 }
 
 article div.video iframe {
@@ -399,6 +487,8 @@ article div.video iframe {
 
 article input.upload_file {
 	position: absolute;
+    top: 0;
+    left: 0;
 	opacity: 0;
 	z-index: -99;
 }
@@ -412,17 +502,12 @@ article label.upload_file, article .not_found label {
 	cursor: pointer;
 }
 
-article div.media .not_found label {
-    color: #fd585e;
-}
-
 article div.media label.upload_file p, article .media .not_found p, div.media .thumb p {
 	font-size: 10px;
     font-weight: 400;
 }
 
 article .upload .fi-upload, div.video .fi-share {
-    color: #aaaaaa;
     padding-bottom: 100%;
 }
 
@@ -431,7 +516,6 @@ article div.media .upload .fi-photo {
 }
 
 article div.media .thumb button, article div.media .not_found button {
-    background-color: #000000;
     position: absolute;
     top: 2px;
     right: 2px;
@@ -451,10 +535,6 @@ article div.media .thumb button.move_left {
 	right: auto;
 	left: 2px;
 }
-article div.media .thumb:hover button.sort {
-	color: #000000;
-    background-color: #ffffff;
-}
 
 article div.media .thumb button span, .file button span {
     position: relative;
@@ -465,18 +545,7 @@ article div.media .not_found label {
     cursor: default;
 }
 
-button.button {
-    margin: 5px 0 0 4px;
-    width: 24px;
-    height: 24px;
-    border: none;
-    background-color: #aaaaaa;
-    color: #ffffff;
-    border-radius: 99px;
-    overflow: hidden;
-}
-
-article div.media button.zoom, article div.media button.download {
+article div.media button.action {
     position: absolute;
     top: auto;
     bottom: 50%;
@@ -485,18 +554,13 @@ article div.media button.zoom, article div.media button.download {
     height: 50px;
     margin-left: -25px;
     margin-bottom: -25px;
-	color: #ffffff;
-    background-color: transparent;
-    text-shadow: 0 0 20px #000000;
     text-align: center;    
     opacity: 0;
 }
 
-article div.media button.zoom span, article div.media button.download span { font-size: 30px; }
-
-article div.media .thumb button.zoom:hover, article div.media .thumb button.download:hover {
-    opacity: 1;
-}
+article div.media button.download a { text-decoration: none; color: inherit; }
+article div.media button.action span { font-size: 30px; }
+article div.media .thumb button.action:hover { opacity: 1; }
 
 /* ================================== */
 /*                File                */
@@ -528,14 +592,12 @@ u { text-decoration: underline; }
     width: 32px;
     font-size: 19px;
     padding: 3px 0 10px 0;
-    color: #aaaaaa;
     background-color: transparent;
     text-align: center;
     transition: 0.5s;
 }
 
 #style_buttons span {
-    border-right: 1px solid #aaaaaa;
     float: left;
     cursor: pointer;
 }
@@ -555,10 +617,6 @@ span.index sup, span.index sub {
     float: right;
 }
 
-#style_buttons span:hover {
-    background-color: #000000;
-}
-
 #style_buttons .style_preview {
     width: auto;
     padding: 6px;
@@ -569,21 +627,13 @@ span.index sup, span.index sub {
 
 #style_buttons .style_preview:hover {
     background-color: transparent;
-    color: #ffffff;
 }
 
 /* ====== PREVIEW ====== */
 
 #preview_popup {
     position: absolute;
-    border: 1px solid #444444;
 	padding: 8px;
-    box-shadow: 0 0 10px #444444;
-
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-
     z-index: 10;
 }
 
@@ -605,11 +655,7 @@ span.index sup, span.index sub {
     display: block;
     clear: both;
     margin: 0;
-
-    width: 100%;
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
+    width: 100%;      /* Opera/IE 8+ */
 }
 
 #preview_popup .banner {
@@ -623,7 +669,7 @@ span.index sup, span.index sub {
 #preview_popup .button { text-align: center; }
 
 #preview_popup .button img {
-    margin: 3px 5px;
+    margin: 3px 3%;
     height: 100px;
     width: auto;
 }
@@ -659,5 +705,76 @@ span.index sup, span.index sub {
 #preview_popup hr {
     border: none;
     height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.33), rgba(0, 0, 0, 0));
+}
+
+/* ================================== */
+/*               Upload               */
+/* ================================== */
+
+#upload_info, #backup_info, #working_info {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: hidden;
+    z-index: 99;
+}
+
+#upload_info .popup, #backup_info .popup, #working_info .popup {
+    position: relative;
+    width: 300px;
+    margin: 50px auto;
+    padding: 30px;
+    color: #fff;
+    background-color: #050505;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #333;
+    overflow: hidden;
+    text-align: center;
+}
+
+.uploader,
+.uploader:after {
+    border-radius: 50%;
+    width: 10em;
+    height: 10em;
+}
+.uploader {
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 5px;
+    position: relative;
+    text-indent: -9999em;
+    border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+    border-left: 1.1em solid #fff;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes load8 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-table-row</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj wiersz tabeli</pl>
+				<en>Add table row</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-column-right</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Dodaj kolumnę po prawej</pl>
+				<en>Add column to the right</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-column-left</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Dodaj kolumnę po lewej</pl>
+				<en>Add column to the left</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-column-right</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Przesuń kolumnę w prawo</pl>
+				<en>Move column right</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-column-left</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Przesuń kolumnę w lewo</pl>
+				<en>Move column left</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>delete-column</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Usuń kolumnę</pl>
+				<en>Delete column</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>cant-go-further</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Dalej się już nie da</pl>
+				<en>Can't go further</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>only-column-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Nie można usunąć jedynej kolumny tabeli</pl>
+				<en>You can't delete the only column</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>only-row-alert</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Nie można usunąć jedynego wiersza tabeli</pl>
+				<en>You can't delete the only row</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>delete-row</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Usuń wiersz</pl>
+				<en>Delete row</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-row-below</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Dodaj wiersz poniżej</pl>
+				<en>Add row below</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-row-above</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Dodaj wiersz powyżej</pl>
+				<en>Add row above</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-row-down</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Przesuń wiersz w dół</pl>
+				<en>Move row down</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-row-up</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<format></format>
+			<text>
+				<pl>Przesuń wiersz w górę</pl>
+				<en>Move row up</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

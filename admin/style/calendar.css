@@ -1,0 +1,171 @@
+/* ================================== */
+/*              Popup Box             */
+/* ================================== */
+
+#calendar_box {
+    display: none;
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    margin-left: -160px;
+    width: 360px;
+    border-radius: 5px;
+    color: #323c3f;
+    background-color: #fff;
+    text-align: center;
+    overflow: hidden;
+    
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    z-index: 9;
+}
+
+/* ================================== */
+/*               Header               */
+/* ================================== */
+
+#calendar_box .header {
+    position: relative;
+    height: 34px;
+    padding: 0 7px;
+    background-color: #323c3f;
+}
+
+#calendar_box .header .title {
+    height: 28px;
+    text-align: left;
+}
+
+#calendar_box .header .title span {
+    color: #aaa;
+    font-size: 1.5em;
+    display: none;
+}
+
+#calendar_box .header button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 7px;
+    color: #fff;
+    background-color: #fff;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 99px;
+}
+
+#calendar_box .header button span {
+    top: 0;
+    font-size: 1.5em;
+}
+
+/* ================================== */
+/*          Month / Navigation        */
+/* ================================== */
+
+#calendar_box .nav {
+    position: relative;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+#calendar_box .nav .month {
+    font-weight: bold;
+}
+
+#calendar_box .nav .year {
+    font-weight: inherit;
+}
+
+#calendar_box .nav button {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding: 0 10px;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#calendar_box .nav button span {
+    font-size: 1.5em;
+}
+
+#calendar_box .nav button.prev_month { left: 20px; }
+#calendar_box .nav button.next_month { right: 20px; }
+
+/* ================================== */
+/*             Days table             */
+/* ================================== */
+
+#calendar_box .tables {
+    position: relative;
+    padding: 30px 20px;
+    padding-top: 5px;
+}
+
+#calendar_box table {
+    margin: 0 auto;
+    border-color: transparent;
+    color: inherit;
+    background-color: transparent;
+    table-layout: fixed;
+    overflow: visible;
+}
+
+#calendar_box table tr td {
+    position: relative;
+    padding: 10px 5px;
+    width: auto;
+    border-style: none;
+}
+
+#calendar_box table * {
+    font-weight: 400;
+}
+
+#calendar_box table.daynames {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+#calendar_box table.days td.in_month { cursor: pointer; }
+
+#calendar_box td.weekday_6 span { color: #888; }
+#calendar_box td.weekday_7 span { color: #46d6ce; }
+
+#calendar_box td.outside_month span { opacity: 0.2; }
+
+/* ================================== */
+/*              Selected              */
+/* ================================== */
+
+#calendar_box td.current_day {
+    border: 1px solid #46d6ce;
+    border-radius: 2px;
+}
+
+#calendar_box td.selected .marker {
+    position: absolute;
+    display: block;
+    margin: -15px;
+    top: 50%;
+    left: 50%;
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    background-color: #46d6ce;
+    mix-blend-mode: multiply;
+}
+
+/* ================================== */
+/* ================================== */
+/*             Responsive             */
+/* ================================== */
+/* ================================== */
+
+@media all and (max-width: 500px) {
+    #calendar_box { margin: 0; top: 0; left: 0; width: 100%; border-radius: 0; }
+}

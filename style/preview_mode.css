@@ -2,40 +2,45 @@
 /*            Preview Mode            */
 /* ================================== */
 
+#preview_info span, #preview_info p, #preview_info button {
+    font-size: 12px;
+    padding: 6px 10px;
+    float: left;
+}
+
 #preview_info {
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 500px;
-    left: 50%;
-    margin-left: -250px;
-    padding: 0;
-    border-radius: 5px 5px 0 0;
-    color: #666666;
-    background-color: rgba(255,255,255,0.85);
-    box-shadow: 0 0 20px #888888;
+    left: 0;
+    padding: 10px;
+    border-radius: 0 5px 0 0;
+    color: #fff;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
 }
-#preview_info p { padding: 15px 25px; }
+#preview_info span { color: #000; margin-left: -8px; }
+#preview_info p { margin-right: 10px; margin-left: -10px; }
 #preview_info button {
-    position: absolute;
-    top: 11px;
-    right: 24px;
-    font-size: 0.8em;
-    padding: 6px 10px;
     min-width: 90px;
     border-radius: 2px;
-    border: none;
-    color: #ffffff;
-    background-color: #46d6ce;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    font-weight: 400;
     cursor: pointer;
     transition: 0.5s;
 }
 #preview_info button:hover {
-    opacity: 0.6;
+    background-color: #fff;
+    color: #000;
 }
-@media all and (max-width: 660px) {
-    #preview_info { margin: 0; width: 80%; left: 10%; text-align: center; }
+
+#preview_info span.color-edited { color: #ffaa33; }
+#preview_info span.color-unpublished { color: #ff1824; }
+#preview_info span.color-published { color: #666; }
+
+@media all and (max-width: 700px) {
     #preview_info p { display: none; }
-    #preview_info button { position: static; margin: 13px 20px; font-size: 1em; padding: 8px 15px; }
 }
 

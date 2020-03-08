@@ -16,36 +16,56 @@
 			<set>files</set>
 		</delete>
 	</_file_manager>
-	<multi_post>
+	<header>
 		<title>
 			<type>text</type>
 			<label>Tytuł</label>
 			<text>
-				<pl>START</pl>
-				<en>START</en>
+				<pl>Strona główna</pl>
+				<en></en>
+				<de></de>
 			</text>
 		</title>
+		<headline>
+			<type>text</type>
+			<label>Nagłówek</label>
+			<text>
+				<pl>Przyjazny panel administracyjny.</pl>
+				<en></en>
+			</text>
+		</headline>
+		<scrolldown>
+			<type>text</type>
+			<label>Etykieta przycisku</label>
+			<text>
+				<pl>Poznaj X.able</pl>
+				<en></en>
+			</text>
+		</scrolldown>
 		<text>
 			<type>textarea</type>
 			<label>Opis</label>
 			<format>*</format>
 			<text>
-				<pl>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</pl>
-				<en>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</en>
+				<pl>Intuicyjny interfejs, w całości po polsku.[br]Zrobisz wszystko bez czytania instrukcji obsługi.</pl>
+				<en></en>
 			</text>
 		</text>
-		<media>
+		<image>
 			<type>media</type>
-			<label>Multimedia</label>
+			<label>Obraz na I planie</label>
 			<media>
-				<image>media/start</image>
-				<gallery>media/start</gallery>
-				<file>media/start</file>
-				<files>media/start</files>
-				<video></video>
-				<none></none>
+				<image>media/start/interface.jpg</image>
 			</media>
 			<set>image</set>
-		</media>
-	</multi_post>
+		</image>
+		<background>
+			<type>media</type>
+			<label>Obraz w tle</label>
+			<media>
+				<image>media/start/paper-boats-on-solid-surface-194094.jpg</image>
+			</media>
+			<set>image</set>
+		</background>
+	</header>
 </xable>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>library-manual-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>&lt;span class="title"&gt;Magazyn&lt;/span&gt;[br]"Pliki", "Obrazy" i "Strony tymczasowe" to grupa elementów, które można wstawiać w polach tekstowych przy pomocy odpowiednich przycisków formatowania.[br]&lt;d&gt;Nazwy folderów służą jedynie wygodzie użytkownika i można je dowolnie zmieniać także już po ich użyciu.&lt;/d&gt;[br][br]&lt;span class="title"&gt;Wstawianie: Pliku / Strony tymczasowej&lt;/span&gt;[br]• Jeśli wcześniej zaznaczymy fragment tekstu, to do niego zostanie podpiety link do pliku / strony. W takiej sytuacji będzie możliwe wybranie tylko jednego elementu.[br]• Jeśli wcześniej nie zaznaczymy tekstu, będzie możliwe wybranie kilku elementów - linkami będą nazwy plików / stron.[br][br]&lt;span class="title"&gt;Wstawianie: Obrazka&lt;/span&gt;[br]• Jeśli wcześniej zaznaczymy fragment tekstu, to wstawimy banner w formie obrazka z opisem.[br]• Jeśli wcześniej nie zaznaczymy tekstu, wstawiony będzie banner obrazkowy. Wstawienie kolejnego, bez odstępu (spacji ani entera) spowoduje  ustawienie obrazków obok siebie.</pl>
+				<en>&lt;span class="title"&gt;Library&lt;/span&gt;[br]"Files", "Images", and "Temporary pages" are groups of items that you can insert into textarea using the appropriate formatting buttons.[br]&lt;d&gt;Folder names are only for user convenience and can be changed even after they were used.&lt;/d&gt;[br][br]&lt;span class="title"&gt;Insert: File / Subpage&lt;/span&gt;[br]• If you select a piece of text before, it will link to the file / page. In this case, you will only be able to select one item.[br]• If no text is selected, you will be able to select several items - the link texts will be the names of the files / pages.[br][br]&lt;span class="title"&gt;Insert: Image&lt;/span&gt;[br]•  If you select a piece of text before, we will insert a image banner with a description.[br]• If no text is selected, the image only banner will be inserted. Inserting another without spacing (space or enter) will place the images side by side.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>select-files</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz pliki</pl>
+				<en>Select files</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>select-file</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz plik</pl>
+				<en>Select file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>select-pages</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz strony</pl>
+				<en>Select pages</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>select-page</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz stronę</pl>
+				<en>Select page</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>select-images</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz obrazki</pl>
+				<en>Select images</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>select-image</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz obrazek</pl>
+				<en>Select image</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>size-big</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Duża</pl>
+				<en>Big</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>size-medium</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Średnia</pl>
+				<en>Medium</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>size-small</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Mała</pl>
+				<en>Small</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>image-size</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wielkość obrazka</pl>
+				<en>Image size</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>image-description-position</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Umieść opis do obrazka</pl>
+				<en>Place image text on</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>position-right</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Po prawej</pl>
+				<en>Right side</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>position-left</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Po lewej</pl>
+				<en>Left side</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>description-position</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Umieść opis</pl>
+				<en>Image description position</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

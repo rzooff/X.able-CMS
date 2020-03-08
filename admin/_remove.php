@@ -1,16 +1,34 @@
 <?php
 
-    require("modules/_session-start.php");
-
+    require "modules/_session-start.php";
+    $debug_mode = false; // <true> will not redirect back to index & show console log
+    $errors = 0;
+    $protected = array("$root/settings.xml", "$root/navigation.xml");
     //echo "<hr><h3>GET</h3><hr>";
     //arrayList($_GET);
     //echo "<hr><h3>POST</h3><hr>";
     //arrayList($_POST);
     //echo "<hr>\n";
 
-    $protected = array("$root/settings.xml", "$root/navigation.xml");
+    // ====== SESSION RESET ======
+    function sessionReset($site_options) {
+        echo "<h2>RESET</h2>\n";;
+        
+        if(is_string($site_options['session_reset']) && $site_options['session_reset'] != "") {
+            $session_reset = explode(",", $site_options['session_reset']);
+            foreach($session_reset as $key) {
+                //echo "reset> $key<br>\n";
+                unset($_SESSION[$key]);
+                echo "Unset: \$_SESSION[\"".$key."\"]<br>\n";
+            };
+        };
+        
+        if(is_string($site_options['publish_plugin']) && $site_options['publish_plugin'] != "") {
+            $_SESSION["xable-publish_plugin"] = $site_options['publish_plugin'];
+            echo "External plugin: ".$_SESSION["xable-publish_plugin"]."<br>\n";
+        }
+    };
 
-    $errors = 0;
 ?>
 
 <html>
@@ -97,8 +115,11 @@
                                                     if(!in_array($folder, $folders)) { $folders[] = $folder; };
                                                 }
                                                 else {
-                                                    foreach(split(";", $media) as $media_path) {
-                                                        if(file_exists("$root/$media_path")) {
+                                                    foreach(explode(";", $media) as $media_path) {
+                                                        if(is_dir("$root/$media_path")) {
+                                                            echo "<p class='info'>No media to delete</p>\n";
+                                                        }
+                                                        elseif(file_exists("$root/$media_path")) {
                                                             unlink("$root/$media_path"); // DELETE FILE!
                                                             echo "<p class='done'>Deleted media file: <a href='$root/$media_path'>$root/$media_path</a></p>\n";
                                                         }
@@ -107,7 +128,7 @@
                                                             //$errors++;
                                                         };
                                                     };
-                                                    $folder = $root."/".path(array_shift(split(";", $media)), "dirname");
+                                                    $folder = $root."/".path(array_shift(explode(";", $media)), "dirname");
                                                     if(!in_array($folder, $folders)) { $folders[] = $folder; };
                                                 };
                                             };
@@ -134,28 +155,55 @@
                 
                 function deleteFromOrder($file_path) {
                     echo "<h2>REMOVE FROM ORDER LIST</h2>\n";
-                    //$delete_item = array_shift(split(".xml", path($file_path, "basename")));
-                    $delete_item = path($file_path, "filename");
-                    $dir = path($file_path, "dirname");
-                    $file = $dir."/".path($dir, "filename").".order";
-                    if(file_exists($file)) {
-                        $file_content = array_map("trim", file($file));
-                        $new_content = array();
-                        foreach($file_content as $item) {
-                            echo "> item: $item / $delete_item<br>\n";
-                            if($item != $delete_item) { $new_content[] = $item; };
+                    
+                    $remove_filename = path($file_path, "basename");
+                    $folder = path($file_path, "dirname");
+                    $order_file = "$folder/.order";
+                    
+                    if($order = loadXml($order_file)) {
+                        
+                        foreach(array_keys($order["multi_item"]) as $item_num) {
+                            $item_path = readXml($order["multi_item"][$item_num], "path");
+                            if($item_path == $remove_filename) {
+                                unset($order["multi_item"][$item_num]);
+                            };
                         };
+
                         // Save changes
-                        if(count($new_content) < count($file_content) && safeSave($file, join("\n", $new_content))) {
-                            echo "<p class='done'>Item <a href='$delete_item'>$delete_item</a> removed from order file:<a href='$file'>$file</a></p>\n";  
+                        if(safeSave($order_file, XmlFileContent($order))) {
+                            echo "<p class='done'>Item <a href='$file_path'>$remove_filename</a> removed from order file: <a href='$order_file'>$order_file</a></p>\n";  
                         }
                         else {
-                            echo "<p class='log'>Item <a href='$delete_item'>$delete_item</a> already not on list:<a href='$file'>$file</a></p>\n";
+                            echo "<p class='log'>Item <a href='$file_path'>$remove_filename</a> already not on list: <a href='$order_file'>$order_file</a></p>\n";
                             //$errors++;
                         };
+                        
                     }
+                    
                     else {
-                         echo "<p class='log'>Order file not found: <a href='$folder'>$folder</a></p>\n";
+                        echo "<p class='log'>Item <a href='$delete_item'>$delete_item</a> already not on list: <a href='$file'>$file</a></p>\n";
+                    };
+
+                };
+            
+                function deleteFromNavigation($delete_path, $root) {
+                    echo "<p>NAV</p>\n";
+                    
+                    if(path($delete_path, "dirname") == "$root/pages") {
+                        echo "<h2>REMOVE FROM NAVIGATION</h2>\n";
+                        $file = path($delete_path, "filename");
+                        $navigation = loadXml("$root/navigation.xml");
+                        foreach(array_keys($navigation["multi_page"]) as $page_num) {
+                            $page = $navigation["multi_page"][$page_num];
+                            $href = readXml($page, "href");
+                            if($href == $file || $href == "#$file") {
+                                unset($navigation["multi_page"][$page_num]);
+                                echo "<p class='done'>Item <a href='$file_path'>$remove_filename</a> removed from navigation.xml: <a href='$href'>$href</a></p>\n";  
+                            }
+                        }
+
+                        safeSave("$root/navigation.xml", XmlFileContent($navigation));
+                        //arrayList($navigation);
                     }
                 };
             
@@ -165,36 +213,46 @@
             
                 $delete_success = false;
         
-                if(is_string($delete_path) && $delete_path != "" && path($delete_path, "extension") != "") {
-                    foreach(array("", ".draft", ".prev") as $ext) {
-                        $file_path = $delete_path.$ext;
-                        echo "Document: $file_path\n";
-                        if($file_path != "" && file_exists($file_path) && !is_dir($file_path)) {
-                            
-                            deleteMedia($file_path, $root);
-                            
-                            echo "<h2>DELETE XABLE DOCUMENT</h2>\n";
-                            
-                            if(safeDelete($file_path)) {
-                                echo "<p class='done'>Deleted document: <a href='$file_path'>$file_path</a></p>\n";
-                                $delete_success = true;
-                                // delete bak if not main xml document
-                                if(path($file_path, "extension") != "xml") {
-                                    unlink("$file_path.bak");
+                if(is_string($delete_path) && $delete_path != "" && !is_dir(path($delete_path, "extension"))) {
+                    
+                    if(!$debug_mode) {
+
+                        foreach(array("", ".draft", ".prev") as $ext) {
+                            $file_path = $delete_path.$ext;
+                            echo "Document: $file_path\n";
+                            if($file_path != "" && file_exists($file_path) && !is_dir($file_path)) {
+
+
+                                deleteMedia($file_path, $root);
+
+                                echo "<h2>DELETE XABLE DOCUMENT</h2>\n";
+
+                                if(safeDelete($file_path)) {
+                                    echo "<p class='done'>Deleted document: <a href='$file_path'>$file_path</a></p>\n";
+                                    $delete_success = true;
+                                    // delete bak if not main xml document
+                                    if(path($file_path, "extension") != "xml") {
+                                        unlink("$file_path.bak");
+                                    };
+                                }
+                                else {
+                                    echo "<p class='error'>Failed to delete: <a href='$file_path'>$file_path</a></p>\n";
+                                    $errors++;
                                 };
+
                             }
                             else {
-                                echo "<p class='error'>Failed to delete: <a href='$file_path'>$file_path</a></p>\n";
-                                $errors++;
+                                echo "<p class='log'>Document not found: <a href='$file_path'>$file_path</a></p>\n";
                             };
-                            
-                        }
-                        else {
-                            echo "<p class='log'>Document not found: <a href='$file_path'>$file_path</a></p>\n";
+                            echo "<hr><br>\n";
                         };
-                        echo "<hr><br>\n";
+
+                        deleteFromOrder($delete_path, $root);
+                        deleteFromNavigation($delete_path, $root);
+                    }
+                    else {
+                        $delete_success = false;
                     };
-                    deleteFromOrder($delete_path, $root);
 
                 };
     
@@ -204,28 +262,79 @@
                 };
             
                 // ======================================
+                //        Delete empty SUBFOLDER
+                // ======================================
+            
+                echo "<h2>Delete empty SUBFOLDER</h2>\n";
+            
+                $subfolder = path($delete_path, "dirname");
+                
+                if(is_dir($subfolder) && !listDir($subfolder, "xml,draft")) {
+                    
+                    $folder = path($subfolder, "dirname");
+                    //echo "sub: $subfolder<br>\n";
+                    //echo "fol: $folder<br>\n";
+                    //echo "?: ".getFilename($subfolder);
+                    
+                    if(xmlExists($folder."/".getFilename($subfolder))) {
+                        removeDir($subfolder);
+                        echo "<p class='log'>Empty subfolder deleted: <a href='$subfolder'>$subfolder</a></p>\n";
+                    }
+                };
+
+                // ======================================
                 //                 ERRORS
                 // ======================================
-
-                if($errors > 0) {
+                
+                echo "<hr>\n";
+                if($debug_mode) {
+                    echo "<p class='done'>DEBUG MODE -> Page not removed: <a href='$delete_path'>$delete_path</a></p>\n";
+                }
+                elseif($errors > 0) {
                     echo "<p class='error'>Page not removed due to previous errors ($errors)</p>\n";
-					$get = "?path=$delete_path&popup=".urlencode("Nie udało się usunąć strony|error");
+					$get = "?path=$delete_path&popup=".urlencode(localize("page-delete-failed")."|error"); //Nie udało się usunąć strony
                     echo "<input type='hidden' id='back_path' value='$save_path'>\n";
                 }
                 else {
                     if($save_path == $delete_path) { $save_path = "$root/settings.xml"; };
                     
                     echo "<p class='done'>Page removed: <a href='$delete_path'>$delete_path</a></p>\n";
-					$get = "?popup=".urlencode("Strona została usunięta|done");
+					$get = "?popup=".urlencode(localize("page-delete-done")."|done"); //Strona została usunięta
                     echo "<input type='hidden' id='back_path' value='$save_path'>\n";
                     addLog("page removed", $delete_path);
+                    
+                    sessionReset($_SESSION["ini_site_options"]);
 				};
 				echo "<a href='index.php$get'><button>Back to editor</button></a>\n";
                 // Errors count output for js action
                 echo "<input type='hidden' id='errors' value='$errors'>\n";
             
+                // ======================================
+                //          EDIT LANGUAGE CHANGE
+                // ======================================
+            
+                echo "EDIT_LANG: ".$_POST["current_edit_lang"]."<br>\n";
+                if(is_string($_POST["current_edit_lang"]) && $_POST["current_edit_lang"] != "") {
+                    $_SESSION["edit_lang"] = $_POST["current_edit_lang"];
+                }
+            
+                // ======================================
+                // ======================================
+                //             SESSION TEMP
+                // ======================================
+                // ======================================
+                
+                // Store temp data from $_POST in $_SESSION array variable
+                // For usage with plugins
+                $session_temp = xmlToArray($_POST["session_temp"]);
+                foreach(array_keys($session_temp) as $key) {
+                    echo "key: $key<br>\n";
+                    $_SESSION["session_temp"][$key] = $session_temp[$key];
+                };
+            
             ?>
         </article>
+        <?php exportLocalization(); ?>
         <script src='script/jquery-3.1.0.min.js'></script>
         <script>
             $(document).ready(function() {
@@ -233,7 +342,7 @@
                 if(errors == 0) {
                     path = $("#back_path").val();
                     setTimeout(function() {
-                        location.href = "index.php?path=" + encodeURIComponent(path) + "&popup=" + encodeURIComponent("Strona została usunięta|done");
+                        location.href = "index.php?path=" + encodeURIComponent(path) + "&popup=" + encodeURIComponent(LOCALIZE["page-delete-done"] + "|done"); //Strona została usunięta
                     }, 1000);
                     //$("article").show();
                     //$("#loader").fadeOut(200);

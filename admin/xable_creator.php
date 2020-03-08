@@ -1,13 +1,17 @@
 <?php
     // ======================================
-    //         ><.able CMS - CREATOR
-    //        (C)2016 maciejnowak.com
-    //          v.2.0 build.20161004
+    //              ><.able CMS
+    //      (C)2015-2019 maciejnowak.com
     // ======================================
-	// compatibile: php5+
+    // compatibile: php5.4+ or higher
+
+    //error_reporting(E_ALL);
 
     require("modules/_session-start.php");
     $ini_hidden = loadIni("xable.ini", "hidden");
+
+    $panel_name = "creator";
+    $panel_label = localize("creator-label");
 
     // ====== LANGUAGE ======
     $languages = array();
@@ -18,16 +22,84 @@
         //};
     };
     $lang = "pl";
-	
+
+    // ====== Move files - Media location change Tool ======
+    function moveFiles($root) {
+        $old_key = "move_files-old";
+        $new_key = "move_files-new";
+        $old_folders = [];
+        $moved_count = 0;
+        foreach(array_keys($_POST) as $key) {
+            if(substr($key, 0, strlen($old_key)) == $old_key) {
+                $old_path = $_POST[$key];
+                $n = array_pop(explode("_", $key));
+                $new_path = $_POST[$new_key."_".$n];
+                if($new_path != "" && $old_path != "" && file_exists("$root/$old_path")) {
+                    //echo "$n) $old_path -> $new_path<br>\n";
+                    $folder = path("$root/$new_path", "dirname");
+                    if($folder != "" && !file_exists($folder)) { mkdir($folder); };
+                    rename("$root/$old_path", "$root/$new_path");
+                    
+                    $old_folder = path("$root/$old_path", "dirname");
+                    if($old_folder != "" && !in_array($old_folder, $old_folders)) {
+                        $old_folders[] = $old_folder;
+                    };
+                    $moved_count++;
+                };
+            }
+        }
+        
+        if(count($old_folders) > 0) {
+            foreach($old_folders as $old_folder) {
+                if(file_exists($old_folder) && !listDir($old_folder)) {
+                    //echo "OLD_FOLDER: $old_folder<br>\n";
+                    rmdir($old_folder);
+                }
+            }
+        }
+        
+        return $moved_count;
+    };
+
     // GET & POST input
 	if(is_string($xml_path = $_GET['save']) && $xml_path != "") {
 		// Save
         $dir = path($xml_path, "dirname");
         if(!file_exists($dir)) { makeDir($dir); };
-		if($_POST['xml'] == "" || !safeSave($xml_path, $_POST['xml'])) {
-			echo "<script> alert('Saving error ocured :('); </script>\n";
+		if($_POST['xml'] != "" && safeSave($xml_path, $_POST['xml'])) {
+            // Move files - Media location change Tool
+            if($_POST["action"] == "move_files") {
+                if(($moved_count = moveFiles($root)) > 0) {
+                    // Done info
+                    $info = localize("move-folder-done");
+                    $info = str_replace("\\n", "\n", $info);
+                    $info = str_replace("@count", $moved_count, $info);
+                    
+                    // Delete previous version (if any)
+                    $prev_path = "$xml_path.prev";
+                    if(file_exists($prev_path)) {
+                        // Delete deleted files from previous
+                        $prev_xml = loadXml($prev_path);
+                        $delete_files = explode(";", readXml($prev_xml, "_file_manager delete"));
+                        foreach($delete_files as $file) {
+                            if(file_exists("$root/$file")) {
+                                //echo "Unlink: $root/$file<br>\n";
+                                unlink("$root/$file");
+                            }
+                        }
+                        rename($prev_path, $prev_path.".bak");
+                        $info = $info."\n".localize("previous-deleted");
+                    }
+                    $_SESSION["show_popup"] = $info;
+                }
+            };
+        }
+        else {
+			$_SESSION["show_popup"] = localize("file-save-error");
 			$xml_path = "";
 		};
+
+        
 	}
 	elseif(is_string($xml_path = $_GET['open']) && $xml_path != "" && in_array(path($xml_path, "extension"), array("xml", "draft", "template"))) {
 		// Open
@@ -36,69 +108,23 @@
 		// New
 		$xml_path = "";
 	};
+
 ?>
 
 <!doctype html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>X.able CMS / Creator</title>
-        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900|Inconsolata:400,700|Audiowide&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="style/xable_creator.css" />
-		<link rel="stylesheet" type="text/css" href="style/foundation-icons.css" />
-		
-        <script src='script/jquery-3.1.0.min.js'></script>
-        <script src='script/functions.js'></script>
-	</head>
+    <?php require("modules/xable_head.php"); ?>
 	<body>
-        <main>
-            <nav>
-                <div id="menu_bar">
-                    <label class='logo'>
-                        <span>&gt;&lt;</span>
-                    </label>
-                    <label class='title menu'>
-                        <p>Creator</p>
-                        <ul>
-							<li>Update</li>
-							<li>Users</li>
-							<li>Explorer</li>
-							<li class='separator'><hr></li>
-                            <li>Quit</li>
-                        </ul>
-                    </label>
-                    <label class='menu'>
-                        <p>File</p>
-                        <ul>
-                            <li>New</li>
-                            <li>Open</li>
-                            <li class='active'>Reload</li>
-                            <li class='active'>Save</li>
-                            <li>Save&nbsp;as</li>
-                        </ul>
-
-                    </label>
-                    <!--
-                    <label class='menu'>
-                        <p>Help</p>
-                        <ul>
-							<li>About</li>
-                            <li>Report&nbsp;an&nbsp;issue</li>
-                            <li>Manual</li>
-                            <li class='separator'><hr></li>
-							<li>Update&nbsp;code</li>
-                        </ul>
-                    </label>
-                    -->
-                </div>
-            </nav>
-
+        <main class='<?php echo $panel_name; ?>'>
             <?php
+            
+                require("modules/xable_nav.php");
+            
                 echo "\n<input type='hidden' id='language' value='$lang'>\n";
                 echo "\n<input type='hidden' id='languages' value='".join(",", $languages)."'>\n";
 				echo "\n<input type='hidden' id='xml_path' value='$xml_path'>\n";
 				
-				if($xml_path == "") { $label = "*New file*"; }
+				if($xml_path == "") { $label = "*".localize("new-document-label")."*"; }
 				else { $label = substr($xml_path, strlen($root) + 1); }
 				echo "<div id='label'><p><span class='fi-page'></span>".$label."</p></div>\n";
                 
@@ -130,32 +156,47 @@
                                     $section = $section_group[$section_num];
                                     $type = $section['type'][0];
                                     
-                                    
                                     echo "\t\t<section>\n".
                                         // BUTTONS -> complete with jQuery
                                         "\t\t\t<label class='section_tag'><span class='type'>".$type."</span><input type='text' class='section_tag string' value='$section_name'></label>\n";
                                     if($section['disabled'][0] == "true") {
-                                        echo "<input type='hidden' class='non_editable' value='true'>";
+                                        echo "\t\t\t<input type='hidden' class='non_editable' value='true'>\n";
                                     }
                                     else {
-                                        echo "<input type='hidden' class='non_editable' value=''>";
+                                        echo "\t\t\t<input type='hidden' class='non_editable' value=''>\n";
                                     };
 
                                     echo "\t\t\t<form>\n".
-                                        "\t\t\t\t<input type='text' class='label' value='".$section['label'][0]."' placeholder='Label'>\n".
-                                        "\t\t\t\t<input type='text' class='description' value='".$section['description'][0]."' placeholder='Description'>\n";
+                                        "\t\t\t\t<input type='text' class='label' value='".$section['label'][0]."' placeholder='".localize("title-label")."'>\n".
+                                        "\t\t\t\t<input type='text' class='description' value='".$section['description'][0]."' placeholder='".localize("description-label")."'>\n";
                                     // ----- Types ------
-                                    if($type == "string") {
-                                        echo "\t\t\t\t<input type='hidden' class='string' value='".$section['string'][0]."'>";
+                                    if($type == "button") {
+                                        echo "\t\t\t\t<p>Akcja</p><input type='text' class='action' value='".$section['action'][0]."'>\n";
+                                    }
+                                    elseif(in_array($type, [ "date" ])) {
+                                        echo "\t\t\t\t<input type='hidden' class='$type' value='".$section[$type][0]."'>\n";
+                                        echo "\t\t\t\t<input type='text' class='options' value='".$section['options'][0]."' placeholder='".localize("more-options")."'>\n";
+                                    }
+                                    elseif(in_array($type, [ "string" ])) {
+                                        $text = str_replace("'", "&#39;", $section[$type][0]);
+                                        echo "\t\t\t\t<input type='hidden' class='$type' value='".$text."'>\n";
+                                        if(!is_string($options = $section["options"][0])) { $options = ""; };
+                                        echo "\t\t\t\t<input type='text' class='options' value='".$options."' placeholder='".localize("more-options")."'>\n";
+                                    }
+                                    elseif($type == "code") {
+                                        $text = str_replace("'", "&#39;", $section['code'][0]);
+                                        echo "\t\t\t\t<textarea class='code'>".$text."</textarea>\n";
                                     }
                                     elseif($type == "text" || $type == "textarea") {
 										if($type == "textarea") { echo "\t\t\t\t<input type='hidden' class='format' value='".$section['format'][0]."'>\n"; }; // Complete with jQuery
-                                        echo "\t\t\t\t<div class='text'>";
+                                        echo "\t\t\t\t<div class='text'>\n";
 										foreach(array_keys($section['text'][0]) as $language) {
-											echo "<textarea class='$language'>".$section['text'][0][$language][0]."</textarea>";
-                                            
+                                            $text = $section['text'][0][$language][0];
+                                            $text = str_replace("'", "&#39;", $text);
+                                            $text = str_replace("  ", "&nbsp; ", $text);
+											echo "\t\t\t\t\t<textarea class='$language'>".$text."</textarea>\n";
 										};
-										echo "</div>\n";
+										echo "\t\t\t\t</div>\n";
                                     }
                                     elseif($type == "table") {
                                         echo "\t\t\t\t<div class='table'>\n";
@@ -216,7 +257,7 @@
             <div id='popup_container'>
                 <div id='tree' class='popup'>
                     <nav>
-                        <p>Browser</p>
+                        <p><?php echo localize("file-browser"); ?></p>
                         <div class='buttons'>
                             <button class='cancel'><span class='fi-x'></span></button>
                         </div>
@@ -228,16 +269,19 @@
                     <div id='list'>
                         <details class='folder enabled' open>
                             <summary path='<?php echo $root; ?>'>root</summary>
-                            <?php htmlTree($root, false, "draft,xml,template", $ini_hidden); ?>
+                            <?php
+                                //htmlTree($root, false, "draft,xml,template", $ini_hidden);
+                                htmlTree($root, false, "draft,xml,template", false);
+                            ?>
                         </details>
                     </div>
                     <div id='input'>
                         <input type='text' id='file' value='' placeholder="Filename">
-                        <button class='confirm'>OK</button>
+                        <button class='confirm'><?php echo localize("ok-label"); ?></button>
                     </div>
                 </div>
             </div>
-
+        
         </main>
         <aside>
             <form id='save' action='xable_creator.php?save=<?php echo $xml_path; ?>' method='post'>
@@ -246,8 +290,12 @@
             <div id='code'><p></p></div>
         </aside>
 
-        <script src='script/xable_creator.js'></script>
-        
+        <?php
+            if(isset($_SESSION["show_popup"]) && $_SESSION["show_popup"] != "") {
+                echo "<input type='hidden' id='show_popup' value='".$_SESSION["show_popup"]."'>\n";
+                unset($_SESSION["show_popup"]);
+            };
+        ?>
 	</body>
 </html>
 

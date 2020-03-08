@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>download-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Pobierz</pl>
+				<en>Download</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-preview</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Brak podglądu</pl>
+				<en>No preview</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>contents-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Treść</pl>
+				<en>Contents</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>document-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dokument</pl>
+				<en>Document</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-image</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj obrazek</pl>
+				<en>Add image</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-images</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj obrazki</pl>
+				<en>Add images</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>delete-image</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuń obrazek</pl>
+				<en>Delete image</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-file</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj plik</pl>
+				<en>Add file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-files</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj pliki</pl>
+				<en>Add files</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>delete-file</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuń plik</pl>
+				<en>Delete file</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-left</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Przesuń w lewo</pl>
+				<en>Move left</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-right</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Przesuń w prawo</pl>
+				<en>Move right</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>video-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Video</pl>
+				<en>Video</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>video-link</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Link do video</pl>
+				<en>Video link</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>add-video-link</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj link</pl>
+				<en>Add video link</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>remove-video-link</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuń link do video</pl>
+				<en>Remove video link</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>video-input</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wklej link do video (np. YouTube)</pl>
+				<en>Paste link to video (e.g. YouTube)</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

@@ -37,22 +37,22 @@ $(document).ready(function() {
         new_pass = $("#new_password").val();
         confirm_pass = $("#confirm_password").val();
         if(current_pass.length == 0) {
-            infoPopup("Musisz podać aktualne hasło");
+            infoPopup(LOCALIZE["no-current-password"]); //Musisz podać aktualne hasło
             $("#current_password").focus();
             return false;
         }
         else if(new_pass.length < 6) {
-            infoPopup("Nowe hasło jest za krótkie");
+            infoPopup(LOCALIZE["new-password-too-short"]); //Nowe hasło jest za krótkie
             $("#new_password").focus();
             return false;
         }
         else if(new_pass != confirm_pass) {
-            infoPopup("Podane hasła różnią się");
+            infoPopup(LOCALIZE["different-passwords"]); //Podane hasła różnią się
             $("#confirm_password").focus();
             return false;
         }
         else if(new_pass == current_pass) {
-            infoPopup("Obecne i nowe hasło są takie same");
+            infoPopup(LOCALIZE["same-passwords"]); //Obecne i nowe hasło są takie same
             $("#new_password").focus();
             return false;
         }
@@ -75,7 +75,7 @@ $(document).ready(function() {
     // ==========================================
         
     if($("#redirect").length) {
-        location.href = $("#redirect").val() + "?popup=" + encodeURIComponent("Hasło zostało zmienione|done");
+        location.href = $("#redirect").val() + "?popup=" + encodeURIComponent(LOCALIZE["password-changed"] + "|done"); //Hasło zostało zmienione
     }
     else if($("#popup").length) {
         popup = $("#popup").val().split("\|");
@@ -100,7 +100,7 @@ $(document).ready(function() {
     // ==========================================
     
     $("#update_output").click(function() {
-        alert("Funckja niedostępna");
+        alert("Funckja niedostępna"); //Funckja niedostępna
     });
     
 });

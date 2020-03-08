@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>xml-preview-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Podgląd kodu XML</pl>
+				<en>XML code preview</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>file-explorer-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Menedżer plików</pl>
+				<en>File Explorer</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>creator-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Konstruktor</pl>
+				<en>Creator</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>users-groups-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Użytkownicy i grupy</pl>
+				<en>Users & groups</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>update-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Aktualizacja</pl>
+				<en>Update</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>advanced-tools-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Narzędzia zaawansowane</pl>
+				<en>Advanced tools</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>site-backup</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Kopia zapasowa</pl>
+				<en>Backup</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>bug-report</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zgłoś błąd</pl>
+				<en>Report an error</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

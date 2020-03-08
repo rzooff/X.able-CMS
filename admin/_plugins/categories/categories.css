@@ -1,0 +1,49 @@
+/* ================================== */
+/*              Portfolio             */
+/* ================================== */
+
+article ._categories_list table tr td:nth-of-type(2),
+article ._categories_max > * {
+    display: none;
+}
+
+/* ================================== */
+/*               Project              */
+/* ================================== */
+
+#popup_container .categories {
+    text-align: left;
+    text-align: left;
+    padding: 0 30px;
+}
+
+#popup_container .categories label {
+    display: block;
+}
+
+#popup_container .categories input {
+    width: auto;
+    margin-right: 5px;
+}
+
+article ._category input.string {
+    display: none;
+}
+
+article ._category .category_items {
+    margin: 10px 0;
+}
+
+article ._category label {
+    padding: 5px 10px;
+    margin: 2px;
+    border: 1px solid #888;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+article ._category label:hover {
+    background-color: #888;
+    color: #fff;
+}

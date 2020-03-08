@@ -1,0 +1,94 @@
+@media all and (max-width: 1000px) {
+    body { min-width: auto; }
+
+    form header .buttons > i.help { display: none; }
+    form header .buttons button { min-width: auto; width: auto; }
+    #toogle_mobile_menu {
+        display: block;
+        position: absolute;
+        left: 100%;
+        top: 0;
+        
+        width: 60px;
+        height: 60px;
+        
+        font-size: 1.9em;
+        background-color: #323c3f;
+        border-radius: 0;
+    }
+    #toogle_mobile_menu:hover { opacity: 1; }
+    
+    #toogle_mobile_menu.visible {
+        background-color: #46d6ce;
+        background-color: #fff;
+        color: #323c3f;
+    }
+    
+    nav {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: auto;
+        min-height: 100%;
+        z-index: 9;
+        /* box-shadow: 0 0 20px rgba(0,0,0,0.5); */
+    }
+    nav .nav_container { height: auto; }
+        
+    nav h1 { height: 60px; padding-top: 5px; }
+    
+    form#cms header {
+        padding-left: 60px;
+        height: 60px;
+    }
+    header .buttons { top: 5px; }
+    header .float_buttons { top: 15px; }
+    
+    .pull_down { margin: 0; }
+    #menu_user { left: 60px; }
+    #menu_notifications { left: 100px; }
+    .pull_down span { font-size: 2.0em; padding: 15px; }
+    
+    footer { width: 100%; text-align: center; }
+    footer span.divide {
+        display: block;
+        height: 1px;
+        margin-bottom: 5px;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    #outputs .header { margin: 0; }
+    #outputs input, #outputs .label { display: none; }
+}
+
+@media all and (max-width: 500px) {
+    #lang p, #lang span,
+    #menu_notifications,
+    form header .buttons .publisher_only { display: none; }
+    form header .buttons .publish { display: inherit; }
+    
+    form article { margin: 10px 0; padding: 20px 10px; }
+    header .buttons, article .buttons { right: 10px; }
+    header .buttons { padding-right: 0; }
+    header .float_buttons { right: 0; padding-right: 8px; }
+    #lang { right: 10px; }
+    
+    h2, #path_info, .show_info { padding-left: 10px; }
+    
+    article .buttons button { height: 25px; width: 25px; padding: 0; }
+    article h3 { font-size: 1.0em; }
+    #popup_box { margin: 0; }
+    #popup_container { z-index: 9; }
+    #popup_box { width: 100%; }
+    #info_box { width: 260px; margin-left: -130px; margin-top: 30px; }
+    
+    article div.set label { padding: 5px; }
+    
+    #output { font-size: 0.85em; }
+}
+
+@media all and (max-height: 800px) {
+    #outputs .header { margin: 0; }
+    #outputs input, #outputs .label { display: none; }
+}

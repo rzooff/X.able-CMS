@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>enter-email</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wpisz poprawny adres email</pl>
+				<en>Enter valid email address</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>send-skip-buttons</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wyślij,Pomiń</pl>
+				<en>Send,Skip</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>send-cancel-buttons</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wyslij,Anuluj</pl>
+				<en>Send,Cancel</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>send-info-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Wyślij informację do użytkownika</pl>
+				<en>Send info to user</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>recipient-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Adresat</pl>
+				<en>Recipient</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>your-message</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Twoja wiadomość</pl>
+				<en>Your message</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

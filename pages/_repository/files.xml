@@ -16,26 +16,19 @@
 			<set>files</set>
 		</delete>
 	</_file_manager>
-	<page_link>
-		<active_link>
-			<type>string</type>
-			<disabled>true</disabled>
-			<string>admin/repository/files.php</string>
-		</active_link>
-	</page_link>
 	<multi_folder>
 		<name>
 			<type>text</type>
 			<label>Nazwa</label>
 			<text>
-				<pl>Folder</pl>
+				<pl>Załączniki</pl>
 				<en>Folder</en>
 			</text>
 		</name>
 		<files>
 			<type>media</type>
 			<media>
-				<files>media/_files/Xable_CMS_3.0_instrukcja_PL.pdf</files>
+				<files>media/_files</files>
 			</media>
 			<set>files</set>
 		</files>

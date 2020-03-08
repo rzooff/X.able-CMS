@@ -70,13 +70,13 @@ article button {
 }
 
 #code .remove {
-    color: #888888;
+    color: #888;
     cursor: pointer;
 }
 #code .remove:hover { text-decoration: underline; }
 
 #changelog span {
-    color: #888888;
+    color: #888;
     opacity: 0.75;
     cursor: pointer;
 }
@@ -96,4 +96,4 @@ article button {
 
 #popup_container #log_preview { width: 80%; margin: 5% auto; }
 #popup_container #log_preview form { height: 70vh; overflow-y: scroll; }
-#popup_container #log_preview form p { border: 1px dashed #000000; border-radius: 3px; padding: 10px; }
+#popup_container #log_preview form p { border: 1px dashed #000; border-radius: 3px; padding: 10px; }

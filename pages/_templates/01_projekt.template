@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+
+	<header>
+		<_category>
+			<type>string</type>
+			<label>Kategoria</label>
+			<description>_categories: pages/architektura.xml</description>
+			<string></string>
+			<options></options>
+		</_category>
+		<date>
+			<type>date</type>
+			<date>2019-02-01</date>
+			<options></options>
+		</date>
+		<title>
+			<type>text</type>
+			<label>Tytuł</label>
+			<text>
+				<pl></pl>
+				<en></en>
+				<de></de>
+			</text>
+		</title>
+		<text>
+			<type>textarea</type>
+			<label>Opis</label>
+			<format>*</format>
+			<text>
+				<pl></pl>
+				<en></en>
+			</text>
+		</text>
+	</header>
+
+	<gallery>
+		<images>
+			<type>media</type>
+			<media>
+				<gallery>@folder/@filename</gallery>
+			</media>
+			<set>gallery</set>
+		</images>
+	</gallery>
+
+</xable>

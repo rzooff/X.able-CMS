@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>browse-file-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz istniejący dokument</pl>
+				<en>Select existing document</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>browse-folder-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz istniejący folder</pl>
+				<en>Select existing folder</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>calendar-auto-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Data wpisywana jest automatycznie przy tworzeniu posta</pl>
+				<en>The date is set automatically on creating a new post</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>calendar-input-info</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wybierz datę w kalendarzu</pl>
+				<en>Choose a date on the calendar</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>password-change-failed-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>BŁĄD![br]Zmiana hasła nie powiodła się.</pl>
+				<en>ERROR![br]Password change failed.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>message-send-failed-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>BŁĄD![br]Wsyłanie wiadomości nie powiodło się.[br]Spróbuj jeszcze raz za chwilę.</pl>
+				<en>ERROR![br]Failed to send message.[br]Please try again in a moment.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>reset-password-link-sent-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Link aktywacyjny został wysłany na Twój adres e-mail.[br]Sprawdź pocztę.[br][br]Jeżeli nie możesz odnaleźć tej wiadomości, sprawdź folder ze spamem.</pl>
+				<en>An activation link has been sent to your email address.[br]Check your mailbox.[br][br]If you can't find this message, check the spam folder.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>no-server-email-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>BŁĄD![br]W ustawieniach nie wpisano emaila do obsługi przez serwer.[br]Skontaktuj się z administratorem strony.</pl>
+				<en>ERROR![br]No server support email specified in site settings.[br]Contact the site administrator.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>reset-password-message-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Aby zmienić swoje hasło kliknij na poniższy link lub skopiuj go i wklej w pasek adresu przeglądarki:[br]@reset_password_link[br]Ten link jest aktywny tylko przez 24h od wysłania tego maila.[br][br]Jeśli nie chcesz zmieniać hasła zignoruj tego maila.</pl>
+				<en>To change your password click on the link below or copy and paste it into your browser's address bar:[br]@reset_password_link[br]This link is active only for 24h since sending this email.[br][br]If you don't won't to reset your password, ignore this email.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>reset-password-subject</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>[X.able CMS] Resetowanie hasła użytkownika</pl>
+				<en>[X.able CMS] User password reset</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>reset-password-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Na Twój adres email zostanie wysłany link pozwalający na zmianę hasła do panelu.[br]Będzie on aktywny tylko przez 24h od wysłania wiadomości.[br][br]Czy na pewno chcesz kontynuować?</pl>
+				<en>Password reset link will be sent to your email.[br]This link will be active for 24h only![br][br]Are you sure to continue?</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>bbcode-style-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>&lt;span class="title"&gt;Formatowanie w standardzie BBCode&lt;/span&gt;[br]Aby dodać formatowanie, zaznacz tekst i naciśnij odpowiedni guzik.[br]Aby usunąć znaczniki BBCode, zaznacz tekst i naciśnij guzik "Usuń formatowanie".[br][br]&lt;span class="title"&gt;Przykłady:&lt;/span&gt;[br]&lt;span class="code"&gt;[b]&lt;/span&gt;tekst&lt;span class="code"&gt;[/b]&lt;/span&gt; -&gt; &lt;b&gt;tekst&lt;/b&gt;[br]&lt;span class="code"&gt;[url=&lt;/span&gt;http://google.com&lt;span class="code"&gt;]&lt;/span&gt;link&lt;span class="code"&gt;[/url]&lt;/span&gt; -&gt; &lt;a href="http://google.com" target="_blank"&gt;link&lt;/a&gt;[br]&lt;span class="code"&gt;[*]&lt;/span&gt;tekst -&gt; •tekst</pl>
+				<en>&lt;span class="title"&gt;Formatting in BBCode&lt;/span&gt;[br]To add formatting, select the text and then click specified button.[br]To remove BBCode tags, select the text and press the "Remove formatting" button.[br][br]&lt;span class="title"&gt;Examples:&lt;/span&gt;[br]&lt;span class="code"&gt;[b]&lt;/span&gt;text&lt;span class="code"&gt;[/b]&lt;/span&gt; -&gt; &lt;b&gt;text&lt;/b&gt;[br]&lt;span class="code"&gt;[url=&lt;/span&gt;http://google.com&lt;span class="code"&gt;]&lt;/span&gt;link&lt;span class="code"&gt;[/url]&lt;/span&gt; -&gt; &lt;a href="http://google.com" target="_blank"&gt;link&lt;/a&gt;[br]&lt;span class="code"&gt;[*]&lt;/span&gt;text-&gt; •text</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>preview-mode-full-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>&lt;span class="title fi-rewind"&gt; Przywróć poprzednią wersję&lt;/span&gt;[br]Poprzednia wersja stanie się na powrót wersją opublikowaną.[br]Aktualna wersja publiczna stanie się wersją roboczą (widoczną w edytorze).[br]Jeśli wcześniej istniała już wersja robocza, to zostanie ona nadpisana.[br]Niezapisane zmiany zostaną anulowane.[br][br]&lt;span class="title fi-prohibited"&gt; Cofnij publikację&lt;/span&gt;[br]Aktualna wersja publiczna stanie się wersją roboczą (widoczną w edytorze).[br]Jeśli wcześniej istniała już wersja robocza, to zostanie ona nadpisana.[br]Dokument nie będzie posiadał wersji widocznej na stronie.[br]Niezapisane zmiany zostaną anulowane.[br][br]&lt;span class="title fi-trash"&gt; Odrzuć nieopublikowane zmiany&lt;/span&gt;[br]Usunięta zostanie wersja robocza, wraz z ewentualnymi nowymi plikami.[br]Niezapisane zmiany zostaną anulowane.[br][br]&lt;span class="title fi-check"&gt; Publikuj&lt;/span&gt;[br]Zapisz / zatwierdź wszystkie zmiany i publikuj na stronie.[br][br]&lt;span class="title"&gt;Zapisz&lt;/span&gt;[br]Zmiany zostaną zapisane w wersji roboczej, niewidocznej na stronie.[br][br]&lt;span class="title"&gt;Anuluj&lt;/span&gt;[br]Odrzuć wszystkie niezapisane zmiany.[br][br]&lt;d&gt;Dostęp do poszczególnych opcji zależy od uprawnień danego użytkownika&lt;/d&gt;</pl>
+				<en>&lt;span class=\"title fi-rewind\"&gt; Revert previous version&lt;/span&gt;[br]The previous version will go back to the published version.[br]The current public version will become a draft version (visible in the editor).[br]If there is already a draft version, it will be overwritten.[br][br]&lt;span class=\"title fi-prohibited\"&gt; Unpublish&lt;/span&gt;[br]The current public version will become the working version (visible in the editor).[br]If there is already a working version, it will be overwritten.[br]The document will not be visible on the website.[br]Any unsaved changes will be canceled.[br][br]&lt;span class=\"title fi-trash\"&gt; Discard unsaved changes&lt;/span&gt;[br]The draft will be deleted, along with any new uploaded files.[br]Any unsaved changes will be canceled.[br][br]&lt;span class=\"title fi-check\"&gt; Publish&lt;/span&gt;[br]Save / approve all changes and publish on the page.[br][br]&lt;span class=\"title\"&gt;Save&lt;/span&gt;[br]The changes will be saved in a draft varsion - not visible on the webpage.[br][br]&lt;span class=\"title\"&gt;Cancel&lt;/span&gt;[br]Cancel all unsaved changes.[br][br]&lt;d&gt;Access to individual options depends on the user's permissions&lt;/d&gt;</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>preview-mode-simple-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>&lt;span class="title fi-rewind"&gt; Przywróć poprzednią wersję&lt;/span&gt;[br]Poprzednia wersja stanie się na powrót wersją opublikowaną.[br]Aktualna wersja publiczna stanie się wersją roboczą (widoczną w edytorze).[br]Jeśli wcześniej istniała już wersja robocza, to zostanie ona nadpisana.[br][br]&lt;span class="title"&gt;Publikuj&lt;/span&gt;[br]Zapisz zmiany i publikuj na stronie.[br][br]&lt;span class="title"&gt;Anuluj&lt;/span&gt;[br]Odrzuć wszystkie niezapisane zmiany.[br][br]&lt;d&gt;Dostęp do poszczególnych opcji zależy od uprawnień danego użytkownika&lt;/d&gt;</pl>
+				<en>&lt;span class=\"title fi-rewind\"&gt; Revert previous version&lt;/span&gt;[br]The previous version will go back to the published version.[br]The current public version will become a draft version (visible in the editor).[br]If there is already a draft version, it will be overwritten.[br][br]&lt;span class=\"title fi-check\"&gt; Publish&lt;/span&gt;[br]Save / approve all changes and publish on the page.[br][br]&lt;span class=\"title\"&gt;Cancel&lt;/span&gt;[br]Cancel all unsaved changes.[br][br]&lt;d&gt;Access to individual options depends on the user's permissions&lt;/d&gt;</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>basic-mode-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>&lt;span class="title"&gt;Publikuj&lt;/span&gt;[br]Zapisz zmiany i publikuj na stronie.[br][br]&lt;span class="title"&gt;Anuluj&lt;/span&gt;[br]Odrzuć wszystkie niezapisane zmiany.</pl>
+				<en>&lt;span class=\"title fi-check\"&gt; Publish&lt;/span&gt;[br]Save / approve all changes and publish on the page.[br][br]&lt;span class=\"title\"&gt;Cancel&lt;/span&gt;[br]Cancel all unsaved changes.</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>table-help-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Aby edytować tabelę, wykonaj "prawy klik" na nagłówku wiersza lub kolumny</pl>
+				<en>To edit a table, perform a "right click" on a row or column header</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>table-csv-html</string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl>Wpisy zapisywane są w kolejności alfabetycznej, wg pierwszej kolumny[br]Aby usunąć wiersz, kliknij na pole z numerem wiersza</pl>
+				<en>Entries are in alphabetical order, according to the first column[br]To remove a row, click on the row number field</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

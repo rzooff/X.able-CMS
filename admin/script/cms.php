@@ -7,6 +7,93 @@
 // build: 20161006
 // ===================================================
 
+    function getCmsUrl() {
+    // -----------------------------------
+    // RETURNS: <string> CMS directory URL
+    // -----------------------------------
+        return $_SERVER['SERVER_NAME'].dirname($_SERVER['PHP_SELF'])."/";
+    };
+
+// ===================================================
+//                     LOCALIZE
+// ===================================================
+        
+    function localize($key) {
+    // -----------------------------------
+    // $key = <string>
+    // -----------------------------------
+    // RETURNS: <string> Localized text
+    // -----------------------------------
+        $val = $_SESSION['localize'][$key];
+        if(is_string($val) && $val != "") {
+            return $val;
+        }
+        else {
+            return $key;
+        }
+    };
+
+    function localizeJs($key) {
+    // -----------------------------------
+    // $key = <string>
+    // -----------------------------------
+    // RETURNS: <string> With special chars converted from HTML/BBCode to UTF-8
+    // -----------------------------------
+        if(is_string($key)) {
+            return str_replace("&#39;", "\u0027", localize($key));
+        }
+    };
+
+    function exportLocalization() {
+    // -----------------------------------
+    // Export localization data to js
+    // -----------------------------------
+        echo "\n";
+        echo "\t\t<script>\n";
+        echo "\t\t\tvar LOCALIZE = { ";
+        foreach(array_keys($_SESSION['localize']) as $key) {
+            $translation = $_SESSION['localize'][$key];
+            $translation = str_replace("\"", "\\\"", $translation);
+            $translation = str_replace("&#39;", "\u0027", $translation);
+            //echo "\t\t\t\t\"".$key."\": \"".$translation."\",\n";
+            echo "\"".$key."\": \"".$translation."\", ";
+        }
+        echo "\t\t\t};\n";
+        echo "\t\t</script>\n";
+    };
+
+    function loadLocalization($folder) {
+    // -----------------------------------
+    // $folder = <string> localization folder path
+    // -----------------------------------
+    // Reset & Load localization data to $_SESION variables
+    // -----------------------------------
+        $_SESSION['localize'] = [];
+        $_SESSION['dictionary'] = [];
+
+        foreach(listDir($folder, "xml") as $file) {
+            $xml = loadXml("$folder/$file");
+            foreach($xml['multi_sentence'] as $sentence) {
+                $key = $sentence['key'][0]['string'][0];
+                $translation = $sentence['translation'][0]['text'][0][ $_SESSION['admin_lang'] ][0];
+                if(strstr($key, "html")) {
+                    $translation = str_replace("&gt;", ">", $translation);
+                    $translation = str_replace("&lt;", "<", $translation);
+                    $translation = str_replace("\\\"", "\"", $translation);
+                }
+                $translation = str_replace("'", "&#39;", $translation);
+                $translation = str_replace("[br]", "<br>", $translation);
+                if(substr($file, 0 , 1) == "_") {
+                    if(trim($translation) == "") { $translation = $key; };
+                    $_SESSION['dictionary'][] = $key.";".$translation;
+                }
+                else {
+                    $_SESSION['localize'][$key] = $translation;
+                };
+            };
+        };
+    };
+
 // ===================================================
 //                        LOG
 // ===================================================
@@ -31,7 +118,7 @@
             $title_row = array_shift($log_list);
         }
         else {
-            $log_list = array();
+            $log_list = [];
             $title_row = "Czas;Dokument;Akcja;Użytkownik";
         };
         // Log max length
@@ -58,32 +145,31 @@
     // RETURNS" <array> CMS content data
     // --------------------------------
         if(file_exists($path)) {
+            
             $file = array_map("trim", file($path));
-            $ini = array();
+            $ini = [];
             $label = false;
             foreach(array_keys($file) as $n) {        
-                $line = $file[$n];
+                $line = trim($file[$n]);
                 // ====== Navigation ======
                 if($type == "navigation") {
-                    if(substr($line, 0, 1) == ";") {} // comments;
-                    elseif(substr($line, 0, 5) == "[nav:" && substr($line, strlen($line) -1, 1) == "]") { // section
-                        if(count($items) > 0) {
-                            $ini[$label] = $icon."@".join(";", $items);
-                        };
-                        $label = substr($line, 5, strlen($line) - 6);
-                        $items = array();
-                        $icon = "";
+                    if(substr($line, 0, 1) == ";" || $line == "") {} // comments;
+                    elseif(preg_match("/^\[nav:(.*?)\]$/i", $line, $match)) { // "[nav:<label>]"
+                        $label = $match[1];
+                        $ini[$label] = [];
                     }
-                    elseif($label != false && count(split("=", $line)) > 1) { // properties
-                        $line = array_map("trim", split("=", $line));
+                    elseif(is_array($ini[$label]) && count(explode("=", $line)) > 1) {
+                        $line = array_map("trim", explode("=", $line));
                         $key = array_shift($line);
                         $val = join("=", $line);
-                        if($key == "icon") { $icon = $val; }
-                        elseif($key == "item") { $items[] = $val; };
-                    };
-                    // last line fix
-                    if($n == (count($file) - 1) && $label != false && $label != "") {
-                        $ini[$label] = $icon."@".join(";", $items);
+                        if(in_array($key, array( "item", "type" ))) {
+                            $keys = $key."s";
+                            if(!is_array($ini[$label][$keys])) { $ini[$label][$keys] = []; };
+                            $ini[$label][$keys][] = $val;
+                        }
+                        else {
+                            $ini[$label][$key] = $val;
+                        }
                     };
                 }
                 // ====== Other ======
@@ -95,8 +181,8 @@
                     elseif(substr($line, 0, 1) == "[" && substr($line, strlen($line) -1, 1) == "]") { // other section label
                         $label = false;
                     }
-                    elseif($label != false && count(split("=", $line)) > 1) {
-                        $item = array_map("trim", split("=", $line));
+                    elseif($label != false && count(explode("=", $line)) > 1) {
+                        $item = array_map("trim", explode("=", $line));
                         $key = array_shift($item);
                         $val = join("=", $item);
                         if($type == "hidden") {
@@ -107,6 +193,7 @@
                         };
                     };
                 };
+                
             };
             //arrayList($ini);
             return $ini;
@@ -114,36 +201,6 @@
         else {
             return false;
         };
-    };
-
-    function getFirstPath($nav_documents, $root) {
-    // --------------------------------
-    // $nav_documents = <array> Navigation data from xable.ini
-    // $root = <string> Site root path
-    // --------------------------------
-    // RETURNS: <string> First valid path from xable.ini navigation data
-    // --------------------------------
-        $first_path = false;
-        foreach($nav_documents as $nav) {
-            //echo "nav: $nav<br>\n";
-            $nav = split("@", $nav);
-            array_shift($nav); // Cut off icon data
-            foreach(split(";", join("@", $nav)) as $dat) {
-                if($first_path == false) {
-                    $dat = $root."/".array_shift(split("\|", $dat));
-                    if(path($dat, "filename") == "*" && file_exists(path($dat, "dirname")) && $listDir = listDir(path($dat, "dirname"), path($dat, "extension").",?")) {
-                        $first_path = array_shift($listDir);
-                        //echo "first: $first_path<br>\n";
-                    }
-                    elseif(file_exists($dat)) {
-                        $first_path = $dat;
-                        //echo "first: $first_path<br>\n";
-                    };
-                };
-            };
-        };
-        //echo "first OUT: $first_path<br>\n";
-        return $first_path;
     };
 
 // ===================================================
@@ -162,10 +219,10 @@
         $url = $_SERVER['REQUEST_URI'];
         if(substr($url, strlen($url) - 1) == "/") { $url = substr($url, 0, strlen($url) - 1); };
         if(!is_string(path($url, "extension")) || path($url, "extension") == "") {
-            $_SESSION['admin_folder'] = array_pop(split("/", $url));
+            $_SESSION['admin_folder'] = array_pop(explode("/", $url));
         }
         else {
-            $_SESSION['admin_folder'] = array_pop(split("/", path($url, "dirname")));
+            $_SESSION['admin_folder'] = array_pop(explode("/", path($url, "dirname")));
         };
         // ====== Check USER / GROUP authorization ======
 		$users_folder = "_users";
@@ -173,9 +230,9 @@
         if(is_string($logged_user)) {
             $groups = array_map("trim", file("$users_folder/.groups"));
             foreach($groups as $group) {
-                if(substr($group, 0, 1) != ";" && count($group = split(":", $group)) == 2) {
+                if(substr($group, 0, 1) != ";" && count($group = explode(":", $group)) == 2) {
                     $group_name = $group[0];
-                    $group_users = split(" ", trim($group[1]));
+                    $group_users = explode(" ", trim($group[1]));
                     if(in_array($logged_user, $group_users)) { $logged_group = $group_name; };
                 };
             };
@@ -199,5 +256,5 @@
         return $_SESSION['ini_file'];
     };
     // ====== USER & GROUP authorization / end ======
-	
+
 ?>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+
+	<header>
+		<title>
+			<type>text</type>
+			<label>Tytuł</label>
+			<text>
+				<pl></pl>
+				<en></en>
+				<de></de>
+			</text>
+		</title>
+		<text>
+			<type>textarea</type>
+			<label>Opis</label>
+			<format>*</format>
+			<text>
+				<pl></pl>
+				<en></en>
+				<de></de>
+			</text>
+		</text>
+	</header>
+
+	<categories>
+		<_categories_multi>
+			<type>option</type>
+			<checkbox>
+				<option>możliwość przydzielenia wielu kategorii</option>
+			</checkbox>
+			<selected>możliwość przydzielenia wielu kategorii</selected>
+		</_categories_multi>
+		<_categories_list>
+			<disabled>true</disabled>
+			<type>table</type>
+			<table>
+				<pl></pl>
+				<en></en>
+			</table>
+		</_categories_list>
+		<_categories_max>
+			<disabled>true</disabled>
+			<type>string</type>
+			<string></string>
+			<options></options>
+		</_categories_max>
+	</categories>
+
+</xable>

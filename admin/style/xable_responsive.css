@@ -1,0 +1,66 @@
+@media all and (max-width: 1280px) {
+    main { width: 100%; clear: both; }
+	aside {
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding-top: 30px;
+        width: 100%;
+        height: 100vh;
+        overflow-y: auto;
+        display: none;
+    }
+    aside #code { padding-bottom: 50px; }
+    #view_switch { display: inherit; }
+}
+
+@media all and (max-width: 800px) {
+    * {
+        font-size: 12px;
+        -webkit-text-size-adjust: 100%;
+    }
+    nav .logo { margin-left: 5px; }
+    nav label p, nav .logo, nav ul li { font-size: 14px; }
+    nav .menu_bar { z-index: 2; }
+    article { margin-left: 0; margin-right: 0; border-radius: 0; }
+    .format { text-align: left; }
+    .format label { margin: 0; width: 20px; border: none; }
+    .format input { margin-left: 1px; }
+    .format button.none { display: none; }
+    .edit_popup {
+        top: 0;
+        width: 100%;
+        padding: 10px;
+        padding-top: 80px;
+        height: 100%;
+    }
+    .edit_popup .file { top: 45px; left: 10px; }
+}
+
+@media all and (max-width: 600px) {
+    nav label p { padding: 7px 7px; }
+    #popup_container { overflow-y: scroll; }
+    #popup_container .popup { width: 100%; }
+    #working_info .popup,
+    #popup_container #log_preview,
+    #popup_container #add_log { width: 100%; margin-top: 30px; }
+    div.popup {
+        margin: 30px 0;
+        width: 100%;
+        border-radius: 0;
+    }
+    #popup_container #editor {
+        width: 100%;
+        margin: 30px 0;
+    }
+    .creator #tree input { width: 70vw; }
+    #new_user, #change_password { width: 100%; }
+    .users table button { padding: 5px; }
+    .users table td { padding: 0 3px; }
+    .users table .login { min-width: 40px; }
+    #browser td .more_options { padding: 3px 10px; }
+}
+
+@media all and (max-width: 370px) {
+    .creator article, .creator section { padding-top: 40px; }
+}

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<cookies_alert>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Pokazuj</option>
+			</checkbox>
+			<selected>Pokazuj</selected>
+		</active>
+		<text>
+			<type>textarea</type>
+			<label>Tekst</label>
+			<format>b,m,l</format>
+			<text>
+				<pl>Ta strona stosuje ciasteczka (cookies) w celach statystycznych.[br]Ciasteczka możesz zablokować w ustawieniach przeglądarki</pl>
+				<en>This site uses cookies for statistical purposes.[br]You can disable cookies in your browser settings.</en>
+			</text>
+		</text>
+		<close_label>
+			<type>text</type>
+			<label>Zamknij</label>
+			<description>Etykieta</description>
+			<text>
+				<pl>Zamknij</pl>
+				<en></en>
+			</text>
+		</close_label>
+		<close_icon>
+			<type>string</type>
+			<description>Ikona (pozostaw pole puste aby pokazywana była etykieta tekstowa)</description>
+			<string>ion-close-circled</string>
+		</close_icon>
+		<reset>
+			<type>button</type>
+			<label>Resetuj cookies</label>
+			<action>action:cookies-reset</action>
+		</reset>
+	</cookies_alert>
+</xable>

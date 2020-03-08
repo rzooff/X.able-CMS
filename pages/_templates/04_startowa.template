@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+
+	<header>
+		<title>
+			<type>text</type>
+			<label>Tytuł</label>
+			<text>
+				<pl></pl>
+				<en></en>
+				<de></de>
+			</text>
+		</title>
+		<background>
+			<type>media</type>
+			<label>Obraz w tle</label>
+			<media>
+				<image>media/@filename</image>
+			</media>
+			<set>image</set>
+		</background>
+	</header>
+
+</xable>

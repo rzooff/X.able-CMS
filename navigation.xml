@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_page>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywna</option>
+			</checkbox>
+			<selected>Aktywna</selected>
+		</active>
+		<title>
+			<type>text</type>
+			<label>Nazwa podstrony</label>
+			<text>
+				<pl>Strona główna</pl>
+				<en></en>
+				<de></de>
+			</text>
+		</title>
+		<href>
+			<type>string</type>
+			<label>Odnośnik</label>
+			<string>start</string>
+			<options></options>
+		</href>
+	</multi_page>
+	<multi_page>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywna</option>
+			</checkbox>
+			<selected>Aktywna</selected>
+		</active>
+		<title>
+			<type>text</type>
+			<label>Nazwa podstrony</label>
+			<text>
+				<pl>Jaki jest X.able?</pl>
+				<en></en>
+				<de></de>
+			</text>
+		</title>
+		<href>
+			<type>string</type>
+			<label>Odnośnik</label>
+			<string>about</string>
+			<options></options>
+		</href>
+	</multi_page>
+	<multi_page>
+		<active>
+			<type>option</type>
+			<checkbox>
+				<option>Aktywna</option>
+			</checkbox>
+			<selected>Aktywna</selected>
+		</active>
+		<title>
+			<type>text</type>
+			<label>Nazwa podstrony</label>
+			<text>
+				<pl>Pobieranie i kontakt</pl>
+				<en></en>
+				<de></de>
+			</text>
+		</title>
+		<href>
+			<type>string</type>
+			<label>Odnośnik</label>
+			<string>download</string>
+			<options></options>
+		</href>
+	</multi_page>
+</xable>

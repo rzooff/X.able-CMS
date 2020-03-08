@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string></string>
+		</key>
+		<translation>
+			<type>textarea</type>
+			<format></format>
+			<text>
+				<pl></pl>
+				<en></en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>

@@ -1,7 +1,7 @@
 2016-03-02, 16:00:00
-    V:      2.0
-	Info:	New tag <disabled>, values: "true" lub "false". It gives the ability to block section editing. Disabled fields content have opacity 0.5.
-	Files:	script/cms.js, _xml.php
+    Info:    New tag <disabled>, values: "true" lub "false". It gives the ability to block section editing. Disabled fields content have opacity 0.5.
+    Info:    Version changed to 2.0
+    Files:    script/cms.js, _xml.php
     
 2016-03-02, 18:00:00
     Info:   Automatic open first possible page to edit (very useful for account with limited access).
@@ -21,14 +21,14 @@
     
 2016-03-09, 12:00:00
     Info:   Major update listing directories & files functions, fix file/dir recognition bug in listDir().
-	Info:	Major update path(): added filesize ("size") and modification date/time ("modified").
+    Info:   Major update path(): added filesize ("size") and modification date/time ("modified").
     Info:   New function: htmlTree(): Build html tree of specified path files & folders.
-	Files:  script/functions.php
+    Files:  script/functions.php
     
 2016-03-09, 13:30:00
     Info:   Adden "protected" data type to xable.ini & loadIni(). Needed for Creator.
-	Files:  xable.ini, script/functions.php
-	
+    Files:  xable.ini, script/functions.php
+    
 2016-03-09, 17:30:00
     Info:   Added auto fix invalid or none (eg. from Creator) media set setting.
 	Info:	Fixed media box bug in css.
@@ -128,20 +128,20 @@
     
 2016-04-16, 01:30:00
     Info:	New data type: table (full editable, support added to editor & creator modules) + some minor fixes
-    Info:   Version number changed to 2.3
+    Info:   Version changed to 2.3
     Files:	creator.php, _xml.php, style/colors.css, style/cms.css, style/creator.css, script/cms.js, script/creator.js, script/footer.js
     
 2016-06-16, 01:30:00
     Info:   Users editor enchanced with groups (.ini) file editor
     Info:   Many bug fixes
     File:   users.php, script/users.js, *
-    Info:   Version number changed to 2.4
+    Info:   Version changed to 2.4
     
 2016-07-01, 00:00:00
     Info:   New media type: Multiple files
     Info:   Users editor enchanced with groups (.ini) file editor
     Info:   Many bug fixes
-    Info:   Version number changed to 2.5
+    Info:   Version changed to 2.5
     Files:  *
     
 2016-08-02, 01:33:00
@@ -151,7 +151,7 @@
     Info:   Simplified style buttons show/hide
     Info:   Bug fixes in textrea content live preview (BBCode in js.)
     Info:   Cursor position & scroll position restore after textarea style edit
-    Info:   Version number changed to 2.6
+    Info:   Version changed to 2.6
     Files:  *
     
 2016-08-04, 01:00:00
@@ -368,6 +368,731 @@
 	Info:	Fixed installer in update mode will move old backups to new admin folder
 	Files:	_installer/install.php
 
+2017-02-20, 21:00:00
+	Info:	Dictionary updates
+	Files:	dictionary.csv
+
+2017-02-22, 23:14:38
+	Info:	Hide language change option on one-language page
+	Files:	modules/xml.php
+
+2017-03-01, 15:30:05
+	Info:	Login with Enter key hit (on browser stored login/pasword).
+	Info:	Disable open unsupported filepath (in editor).
+	Info:	New feature active_button, based on string type (open new location).
+	Info:	Disable warning outputs on default in functions.php.
+	Info:	Fixed typo in package create sript (update) - unzip filename changed to: unzip.php.txt
+	Files:	login.php, index.php, xable_update.php, modules/xml.php, script/functions.php, script/cms.js
+
+2017-03-04, 15:36:12
+	Info:	Dictionary update.
+	Info:	Minor fix in noBBCode - now replacing [br] with space
+	Info:	Version year in footer updates automaticly
+	Files:	dictionary.csv, script/functions.php, script/footer.js
+
+2017-03-05, 22:06:24
+	Info:	Fixed problem with ' character in text field.
+	Files:	modules/xml.php
+
+2017-03-06, 23:10:28
+	Info:	Fixed bug in formatting options in Creator module.
+	Info:	New functions in XML php library: getID - convert string to id (no spaces, special characters etc), getVal - get values from article array
+	Files:	script/xable_creator.js, script/xml.php
+
+2017-03-09, 12:37:43
+	Info:	Fixed bug in Users module -> password testing.
+	Info:	Dictionary update.
+	Info:	Fixed unzip safe filename unzip.php -> unzip.php.txt in Xable Installer
+	Files:	disctionary.csv, script/xable_users.js, _installer/install.php
+
+2017-03-17, 19:17:47
+	Info:	Uploads fields number limits workaround - unused will be removed. User is also informet if exceed the limit.
+	Info:	FIxes related to special characters in string/text/textarea fields: '<>
+	Files:	xable_creator.php, modules/xml.php, script/cms.js
+
+2017-03-18, 00:30:55
+	Info:	New data types: code & button
+	Files:	xable_creator.php, modules/xml.php, style/cms.css, style/xable_creator.css, script/xable_creator.js
+
+2017-03-20, 00:28:50
+	Info:	Fixed language menu under article fileld bug.
+	Files:	style/index.css
+
+2017-03-20, 11:40:50
+	Info:	Automatic timeout logout feature (not included in Advanced Modules)
+	Files:	xable.ini, script/cms.js, style/index.css
+
+2017-03-20, 15:48:15
+	Info:	Advanced tools modules translated to Polish.
+	Files:	xable_*.php, sctript/xable_*.js
+
+2017-03-21, 11:56:05
+	Info:	New feature in Creator module: Automatic empty lanuage content completion (with default language data)
+	Info:	Update: ";" accepted in tables, new BBCode alike style added: [semi]
+	Files:	modules/xml.php, script/cms.js, xable_creator.php, script/xable_creator.js
+
+2017-03-22, 17:29:26
+	Info:	Cosmetic changes - login/logout info added
+	Info:	Version changed to 3.1
+	Files:	login.php, _logout.php, script/cms.js
+
+2017-03-23, 01:36:39
+	Info:	Added multiple spaces in textarea support.
+	Info:	Made up a couple lack of polish translation cases in Users module
+	Files:	xable_creator.php, script/functions.php, script/xable_users.js
+
+2017-03-25, 23:43:21
+	Info:	New in xml functions set: getCode - revert xml stored code format to original source code.
+	Info:	Dictionary update.
+	Info:	Fixed bug in Creator module - lost code with html tags
+	Files:	dictionary.csv, script/xml.php, script/xable_creator.js
+
+2017-03-28, 19:28:48
+	Info:	Language management update.
+	Info:	Active Button feature update - unsaved changes alert/confirm, action types, use section inputs as form
+	Files:	index.php, modules/xml.php, script/cms.js, style/index.css
+
+2017-04-01, 00:51:48
+	Info:	New feature in Creator module: Automatic article/sections unifiy
+	Files:	xable_creator.php, script/xable_creator.js
+
+2017-04-05, 22:09:05
+	Info:	Added fix for dash character -> will be converted to std. minus character
+	Files:	script/cms.js
+
+2017-04-06, 23:17:48
+	Info:	Show "uploading..." popup.
+	Info:	Fixed file input lost content on user next click & cancel.
+	Info:	New feature in Creator module: Change all media pathes
+	Info:	Fixed problem with order change after image/file delete in media section
+	Files:	index.php, script/cms.js, xable_creator.php, script/xable_creator.js, style/cms.css
+    
+2017-04-10, 21:17:48
+    Info:   Update Users & Group module - prevent delete: last dev user, current group/user, non-empty group
+
+2017-04-19, 00:10:17
+	Info:	Fix in Creator module -> do not show "move files" info when new & old folder are the same.
+	Files:	script/xable_creator.js
+
+2017-04-28, 21:39:54
+	Info:	Dictionary update
+	Files:	dictionary.csv
+
+2017-05-04, 19:18:33
+	Info:	Added X.able favicon
+	Files:	browserconfig.xml, index.php, _favicon/*
+
+2017-05-07, 21:20:54
+	Info:	Fix for ignore leading enter in textarea by default
+	Files:	modules/xml.php
+
+2017-05-12, 13:58:42
+	Info:	Polish Creator module name changed to "Konstruktor"
+	Files:	xable_creator.php, xable_explorer.php, xable_update.php, xable_users.php, script/footer.js
+
+2017-09-16, 13:10:34
+	Info:	Aktualizacja słownika
+	Files:	dictionary.csv
+
+2017-09-22, 16:22:52
+	Info:	Dictionary update.
+	Info:	Action_button upated - new parameter: @filename, all paramenters works on any link type (not form only)
+	Files:	dictionary.csv, script/cms.js
+
+2017-10-27, 01:37:00
+    Info:   Version changed to 3.2beta
+    Info:   IMPORTANT - major changes in most files!
+	Info:	Added multilanguage localization feature in CMS panel.
+	Info:	Admin language is now set by xable.ini option.
+	Files:	*
+
+2017-10-31, 14:13:37
+	Info:	New php function: generatePassword. Generates random string maching specified length & allowed characters set.
+	Files:	script/functions.php
+
+2017-11-02, 20:41:53
+	Info:	PASSWORD RECOVERY (reset) system added. Can be turn on/off in xable.ini options
+	Files:	reset_password.php, login.php, script/reset_password.js, script/cms.php, style/password.css, style/login.css, xable.ini
+
+2017-11-03, 00:05:00
+	Info:	New option in xable.ini: Add new article below current on specified tags
+	Info:	Autofocus on first input in new article
+	Files:	xable.ini, script/cms.js
+
+2017-11-03, 11:55:00
+	Info:	New js string function: .killPL()
+	Files:	script/functions.js
+
+2017-11-06, 16:42:22
+	Info:	Dictionary updates.
+	Info:	New plugin: Categories.
+	Info:	Fixed regional characters in filename (new string function .makeID())
+	Files:	localization/_dictionary, _plugins/categories/*, script/functions.js, script/cms.js
+
+2017-11-09, 15:49:49
+	Info:	Depreciated php function split(), replaced with explode() in all php.files (due to php7+ standards).
+	Info:	Fixed PHP syntax warnings.
+	Files:	*.php, modules/*.php, script/*.php, _installer/install.php, _installer/unzip.php.txt
+
+2017-11-22, 20:12:35
+	Info:	selectRange js function moved from cms.js to function.js for further use on webpages.
+	Files:	script/functions.js, script/cms.js
+
+2017-12-17, 10:11:41
+	Info:	Website members LOGIN system & plugin.
+	Info:	Dictionary update.
+	Info:	Plugins system updated (load order by file type).
+	Info:	Added feature: _mailer.php (send mail for use with plugins).
+	Files:	../login.php, ../script/login.js, index.php, _mailer.php, _plugins/member_login/*, localization/*
+
+2017-12-19, 16:30:30
+	Info:	New function in functions.php: sendMail()
+	Info:	New function in functions.js: objectToXml()
+	Files:	script/functions.php, script/functions.js
+
+2018-02-01, 10:13:35
+	Info:	Development version off multi-depth navigation tree.
+	Info:	Important typo fixed in media/video form!
+	Info:	Force language option added to readXml function.
+	Info:	Some code cleanup.
+	Files:	modules/*.php, script/cms.js, script/xml.php
+
+2018-02-07, 18:39:14
+	Info:	New Navigation: Multi-depth (subpages) navigation tree.
+	Info:	Added file icons in navigation support (in .ini file, type = <type>).
+	Info:	Order file syntax changed (backward compatibility support) -Title added.
+	Info:	Auto update titles (header-title) on publish / remove (in order file).
+	Info:	Many minor updates & new common php functions in functions.php, xml.php, cms.php
+	Info:	Version changed to 4.0b
+	Files:	*
+
+2018-02-19, 04:28:00
+	Info:	User management fixes.
+	Info:	Update xmlTitle() php function - now it uses user/person first field too.
+	Files:	script/xml.php, _plugins/member_login/*
+
+2018-02-19, 23:40:04
+	Info:	Templates folder set in .ini for whole pages tree brench.
+	Files:	modules/nav.php, .users/*.ini
+
+2018-02-21, 10:17:50
+	Info:	Preview mode updated to work with mod_rewrite standards.
+	Files:	modules/nav.php, ../index.php, ../script/preview_mode.js, ../style_preview_mode.css
+
+2018-02-22, 16:03:42
+	Info:	"Page link" removed form libraries.
+	Files:	repository, ../pages/_library/*.xml
+
+2018-02-22, 16:06:09
+	Info:	Include website .htacces in installer.
+	Files:	_installer/install.php, xable_update.php
+
+2018-02-27, 13:41:46
+	Info:	Updated BBCode style functions.
+	Info:	Updated sendMail() function due to home.ol standards.
+	Info:	Changed filename format to support website users management.
+	Info:	Updated login - keep url from link (without popup)
+	Files:	script/functions.js, script/functions.php, script/cms.js, login.php, modules/_session_start.php
+
+2018-02-27, 13:46:05
+	Info:	Members_login plugin updated -> fully functional
+	Files:	../login.php, ../.login/users.xml, _plugins/members_login/*
+
+2018-03-02, 19:12:41
+	Info:	New xable login layout
+	Files:	login.php, style/login.css
+
+2018-03-07, 20:13:43
+	Info:	Added inactive links output in BBCode php function.
+	Files:	script/functions.php
+
+2018-03-19, 19:48:57
+	Info:	.login - fixed option: Auto add new user to first group.
+	Info:	Updated installer to support .order files.
+	Files:	../_login.php, xable_update.php
+
+2018-03-21, 18:09:07
+	Info:	Preview button updated -> open only page type documents.
+	Files:	../index.php, modules/nav.php, script/cms.js
+
+2018-03-22, 17:03:15
+	Info:	Php preview & edit disabled in xable_explorer.
+	Info:	Added dowload button in image preview popup.
+	Files:	xable_explorer.php, script/cms.js, style/index.css
+
+2018-03-29, 20:18:46
+	Info:	Fixed "dead" upload button in new post.
+	Info:	Some other fixes.
+	Info:	Updated zoom function (added download & gallery slides buttons)
+	Files:	script/cms.js, style/index.css
+
+2018-03-30, 16:28:40
+	Info:	Updates in users plugin.
+	Info:	Some cosmetic changes.
+	Files:	_pugins/members_login/*, localization/*, modules/xml.php, script/cms.js, style/colors.css, style/index.css, style/nav.css
+
+2018-03-30, 16:54:26
+	Info:	Updated fold long content script.
+	Files:	script/cms.js
+
+2018-04-05, 23:05:05
+	Info:	Layout update: interface facelifting, form resize to fit nav height, css cleanup.
+	Info:	Some minor language fixes.
+	Info:	Version changed to 4.0
+	Files:	script/cms.js, script/nav.js, style/*.css, _plugins/categories/categories.php, modules/header.php, modules/xml.php, localization/header.xml
+
+2018-04-06, 15:10:39
+	Info:	Responsive layout support added.
+	Info:	4.0 Layout update.
+    Info:   What's new in v4: Multi-level subpages tree, Plugins, Titles in navigation bar, New responsive layout
+	Files:	*
+
+2018-04-11, 19:16:11
+	Info:	Keep URL on login timeout
+	Files:	_logout.php, login.php, script/cms.js
+
+2018-04-11, 20:46:44
+	Info:	Fixed & updated search engine
+	Files:	index.php, search.php, script/nav.js, stype/show-log.css
+
+2018-04-12, 00:29:38
+	Info:	New feature: require header title/name filled.
+	Files:	script/cms.js, localization/alert.xml
+
+2018-04-12, 16:04:58
+	Info:	Fixed removeDir() php function - now deletes files without extensions.
+	Info:	PHP syntax cleanup: split() -> explode()
+	Info:	Update creator module to handle non xml extensions (eg: draft, template)
+	Files:	*.php, modules/*.php, script/*.php, script/xable_creator.js
+
+2018-04-13, 16:11:23
+	Info:	Deleted unused ini variable: link_subpages.
+	Info:	Added new ini variable: publish_plugin, allows to launch external php script on Publish
+	Files:	xable.ini, index.php, _publish.php
+
+2018-04-14, 14:29:52
+	Info:	Button support added to xml functions library
+	Files:	script/xml.php
+
+2018-04-15, 15:50:18
+	Info:	Nav groups fold/expand on click.
+	Info:	Autofold groups according to fold option in ini (navigation group).
+	Info:	Nav title with BBCode fix.
+	Files:	modules/nav.php, script/cms.js, script/nav.js
+
+2018-04-16, 14:12:45
+	Info:	Preview_button bug fixed & script moved to nav.js
+	Files:	script/cms.js, script/nav.js
+
+2018-04-16, 20:57:36
+	Info:	Added slide change (in zoom preview) with arrow keys
+	Files:	script/cms.js
+
+2018-04-24, 00:00:00
+	Info:	IMPORTANT CHANGE! Need to update website engine to support new .order!
+	Info:	Multilanguage navigation panel support -> .order file changed to xml format.
+	Info:	Version changed to 4.1
+	Files:	../index.php, index.php, modules/nav.php, modules/order.php, script/cms.js, script/nav.js, script/xml.php, style/cms.css
+
+2018-04-24, 17:27:21
+	Info:	Layout resize form script update
+	Files:	script/cms.js
+
+2018-04-25, 00:48:39
+	Info:	Many bug fixes in new order support & new page script.
+	Files:	_publish.php, _remove.php, modules/xml.php, script/cms.js, script/nav.js, script/xml.php
+
+2018-04-25, 19:43:54
+	Info:	setCookie() function added to functions.js.
+	Files:	script/functions.js, script/nav.js
+
+2018-04-26, 09:22:51
+	Info:	Fixed media upload help info typos.
+	Files:	modules/xml.php
+
+2018-04-28, 14:00:13
+	Info:	Responsive menu bug fixed.
+	Files:	script/nav.js
+
+2018-04-29, 11:51:15
+	Info:	Consider xable.ini excluded in Xable_Update panel.
+	Info:	Version changed to 4.11.
+	Files:	xable_update.php
+
+2018-04-30, 14:12:28
+	Info:	Advanced tools panels layout updated to match main CMS design.
+	Files:	style/xable_creator.css
+
+2018-05-07, 16:06:25
+	Info:	Keep current edit_language on publish.
+	Info:	External plugin launch on page remove fixed.
+	Files:	_publish.php, _remove.php, modules/form_xml.php, script/cms.js
+
+2018-05-09, 12:00:30
+	Info:	Updated Media location change Tool (in Creator panel) - moves all files to destination folder automatically.
+	Files:	xable_creator.php, script/xable_creator.js, localization/advanced.xml
+
+2018-05-11, 00:34:42
+	Info:	Huge Advanced Tools update: responsivity, multi post icons, code cleanup.
+    Info:   Version changed to 4.2b.
+	Files:	xable_*.php, modules/xable_*.php, style/xable_*.css, script/xable_*.js
+
+2018-05-18, 13:55:38
+	Info:	Localization update / fixes.
+	Info:	Change lang in url query.
+	Info:	Highlight new/clone container in Creator panel.
+	Info:	Fixed clear content in source instead of destination on article clone in Creator panel.
+	Files:	localization/_dictionary.xml, script/cms.js, xable_creator.php, script/xable_creator.js, style/xable_creator.css
+
+2018-05-18, 14:12:04
+	Info:	Preview button fixes for no draft-support pages.
+	Files:	modules/nav.php, script/nav.js
+    
+2018-11-23, 10:17:00
+	Info:	Backup in progress info added
+    Info:   Version set to non-beta: 4.2.
+	Files:	backup.php, script/backup.js, style/cms.css
+
+2018-12-13, 21:56:28
+	Info:	Added XML cleaner tool to Update panel (delete xml .bak & .prev versions).
+	Info:	Added job in progress info while installer creator is working - Update panel.
+	Files:	modules/xable_nav.php, localization/advanced.xml, style/xable_creator.css, script/xable_update.js, _tools/pages_versions_cleaner.php
+
+2018-12-31, 18:32:01
+	Info:	Fixed missed download button in zoom preview.
+	Files:	script/cms.js, style/index.css
+
+2019-01-02, 16:24:32
+	Info:	Added (max) subpages_depth option to xable.ini
+	Files:	xable.ini, modules/nav.php
+
+2019-01-02, 18:31:02
+	Info:	New tool in Creator Module: Make a template
+	Files:	modules/xable_nav.php, localization/advanced.xml, script/xable_creator.js
+
+2019-01-02, 22:34:30
+	Info:	Options autoupdate & support in unify article tool in Creator Module.
+	Info:	IMPORTANT typo fixed in functions.js!
+	Files:	localize/advanced.xml, script/xable_creator.js, script/functions.js
+
+2019-01-02, 23:55:24
+	Info:	Added navigation items couter feature.
+	Info:	Updated navigation to show current item on new page/group actions.
+	Files:	scrip/cms.js, script/nav.js
+
+2019-01-03, 23:54:19
+	Info:	New feature - fold nav groups if all items doesn't fit in a browser window.
+	Info:	Localization update.
+	Files:	script/nav.js, localization/advanced.xml
+
+2019-01-04, 15:45:46
+	Info:	Updated extractArchive() php function (allows to use current location with "").
+	Info:	New uniqueFilename() php function.
+	Info:	Zip/Unzip features added to Explorer module.
+	Files:	xable_explorer.php, script/xable_explorer.js, script/functions.php, localize/advanced.xml
+
+2019-01-06, 12:52:00
+	Info:	Improved responsive layout in Advanced Tools (fully operational on touch/mobile devices)
+	Files:	modules/xable_head.php, modules/xable_nav.php, style/xable_*.php, script/xable_nav.js, script/xable_explorer.js
+
+2019-01-07, 08:51:36
+	Info:	jQuery offset().top fix for iOS added to functions.js
+	Files:	script/functions.js
+
+2019-01-09, 16:51:46
+	Info:	Big update in CMS Update action in Update module - now it's simple & fast!
+	Files:	localize/advanced.xml, script/xable_update.js, xable_update.php
+
+2019-01-19, 23:58:00
+	Info:	New installer matching the new X.able layout, localization support, install script update.
+	Info:	Minor bug fixes in localization.
+	Files:	localization/tools.xml, localization/installer.xml, _installer/*, style/installer.css, script/installer.js, modules/header.php, login.php
+
+2019-01-22, 11:14:41
+	Info:	Added safety restriction: Possible log to only one site CMS at a time.
+	Info:	New function in cms.php: getCmsUrl().
+	Files:	login.php, modules/_session_start.php, script/cms.php
+
+2019-01-28, 23:10:45
+	Info:	Added @language support in preview link.
+	Info:	Cosmetic bug fix in Creator module.
+	Files:	xable.ini, modules/nav.php, script/xable_creator.js
+
+2019-01-28, 23:25:39
+	Info:	Bug fixes in single file cursor hover info.
+	Files:	modules/form_xml.php
+
+2019-01-29, 00:29:04
+	Info:	Added block navigation group auto-fold option: 'nav_nofold' to xable.ini.
+	Files:	xable.ini, script/nav.js
+
+2019-01-29, 01:09:51
+	Info:	Added auto-set Xable build update feature to Update module.
+	Info:	Cosmetic script cleanup in Advanced modules.
+	Files:	doc/version.txt, xable_*.php, index.php, modules/xable_head.php
+
+2019-01-29, 15:08:02
+	Info:	Added missing "_plugins" suport to CMS update scripts.
+	Files:	_installer/install.php, xable_update.php
+
+2019-01-29, 17:27:49
+	Info:	Advanced module code layout height fix.
+	Info:	Safety fix: Added self-delete protection in Explorer Tool.
+	Files:	script/xable_nav.js, script/xable_explorer.js, xable_explorer.php
+
+2019-01-29, 19:02:02
+	Info:	Added safety restriction: Check logged user IP.
+	Info:	Version changed to 4.4.
+	Files:	login.php, modules/_session_start.php
+
+2019-02-15, 17:01:56
+	Info:	Added advanced tool: CMS bak files cleaner.
+	Info:	Added advanced tool: Unused media files cleaner.
+	Info:	Advanced tools cosmetic update.
+	Info:	Responsive languages change button(s) update.
+	Info:	New feature: Floating main buttons on scroll.
+	Info:	Version set to 4.41.
+	Files:	_tools/*.php, xable_update.php, style/index.css, style/_responsive.css, script/cms.js
+
+2019-05-06, 22:46:06
+	Info:	Support for new youtu.be share links.
+	Info:	Cosmetic updates on video file / video stream support.
+	Files:	modules/form_xml.php, script/cms.js
+
+2019-05-09, 10:13:30
+	Info:	New feature: Automatic adding new page to navigation.xml.
+	Info:	Localization update.
+    Info:	Version changed to 4.5a.
+	Files:	_publish.php, script/cms.js, localization/alert.xml, localization/nav.xml, localization/_dictionary.xml
+
+2019-05-09, 11:26:11
+	Info:	Added support for facebook & Vimeo video links.
+	Files:	script/cms.js, localization/media.xml
+
+2019-05-12, 14:52:48
+	Info:	Added a variable to loadXML() php function, to force load draft version.
+	Info:	Now draft support works with the navigation.xml too.
+	Files:	modules/nav.php, script/xml.php
+
+2019-05-12, 21:15:42
+	Info:	Show external links on nav list.
+	Info:	Added edit navigation file (change order) button to group title label.
+	Info:	
+	Info:	
+	Files:	modules/nav.php, style/nav.css, style/colors.css
+
+2019-05-12, 21:47:16
+	Info:	New feature in Creator module: Delete unused languages entries
+	Files:	modules/xable_nav.php, script/xable_creator.js
+
+2019-05-12, 22:42:11
+	Info:	Fix in Advanced tool Media cleaner (draft support).
+	Files:	_tools/02_media_cleaner.php
+
+2019-05-12, 23:20:11
+	Info:	Advanced tools layout update.
+	Files:	xable_update.php, script/xable_update.js, _tools/_tools.css, _tools/*.php
+
+2019-05-13, 10:22:54
+	Info:	Login date update based on doc/version.txt file.
+	Files:	login.php
+
+2019-05-16, 19:43:49
+	Info:	Package filename format changed in Update module - now includes Xable version.
+	Files:	xable_update.php, script/footer.js
+
+2019-05-17, 12:26:10
+	Info:	Updated obsolete code preview layout + syntax highlight feature.
+	Files:	localization/popup.xml, modules/form_xml.php, script/cms.js, style/_responsive, style/index.css
+
+2019-05-28, 08:49:37
+	Info:	Added detect changes on entering advanced modules.
+	Info:	New input type: date + calendar input popup (Supported option: auto).
+	Info:	New getMonthDays() js function.
+    Info:	Version changed to 4.5b.
+	Files:	script/cms.js, script/functions.js, modules/form_xml.php, style/*.css, localization/help.xml, localization/alert.xml
+
+2019-05-29, 17:06:33
+	Info:	New feature in showPopup() - show select-popup list if input variable is an object.
+	Info:	New input popup in string type (if name is "href") - select existing xable document.
+	Files:	script/cms.js, script/functions.js, modules/form_xml.php, style/cms.css, style/index.css
+
+2019-05-29, 20:36:16
+	Info:	Subpages count info minor fix.
+	Files:	script/nav.js
+
+2019-05-30, 00:08:14
+	Info:	Minor updates in URL handling.
+	Info:	XML is the only supported file format (deleted obsolete: txt, csv).
+	Info:	Close popup by ESC key added to showPopup() function.
+	Info:	New improoved version of urlQuery() function.
+	Files:	script/cms.js, script.nav.js, script/functions.js, style/cms.css, localization/alert.xml
+
+2019-06-05, 01:04:10
+	Info:	Replace php functions stringId() and getId() with unified php-js makeId().
+	Info:	Updated tools in Update panel: Added launch button + short info.
+	Info:	New tool in Update panel: Convert date from String to Date input type.
+	Files:	_tools/*, script/functions.js, script/functions.php, script/xml.php
+
+2019-06-07, 22:43:27
+	Info:	Added similar feature to "href" input to string input named "folder_path", allows to select one folder in "media".
+	Info:	Same minor layout css fixed (now info_box is above poup_box).
+	Files:	index.php, localization/alert.xml, style/index.css, script/cms.js
+
+2019-06-12, 22:11:30
+	Info:	Autoupdate title in Navigation on href input change and disable manual edit. This feature can be enabled/disabled by auto_navigation_title variable in xable.ini
+	Files:	_publish.php, xable.ini, localization/alert.xml, localization/popup.xml, script/cms.js
+
+2019-06-14, 23:11:46
+	Info:	Enhaced date support feature: Article sort by date option (in xable.ini)
+	Info:	Minor advanced tools navigation layout bug fixed.
+	Files:	xable.ini, localization/alert.xml, script/cms.js, modules/xable_nav.php, srcipt/xable_*.js
+
+2019-06-22, 23:55:20
+	Info:	Options field added to string input: required;default=<value>;type=<number/integer/float/email/url/letter/tag>;capitalize;lowercase;uppercase
+	Info:	- Tag is a string without spaces & special characters.
+	Info:	- Default value will be entered automatically on creating new Post with this input.
+	Info:	Updated validateEmail() and validateUrl() js functions.
+	Files:	xable_creator.php, localization/alert.xml, style/xable_creator.css, script/cms.js, script/functions.js, script/xable_nav.js, script/xable_creator.js, modules/form_xml.php
+
+2019-06-23, 13:35:35
+	Info:	Date options renamed from "auto" to "required" to match similar option in string input.
+	Info:	Minor bugfixes.
+	Info:	Date-to-date advanced update tool update.
+	Files:	script/cms.js, script/functions.js, _tools/21_date_to_date.php
+
+2019-06-26, 16:15:50
+	Info:	Fixed bug in update title by href (String input -> existing document).
+	Files:	script/cms.js
+
+2019-06-27, 16:39:00
+	Info:	Order auto-sort feature fixed & fully implemented.
+	Files:	_publish.php, modules/form_order.xml, style/cms.css, script/cms.js, localization/nav.xml
+
+2019-06-27, 23:10:19
+	Info:	Order auto-sort updated with sort by date option (button).
+	Files:	script/cms.js, modules/form_order.php, style/cms.css, localization/vav.xml
+
+2019-06-27, 23:22:53
+	Info:	Link pattern feature updated (new variable: @language) and moved from xable.ini to settings.xml.
+	Info:	Some minor fixes.
+	Files:	../settings.xml, xable.ini, index.php, modules/nav.php
+
+2019-06-28, 16:29:11
+	Info:	New function getLinkData() in xml.php. Read data from URL in any defined format.
+	Files:	script/xml.php, ../script/xml.php
+
+2019-07-02, 00:36:34
+	Info:	New IMPORTANT functions in xml.php:
+	Info:	getLinkData() - extracts URL link data to array.
+	Info:	getSitemap() - create full sitemap tree array.
+	Info:	getSitemapIndex() - list of all website pages
+	Files:	script/xml.php, ../script/xml.php
+
+2019-07-02, 09:57:03
+	Info:	Fix: Create and copy (by parent) .order options on create new subfolder.
+	Files:	_publish.php
+
+2019-07-03, 18:23:15
+	Info:	Preview_page button script updated to new link_pattern standards.
+	Info:	Minor layout fixes.
+	Files:	modules/nav.php, script/nav.js, style/index.css
+
+2019-07-03, 20:56:31
+	Info:	IMPORTANT bugs fixed:
+	Info:	- loadXml: added missing force_preview option.
+	Info:	- Missing unpublished documents support added to "Unlinked media delete" advanced tool. Added delete emptied folders feature.
+	Files:	script/xml.php, ../script/xml.php, _tools/02_unlinked_media_delete.php
+
+2019-08-30, 23:05:42
+	Info:	Fixed non working buttons (up, down, delete) on first new post.
+	Info:	Widow letters fix i BBCode(). 
+	Files:	script/cms.js, script/functions.php
+
+2020-01-08, 14:20:36
+	Info:	Dictionary update
+	Files:	localization/_dictionary.xml
+
+2020-01-12, 20:27:46
+	Info:	Fixed 'disabled' media behavior
+	Files:	script/cms.js
+
+2020-02-10, 12:41:59
+	Info:	Update Make a template in Creator Module - support for categories data, delete multi articles
+	Files:	script/xable_creator.js
+
+2020-02-20, 22:52:15
+	Info:	Updated to match php7 requirements.
+	Info:	Added support for @folder im Make template tool.
+	Files:	script/functions.php, modules/_session-start.php, login.php, script/xable_creator.js
+
+2020-02-22, 21:31:12
+	Info:	Fixed 'disabled' not refreshed bug on last/first order item move up/down.
+	Files:	script/cms.js
+
+2020-02-23, 00:13:24
+	Info:	SVG preview & get-size fix
+	Files:	modules/form_xml.php, script/cms.js, style/index.css
+
+2020-02-23, 00:43:36
+	Info:	New function imageSize() with svg support in functions.php.
+	Files:	script/functions.php
+
+2020-02-23, 09:53:36
+	Info:	Fixed first upload icon moved bug.
+    Info:   Version changed to 4.52
+	Files:	style/cms.css
+
+2020-02-23, 20:30:39
+	Info:	Added long titles text resize script
+	Files:	script/cms.js
+
+2020-02-23, 21:03:27
+	Info:	Fixed bug in Unlinked media delete tool - file with filename used in another folder wasn't analysed
+	Files:	_tools/02_unlinked_media_delete.php
+
+2020-02-25, 12:26:21
+	Info:	Fixed cosmetic bug in Advanced - Explorer Tool
+	Files:	script/xable_explorer
+
+2020-02-27, 12:14:37
+	Info:	Fixed typo in imageSize()
+	Files:	modules/form_xml.php, script/functions.php
+
+2020-03-03, 16:36:48
+	Info:	Minor fixes in BrowseFile input.
+	Info:	Updated redirect code in page index.php.
+	Info:	Error 404 redirect added to page settings.
+	Files:	modules/form_xml.php, script/cms.js, ../settings.xml, ../index.php
+
+2020-03-04, 23:22:12
+	Info:	Support for no-path page.
+	Files:	modules/nav.php
+
+2020-03-06, 10:09:44
+	Info:	testMedia() function added to xml.php.
+	Info:	Website code structure changed - split from index to to php modules.
+	Info:	New link pattern variable @folder support added. Allows to show multiple documents (from folder) on one page.
+    Info:	Version changed to 4.6b
+	Files:	modules/nav.php, script/xml.php, ../script/xml.php, ../index.php, ../modules/*.php
+
+2020-03-06, 11:38:27
+	Info:	Updated website settings!
+	Info:	Links moved to separate article "links".
+	Info:	Redirect links option added.
+    Info:	Force One page option added.
+	Files:	../settings.xml, ../modules/launcher.php
+
+2020-03-08, 21:29:24
+	Info:	Fixed not showing .order title in Show notifications.
+	Files:	modules/header.php, localization/header.xml
+
+2020-03-08, 22:00:08
+	Info:	Page preview with folder mode bug fixed.
+	Files:	modules/nav.php
+
 =======================================================
 TODO:
-    - Language unification: PL or EN.
+    - Kill or support? special quotation marks: „ ” “ ???
+    - Update preview to support language in link.
+    - Disable remove the only & 404 page(s).

@@ -1,9 +1,24 @@
 $(document).ready(function() {
-    
-    urlQuery();
-	
+
 	// Add (class) names to all inputs
-	$("form select, form input").each(function() { $(this).attr("name", $(this).attr("class")); });
+	$("form select, form input").each(function() {
+        $(this).attr("name", $(this).attr("class"));
+    });
+    
+    groups = {};
+    $("main table tr").each(function() {
+        login = $(this).find(".login").text();
+        group = $(this).find(".group option:selected").text();
+        if(groups[group]) {
+            users = groups[group];
+            users[users.length] = login;
+            groups[group] = users;
+        }
+        else {
+            users = [ login ];
+            groups[group] = users;
+        }
+    })
 	
     // ==========================================
     //                 Edit ini
@@ -33,13 +48,17 @@ $(document).ready(function() {
     // ====== Delete Group ======
 	$("span.delete").click(function() {
 		file = $(this).closest("span.group").find(".ini").attr("value");
-        if(file.path("filename") == "dev") {
-            alert("Nie można usunąć grupy developera!");
+        group = file.path("filename");
+        if(group == "dev") {
+            alert(LOCALIZE["dev-group-delete-alert"]);
         }
-        else if(file.path("filename") == "dev") {
-            alert("Nie można usunąć własnej grupy!");
+        else if(groups[group]) {
+            alert(LOCALIZE["group-not-empty-alert"]);
         }
-		else if(confirm("Czy na pewno chcesz usunąć grupę '" + file.path("filename") + "' ?")) {
+        else if(group == $("input#logged_group").val()) {
+            alert(LOCALIZE[""]);
+        }
+		else if(confirm(LOCALIZE["group-delete-confirm"].replace("@group_name", group))) {
 			location.href = "_save-ini.php?delete_group=" + file;
 		};
 	});
@@ -55,7 +74,7 @@ $(document).ready(function() {
 		};
 		popup = "<div id='popup_container'>" +
 				"<form class='edit_popup' action='_save-ini.php' method='post'>" +
-					"<div class='buttons'><button name='accept' class='accept' value='accept'>Zapisz</button><button class='cancel' value='accept'>Anuluj</button></div>" +
+					"<div class='buttons'><button name='accept' class='accept' value='accept'>" + LOCALIZE["save-label"] + "</button><button class='cancel' value='accept'>" + LOCALIZE["cancel-label"] + "</button></div>" +
 					"<input class='file' type='text' name='file' value=''>" +
 					"<div class='textarea' contenteditable>[group]<br>; key = value</div>" +
                     "<textarea name='content'></textarea>" +
@@ -109,10 +128,10 @@ $(document).ready(function() {
 				return false;
 			}
 			else if($("#popup_container .file").val().toLocaleLowerCase() == "xable") {
-				alert("Nazwa \"xable\" jest zastrzeżona!");
+				alert(LOCALIZE["xable-name-protect"]);
 				return false;
 			}
-			else if(confirm("Czy na pewno zapisać zmiany?")) {
+			else if(confirm(LOCALIZE["save-changes-confirm"])) {
                 $("#popup_container .file").prop("disabled", false);
                 file = $("#popup_container .file").val();
 				if(file.path("extension") != "ini") {
@@ -132,18 +151,6 @@ $(document).ready(function() {
     // ==========================================
     //                 Menu bar
     // ==========================================
-
-	// Show menu dropdown
-    $("nav label.menu").mouseenter(function() {
-        $(this).find("ul").stop().show(200);
-        $(this).find("p").css({ "opacity": "0.25" });
-    });
-
-	// Hide menu dropdown
-    $("nav label.menu").mouseleave(function() {
-        $(this).find("ul").stop().hide(100);
-        $(this).find("p").css({ "opacity": "1" });
-    });
     
 	// Menu actions
 	$("nav li").click(function() {
@@ -151,12 +158,15 @@ $(document).ready(function() {
         $(this).closest("label").find("ul").stop().hide(100);
         $(this).closest("label").find("p").css({ "opacity": "1" });
         // Actions
-		action = $(this).html().replace(/&nbsp;/g, "_").toLowerCase();
+		action = $(this).attr("value");
 		if(action == "quit") {
             location.href = "index.php";
         }
 		else if(action == "creator" || action == "update" || action == "explorer") {
             location.href = "xable_" + action + ".php";
+        }
+        else if(action == "separator") {
+            return false;
         }
         else {
             alert("Unimplemented: " + action)
@@ -174,7 +184,13 @@ $(document).ready(function() {
 	$("main .delete_user").click(function() {
 		$(this).blur();
 		login = $(this).closest("tr").find(".login").text();
-		if(confirm("Delete user: '" + login + "'\nAre you sure?")) {
+        if(login == $("input#dev_group").val()) {
+            alert(LOCALIZE["last-dev-alert"]);
+        }
+        else if(login == $("input#logged_user").val()) {
+            alert(LOCALIZE["user-delete-alert"]);
+        }
+		else if(confirm(LOCALIZE["user-delete-alert"].replace("@user_name", login))) {
 			$form = $("form#delete_user");
 			$form.find(".login").val(login);
 			$form.submit();
@@ -188,7 +204,7 @@ $(document).ready(function() {
 		$(this).blur();
 		login = $(this).closest("tr").find(".login").text();
 		group = $(this).val();
-		if(confirm("Change group for user: '" + login + "'\nAre you sure?")) {
+		if(confirm(LOCALIZE["move-to-group-confirm"].replace("@user_name", login).replace("@group_name", group))) {
 			$form = $("form#change_group");
 			$form.find(".login").val(login);
 			$form.find(".group").val(group);
@@ -205,22 +221,22 @@ $(document).ready(function() {
 		exisitingUsers = $("input#users").val().split(" ");
 		//alert(exisitingUsers.indexOf(val));
         if(val == "") {
-            alert(title + " can't be empty");
+            alert(title + " - " + LOCALIZE["empty-input-alert"]);
 			$input.focus();
 			return false;
         }
         else if(title == "Login" && exisitingUsers.indexOf(val) > -1) {
-            alert(title + " already exists");
+            alert(title + " " + LOCALIZE["login-exists-alert"]);
 			$input.focus();
 			return false;
         }
         else if(title == "Login" && val.length < 3 || title != "Login" && val.length < 6) {
-            alert(title + " is too short");
+            alert(title + " " + LOCALIZE["too-short-alert"]);
 			$input.focus();
 			return false;
         }
         else if(val.indexOf(" ") > -1) {
-            alert(title + " can't contain any space");
+            alert(title + " " + LOCALIZE["no-spaces-alert"]);
 			$input.focus();
 			return false;
         }
@@ -244,12 +260,12 @@ $(document).ready(function() {
         $form = $(this).closest("form");
 		if(verify($form.find(".new_password"))) {
 			if($form.find(".new_password").val() == $form.find(".new_repeat").val()) {
-                $form.find(".login").removeProp("disabled");
+                $form.find(".login").prop("disabled", false);
 				$form.attr("action", "xable_users.php?action=change_password");
 				return true;
 			}
 			else {
-				alert("Passwords don't match");
+				alert(LOCALIZE["different-passwords"]);
 				$form.find(".repeat").focus();
 				return false;
 			};
@@ -264,7 +280,7 @@ $(document).ready(function() {
         $(this).blur();
         $form = $(this).closest("form");
 		if(verify($form.find(".current_password"))) {
-            $form.find(".login").removeProp("disabled");
+            $form.find(".login").prop("disabled", false);
 			$form.attr("action", "xable_users.php?action=test_password");
 			return true;
 		}
@@ -282,14 +298,13 @@ $(document).ready(function() {
     $("#new_user .confirm").click(function() {
         $(this).blur();
         $form = $(this).closest("form");   
-		
 		if(verify($form.find(".login")) && verify($form.find(".password"))) {
 			if($form.find(".password").val() == $form.find(".repeat").val()) {
 				$form.attr("action", "xable_users.php?action=new_user");
 				return true;
 			}
 			else {
-				alert("Passwords don't match");
+				alert(LOCALIZE["different-passwords"]);
 				$form.find(".repeat").focus();
 				return false;
 			};
@@ -298,5 +313,7 @@ $(document).ready(function() {
 			return false;
 		};
     });
+    
+    urlQuery();
     
 });

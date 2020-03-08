@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xable>
+	<_file_manager>
+		<upload>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</upload>
+		<delete>
+			<type>media</type>
+			<media>
+				<files></files>
+			</media>
+			<set>files</set>
+		</delete>
+	</_file_manager>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-up</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Przesuń w górę</pl>
+				<en>Move up</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>move-down</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Przesuń w dół</pl>
+				<en>Move down</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>above-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Powyżej</pl>
+				<en>Above</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>below-label</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Poniżej</pl>
+				<en>Below</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>post-new</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Dodaj nowy wpis</pl>
+				<en>Add new item</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>post-remove</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Usuń wpis</pl>
+				<en>Remove item</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>post-expand</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Rozwiń wpis</pl>
+				<en>Expand item</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+	<multi_sentence>
+		<key>
+			<type>string</type>
+			<string>post-fold</string>
+		</key>
+		<translation>
+			<type>text</type>
+			<text>
+				<pl>Zwiń wpis</pl>
+				<en>Fold item</en>
+				<de></de>
+			</text>
+		</translation>
+	</multi_sentence>
+</xable>
